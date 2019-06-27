@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>{{Title}}</mat-label>
+  <mat-select (selectionChange)="onChangeHandler($event)" [value]="Value">
+    <mat-option *ngFor="let item of InputTextArray" [value]="item.key">
+      {{item.text}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

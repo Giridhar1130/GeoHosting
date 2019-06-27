@@ -1,0 +1,8 @@
+.actions-area {
+	margin: 25px;
+	background-color: rgb(234, 234, 234);
+}
+.mat-button {
+	border-radius: 0px;
+	padding: 0 30px;
+}

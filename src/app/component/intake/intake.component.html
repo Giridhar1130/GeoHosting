@@ -1,0 +1,114 @@
+<br /><br />
+<h4>Intake Country</h4>
+<br />
+<br />
+<br />
+<div class="container-fluid">
+  <div class="row">
+    <div class="leftStyle">
+      <mat-accordion multi="true"  >
+        
+        <mat-expansion-panel class="aaa" *ngFor="let left of leftItemOrginal" [expanded]=true (afterCollapse)="afterLeftRootCollapse(objectkeys(left))" (afterExpand)="afterLeftRootExpend(objectkeys(left))">
+          
+          <mat-expansion-panel-header  class="leftRootHeader">
+            <mat-panel-title >
+             <span class="leftHeadStyle">{{objectkeys(left)}}</span> 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div >
+            <div *ngFor="let leftchildren of objectvalues(left)">
+              <div *ngFor="let targetchildren of leftchildren" data-toggle="tooltip" title={{targetchildren.Owner.LookupValue}} class="leftchildren btn text-left btn-light list-group-item"  (click)="rightChildrenSelected(targetchildren)" >{{targetchildren.Owner.LookupValue}}</div>
+            </div>     
+          </div>
+        
+        </mat-expansion-panel>
+    
+      </mat-accordion>
+    </div>
+    <div class="rightStyle  col">
+      <mat-toolbar class="container-fluid justify-content-between">
+        <div
+          class="btn-toolbar"
+          role="toolbar"
+          aria-label="Toolbar with button groups"
+        >
+          <div class="btn-group mr-3" role="group" aria-label="First group" (click)="showALl()">
+            <button class="inkatebutton">All Docuements  </button> 
+          </div>
+          <div class="btn-group mr-3" role="group" aria-label="First group">
+            My Items
+          </div>
+        </div>
+        <div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <i class="material-icons  align-bottom searchIcon">
+                search
+              </i>
+            </div>
+            <input
+              type="text"
+              class="form-control align-middle"
+              placeholder="Search"
+              matInput
+               (keyup)="applyFilter($event.target.value)"
+              aria-label="Input group example"
+              aria-describedby="btnGroupAddon2"
+            />
+          </div>
+        </div>
+      </mat-toolbar>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8 table-hover"
+      >
+        <!-- ID Column -->
+        <ng-container matColumnDef="ID">  
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
+          <td mat-cell *matCellDef="let element">{{ element.FormId }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let element" ><div class=" btn btn-link namestyle" (click)="openBottomSheet(element)">{{ element.MyFields.FormName }}</div></td>
+        </ng-container>
+
+        <!-- AssessmentStatus Column -->
+        <ng-container matColumnDef="AssessmentStatus">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Assessement Status
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.AssessmentStatus }}</td>
+        </ng-container>
+
+        <!-- Priority Column -->
+        <ng-container matColumnDef="Priority">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+          <td mat-cell *matCellDef="let element">{{ element.Priority }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Scope">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Scope</th>
+          <td mat-cell *matCellDef="let element">{{ element.MyFields.Section1details.Scope }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+          <td mat-cell *matCellDef="let element">{{ element.MyFields.Section1details.Country }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Territory">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Territory</th>
+          <td mat-cell *matCellDef="let element">{{ element.MyFields.Territory }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+      </table>
+    </div>
+  </div>
+</div>
+
+

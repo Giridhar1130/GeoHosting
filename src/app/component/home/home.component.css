@@ -1,0 +1,226 @@
+.home-jumbotron {
+    color: #002050;
+  }
+
+  /* App.component.css section */
+
+  .border-radius{
+    border-radius: 0px;
+  }
+  
+  .d-none{
+    color: white;
+  }
+  
+  .App{
+    font-family: "Segoe UI",SegoeUI,"Segoe WP",Tahoma,Arial,sans-serif;
+  }
+  
+  .navbar {
+    padding:0px;
+    background: #000;
+  }
+  
+  .navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 200;
+    padding: .5rem 0 .5rem 50px;
+    background: url(data:image/png;base64,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) left center no-repeat;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link,
+  .dropdown .nav-link,
+  .navbar-dark .navbar-nav .nav-link:focus, 
+  .navbar-dark .navbar-nav .nav-link:hover,
+  .dropdown .nav-link:focus,.dropdown .nav-link:hover {
+    color: #fff;
+    padding: .75rem 1rem;
+    white-space: nowrap;
+    height: 100%;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:focus, 
+  .navbar-dark .navbar-nav .nav-link:hover,
+  .dropdown .nav-link:focus,.dropdown .nav-link:hover {
+    background: #2a2a2a;
+    text-decoration: underline;
+  }
+  
+  .App .footer {
+    max-height: 37px;
+    background: #000;
+    padding: .5rem 0;
+    color: #fff;
+    font-size: .875rem;
+  }
+  
+  .flex-grow-1 {
+    flex-grow: 1!important;
+  }
+  
+  .microsoft-logo {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAAATCAYAAAD7yKGlAAAER0lEQVRYw+2YC2iWVRjH32oum9a08r4urOziJpQXUlQEpcjAWEapDFt3LEGwQYiGaaigoKLlshElzFsE1iiwbYK6AlsXEexGlGmRljo0c6au7e3/4O/Fh5fv9ZuXb3zQN/ix9zznnPc853+e85zzfsHxsuKwAwSv1gdhOvRn7ewhhyO4EJHnNeREzjqRKysr/09cLbqmqsu0yPniNjFI3HQeB7vTxijEViIewvlsFreHWC5+Et+I2ztb5DvFfvGv+F70SXB0mTgjWsUT4irxowjFo1kscJ54Gz/3iloxUBQQJFd2hsgWmUdwwngqhaNF4pBr86y4QlSJr8U9WSxyL9EsDiOq2e4gqj/trEi+G5H/Eu0MnB9zdCbi/ulEjqKkMCH3WerpT8RHbaN8aNFzg6sLeM8t2FOJlc87+8T6RfSm/3XOZu2KxT/sukJsY5jHTnzN6wyR/xbbxWcMPjI2uS9JKR/GRH5H7OIdkZDTxW7SymnxvrhGzBbfigq2bDP9TLRV4iCLfEzUcE5EPkwQTdSfFItdnfn6gTgh2vBzgegiJlFuxxcT+juxj3mcJKLfCzJ5T2aiLThazuBvuEk8gG0xYtjzM9Q1UR5CeQllW7S1YoP4AiGrqLOxDrBwo8RW7LZYK8XnlH+gn+XP4+y0pSzAm4x3nzhK+1rG+N3N4UHe20Y0W+Q2EgQh77Q5VJvIHcLES0eCyBYF9WzHg9CbiWwkEoqZnBe5kbLl9VIOzyNO9AChbDespm2jO1xfwtYgrsVmUb8F+0wOVXve7N7ZlUj9iLpXXJ0tyh/Y7+Vm0UIUF9BmKPXncnKw7mjYAYKwTrqlw8StSynyDg6zFTgwTfRl+27FmbUJItuVaBbP1Qk59S3qn3S2TQmH7ePYN3H7iVLBejGWNv3YESc4yHz/6DbxPDm6hbRQ6HZASHrsqMjh5RC5EZFLyae1TrgKnKlJENmifBHP8xNEro5d92ysT7A9Emt7P/YtlCeRz6PbzcuMeYzD+OZY/6VuJ3iRe1y8yDXtl0vk6FZhkzvFtvtFXJ9GZIvkGTx/nEbkx5ztXWxzY20rsa+JpYgK8qgdWMPFHiJ8RKx/tHgT8T0u8ogLTxcSGfEuVeToy22Ki5qFzvkkkUvI583kb8uRt4rB4jkmtzqFyA9jszxexjkwwR1eo8ifU3lHEWJZ3QC3e7bRrr/bfT/zldovhciltPmNqC7KtMjRgF+5e2xPd83xHxqbsU2nvIvyMMrl7rRv4/8B7r5RJJfHom6hW9DT/G8lJQTk8JBAOMXzCudnvevfyv9fuQsHpJLIj57YCojiqF9TpkW2gZ9ma/lL/jgOoDxnGy9eFHe5SLTD5UbXpgSBLHJf46Cyj4/RLE5xilQyhlxeReoYHvtis36v82lfFvtY6sbuWEabF4h4/5uLzW9y7DcW+3CZw1VvWkZFzsFPnTmRs0HkS7gn5zjLf82TGJ9WcylkAAAAAElFTkSuQmCC) left center no-repeat;
+    width: 89px;
+    height: 19px;
+    display: inline-block;
+  }
+  
+  .footer-side {
+    min-width: 250px;
+    white-space: nowrap;
+  }
+  
+  .text-right{
+    text-align: right;
+  }
+  
+  .dropdown-menu .dropdown-item, .dropdown-menu a {
+    display: block;
+    color: #1a1a1a;
+    padding: 4px 3px;
+    background: 0 0;
+  }
+  
+  .dropdown-menu .dropdown-item, .dropdown-menu .item{
+    font-size: .875rem;
+    font-weight: 400;
+  }
+  
+  .dropdown-menu .dropdown-item:focus,
+  .dropdown-menu .dropdown-item:hover,
+  .dropdown-menu a:focus,
+  .dropdown-menu a:hover{
+    background-color: #d9ebf9;
+  }
+  
+  .dropdown-menu{
+      border-radius: 0;
+      border: 1px solid #a2cef0;
+      box-shadow: 0 2px 6px 0 rgba(0,0,0,.15);
+      margin: 0;
+      padding: 1rem;
+      max-width: 740px;
+  }
+  
+  .dropdown-header {
+    font-size: 1.25rem;
+    font-weight: 200;
+    padding:0px;
+  }
+  
+  .dropdown-menu .column .dropdown-header:not(:first-child){
+    margin-top:15px;
+  }
+  
+  .ms-Icon-FullMDL--Search{
+    background-color: white;
+    color: black;
+    border-color: white;
+  }
+  
+  .ms-Icon-FullMDL--Search::before{
+    font-size: 24px;
+  }
+  
+  .column {
+    width: 200px;
+    padding: 0 10px;
+  }
+  
+  .jumbotron {
+    background: white;
+    padding: 35px 0 5px;
+    margin: 0;
+    border-radius:0px;
+  }
+  
+  .welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .geoclearance-container{
+    padding: 1rem 0;
+    background-color: #f2f8fd;
+    background-size: cover;
+    flex-grow: 1;
+  }
+  
+  .tab-content {
+    border-top: 5px solid #002050;
+    background-color: #fff;
+    padding: 10px;
+  }
+  
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color: white;
+    background-color: #002050;
+    border-color: #002050;
+  }
+  
+  #geohosting-tab-tabpane-datageoclearance > img, #geohosting-tab-tabpane-networkgeoclearance > img{
+    width:100%;
+  }
+  
+  #geohosting-tab-tabpane-geoclearance .nofly{
+    color:white;
+    background-color: #cc0000;
+  }
+  
+  #geohosting-tab-tabpane-geoclearance .cleared{
+    color:white;
+    background-color: #548235;
+  }
+  
+  .geohosting-indicators{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .cleared {
+    color: #548235;
+  }
+  
+  .limited {
+    color: #cc9900;
+  }
+  
+  .restricted {
+    color: #ff6600;
+  }
+  
+  .nofly {
+    color: #cc0000;
+  }
+  
+  .dropdown > .nav-link::after{
+    position: relative;
+    display: inline-block;
+    border: solid;
+    border-width: .075em .075em 0 0;
+    content: "";
+    height: .5em;
+    width: .5em;
+    left: .3em;
+    margin-left: .255em;
+    vertical-align: .255em;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  
+  .table {
+   text-align: center;
+  }
+  
+  .dropdown-menu-right{
+    right: 0px;
+    left: auto;
+  }
+  .filtermenu {
+    width: 200px;
+  }
+  .defaultRender {
+    max-height: 100px;
+    overflow-y: scroll;
+  }

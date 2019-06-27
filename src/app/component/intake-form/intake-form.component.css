@@ -1,0 +1,46 @@
+
+.header {
+  background-color: #002050;
+  color: #fff;
+  font-size: 28px;
+  height: 90px;
+  line-height: 45px;
+}
+.progresssitesstyle th, td{
+    overflow: hidden;
+    width: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.radiostyle {
+  margin-right: 15px;
+}
+.prorityLabelStyle {
+  display: block;
+}
+.formstyle {
+  padding: 20px;
+}
+.textareastyle > * {
+  width: 100%;
+}
+.matfieldstyle {
+  width: 70%;
+}
+.blankrow {
+    height: 1vh;
+}
+.footbutton{
+  margin-right: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+table {
+    width: 100%;
+  
+  }
+  /* th, td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }   */

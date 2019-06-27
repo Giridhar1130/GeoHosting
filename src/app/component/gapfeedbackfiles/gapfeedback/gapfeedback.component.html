@@ -1,0 +1,209 @@
+<div class="container-fluid">
+  <br /><br />
+  <h4>GAP Feedback</h4>
+  <br />
+  <br />
+  <br />
+  <div class="row">
+    <div class="leftStyle">
+      <mat-accordion multi="true"  >
+        
+        <mat-expansion-panel class="aaa" *ngFor="let left of leftItemOrginal" [expanded]=true (afterCollapse)="afterLeftRootCollapse(objectkeys(left))" (afterExpand)="afterLeftRootExpend(objectkeys(left))">
+          
+          <mat-expansion-panel-header  class="leftRootHeader">
+            <mat-panel-title >
+             <span class="leftHeadStyle">{{objectkeys(left)}}</span> 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div >
+            <div *ngFor="let leftchildren of objectvalues(left)">
+              <div *ngFor="let targetchildren of leftchildren" data-toggle="tooltip" title={{targetchildren.GeoHostingOwner}} class="leftchildren btn text-left btn-light list-group-item"  (click)="rightChildrenSelected(targetchildren)" >{{targetchildren.GeoHostingOwner}}</div>
+            </div>     
+          </div>
+        
+        </mat-expansion-panel>
+    
+      </mat-accordion>
+    </div>
+    <div class="rightStyle  col">
+      <mat-toolbar class="container-fluid justify-content-between">
+        <div
+          class="btn-toolbar"
+          role="toolbar"
+          aria-label="Toolbar with button groups"
+        >
+          <div class="btn-group mr-3" role="group" aria-label="First group" (click)="showALl()">
+            <button class="inkatebutton">All Documents  </button> 
+          </div>
+          <div class="btn-group mr-3" role="group" aria-label="First group">
+            My Items
+          </div>
+        </div>
+        <div>
+          <div class="input-group">
+              <input
+              type="text"
+              class="form-control align-middle"
+              placeholder="Search"
+              matInput
+               (keyup)="applyFilter($event.target.value)"
+              aria-label="Input group example"
+              aria-describedby="btnGroupAddon2"
+            />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary search-btn" type="button"><i class="material-icons">search</i></button>
+              </div>
+            </div>
+        </div>
+      </mat-toolbar>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8 table-hover"
+      >
+        <!-- TaskName Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>TaskName</th>
+          <td mat-cell *matCellDef="let element">{{element.TeamName}}</td>
+        </ng-container>
+
+        <!-- AssignedTo Column -->
+        <ng-container matColumnDef="AssignedTo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>AssignedTo</th>
+          <td mat-cell *matCellDef="let element" ><div class=" btn btn-link namestyle" (click)="openBottomSheet(element)">{{ element.AssignedTo }}</div></td>
+        </ng-container>
+
+        <!-- SubmittedDate Column -->
+        <ng-container matColumnDef="Submitted">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Submitted Date
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.Submitted}}</td>
+        </ng-container>
+
+        <!-- TaskStatus Column -->
+        <ng-container matColumnDef="TaskStatus">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>TaskStatus</th>
+          <td mat-cell *matCellDef="let element">{{ element.TaskStatus }}</td>
+        </ng-container>
+        
+        <!-- Country Column -->
+        <ng-container matColumnDef="Country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+          <td mat-cell *matCellDef="let element">{{ element.Country }}</td>
+        </ng-container>
+
+        <!-- GAPFeedbackForm Column -->
+        <ng-container matColumnDef="GAPFeedbackForm">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>GAP Feedback Form</th>
+          <td mat-cell *matCellDef="let element" >
+            <div (click)="openBottomSheet(element)">
+              <label class=" btn btn-link namestyle" *ngIf = element.Submitted >View Feedback</label>
+              <label class=" btn btn-link namestyle" *ngIf = !element.Submitted>Provide Feedback</label>
+            </div>
+          </td>
+        </ng-container>
+        
+        <!-- GeoHostingOwner Column -->
+        <ng-container matColumnDef="GeoHostingOwner">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Geo Hosting Owner</th>
+            <td mat-cell *matCellDef="let element">{{ element.GeoHostingOwner }}</td>
+        </ng-container>
+
+        <!-- CountryIntakeForm Column -->
+        <ng-container matColumnDef="CountryIntakeForm">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Country Intake Form</th>
+            <td mat-cell *matCellDef="let element" >
+              <div (click)="openBottomSheet(element)">
+                <label class=" btn btn-link namestyle">View Feedback</label>
+              </div>
+            </td>
+        </ng-container>
+
+        <!-- Priority Column -->
+        <ng-container matColumnDef="Priority">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+            <td mat-cell *matCellDef="let element">{{ element.MyFields.CommonFields.Priority }}</td>
+        </ng-container>
+
+        <!-- Scope Column -->
+        <ng-container matColumnDef="Scope">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Scope</th>
+            <td mat-cell *matCellDef="let element">{{ element.Scope }}</td>
+        </ng-container>
+
+        <!-- Team Column -->
+        <ng-container matColumnDef="TeamName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Team</th>
+            <td mat-cell *matCellDef="let element">{{ element.TeamName }}</td>
+        </ng-container>
+
+        <!-- Country Assessment ID Column -->
+        <ng-container matColumnDef="NewCountryAssessmentID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Country Assessment ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.NewCountryAssessmentID }}</td>
+        </ng-container>
+
+        <!-- Risk Level Column -->
+        <ng-container matColumnDef="RiskLevel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Risk Level</th>
+            <td mat-cell *matCellDef="let element">{{ element.RiskLevel }}</td>
+        </ng-container>
+
+        <!-- DataCenter GeoClearance Risk Level Column -->
+        <ng-container matColumnDef="DataCenterRiskLevel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>DataCenter GeoClearance Risk Level</th>
+            <td mat-cell *matCellDef="let element">{{ element.DataCenterRiskLevel }}</td>
+        </ng-container>
+
+         <!-- Network GeoClearance Risk Level Column -->
+         <ng-container matColumnDef="NetworkRiskLevel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Network GeoClearance Risk Level</th>
+            <td mat-cell *matCellDef="let element">{{ element.NetworkRiskLevel }}</td>
+        </ng-container>
+
+         <!-- Modified Column -->
+         <ng-container matColumnDef="Modified">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Modified</th>
+            <td mat-cell *matCellDef="let element">{{ element.Modified }}</td>
+        </ng-container>
+
+        <!-- Team Assessment ID Column -->
+        <ng-container matColumnDef="AssessmentID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Team Assessment ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.AssessmentID }}</td>
+        </ng-container>
+
+        <!-- WorkflowReminder Column -->
+        <ng-container matColumnDef="WorkflowVersion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>WorkflowReminder</th>
+            <td mat-cell *matCellDef="let element">{{ element.WorkflowVersion }}</td>
+        </ng-container>
+
+         <!-- Modified by Column -->
+         <ng-container matColumnDef="ModifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</th>
+            <td mat-cell *matCellDef="let element">{{ element.Editor.LookupValue }}</td>
+        </ng-container>
+
+        <!-- Country ID Column -->
+        <ng-container matColumnDef="CountryID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Country ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.MyFields.CommonFields.CountryID}}</td>
+        </ng-container>
+
+        <!-- Feedback Status Column -->
+        <ng-container matColumnDef="AssessmentStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Feedback Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.AssessmentStatus}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+

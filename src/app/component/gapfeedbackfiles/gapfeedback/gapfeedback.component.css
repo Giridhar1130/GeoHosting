@@ -1,0 +1,52 @@
+
+.leftchildren {
+    line-height: 150%;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0px;
+}
+
+.leftHeadStyle {
+    font-size: 16px;
+}
+
+.leftchildren:hover {
+    background-color: rgb(244, 244, 244)
+}
+
+.leftStyle {
+    width:220px;
+    margin-left: 10px;
+}
+
+.rightStyle {
+     overflow-x:auto;
+}
+
+table {
+    width: 100%;
+}
+
+.inkatebutton {
+    height: 100%;
+    background-color: #f5f5f5;
+    border:none;
+}
+
+.leftRootHeader {
+    background-color:  rgb(244, 244, 244)
+}
+
+.namestyle {
+    font-size: 14px;
+}
+
+.search-btn {
+    padding: .015rem 0.5rem;
+}
+
+.search-btn .material-icons {
+    margin-top: 3px;
+}
