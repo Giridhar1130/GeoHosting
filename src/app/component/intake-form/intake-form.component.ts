@@ -128,7 +128,7 @@ export class IntakeFormComponent implements OnInit {
   saveAllData() {
     const countryIntake: CountryIntake = Object.assign({}, this.element);
     // countryIntake.MyFields.Section1details.Country = this.selectedCountry;
-    console.log('this.prorityChoice', this.prorityChoice)
+    console.log('this.prorityChoice', this.prorityChoice);
     // countryIntake.MyFields.Section1details.Priority = this.prorityChoice;
     // countryIntake.MyFields.Section1details.Scope = this.selectedScope;
     // countryIntake.MyFields.Section1details.Justification = this.Justification;
