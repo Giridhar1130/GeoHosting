@@ -103,7 +103,7 @@ export class IntakeFormComponent implements OnInit {
   submitted = false;
   tabletest: any;
   openLink(event: MouseEvent): void {
-    setTimeout(() => this.bottomSheetRef.dismiss(), 100);
+    setTimeout(() => this.bottomSheetRef.close(), 100);
   }
   private addonCurrentportfoliosite() {
     const tmp: CurrentPortfolio = {
