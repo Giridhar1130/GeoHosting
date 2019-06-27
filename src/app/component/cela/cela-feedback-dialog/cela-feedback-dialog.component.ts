@@ -78,6 +78,7 @@ export class CelaFeedbackComponent implements OnInit {
         PendingRisk: string = this.element.MyFields.LCA.lcaDetails.other.PendingRisk;
         DataResiReguSummary: string = this.element.MyFields.LCA.lcaDetails.other.DataResiReguSummary;
         // Data Residency Regulations
+        // Adding one more comment
 
     ngOnInit() {
         console.log('child', this.element);
@@ -85,6 +86,7 @@ export class CelaFeedbackComponent implements OnInit {
         this.CELAFeedBack.RiskLevel = this.riskLevels[0];
         if (this.specificActionSites === [] || this.specificActionSites === null || this.specificActionSites === undefined) {
             this.specificActionSites.push({ActionItem: '', Details: '', Contact: ''});
+            const test= "";
         }
     }
 
