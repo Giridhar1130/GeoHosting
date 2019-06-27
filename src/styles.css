@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .intakeFomrbody{
 
     height:90vw;
@@ -13,9 +14,6 @@
     padding:0 !important;
     
 }
-
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-dialog-container {
     border-radius: 0px !important;
