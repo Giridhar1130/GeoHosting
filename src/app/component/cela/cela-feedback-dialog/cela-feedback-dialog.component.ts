@@ -16,7 +16,7 @@ export class CelaFeedbackComponent implements OnInit {
     public CELAFeedBack: ICelaFeedbackModel = {};
     public detailsSpecific = 'Details, including specific triggers or conditions in which the action item applies';
     public contactsSummary = 'Contact(s)';
-    public CPIRaitingTitle = 'CP Rating:';
+    public CPIRaitingTitle = 'CPI Rating:';
     public risk = 'Risk';
     public summary = 'summary';
     public FreedomRaitingTitle = 'Freedom Rating:';
