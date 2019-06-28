@@ -16,13 +16,7 @@
     background-color: rgb(244, 244, 244)
 }
 
-.leftStyle {
-    width:220px;
-    margin-left: 10px;
-}
-
 .rightStyle {
-    overflow-x:auto;
     height: 100%;
 }
 
@@ -61,4 +55,9 @@ td.mat-cell {
 th.mat-header-cell {
     padding: .375rem .75rem;
     font-size: 14px;
+}
+
+.table-overflow {
+    overflow: auto;
+    max-height: 90vh;
 }
