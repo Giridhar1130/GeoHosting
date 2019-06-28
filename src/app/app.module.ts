@@ -13,20 +13,22 @@ import {MatSortModule} from '@angular/material/sort';
 import {IntakeFormComponent } from './component/intake-form/intake-form.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
-import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule} from '@angular/material';
+import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule, MatTooltipModule} from '@angular/material';
 import { HomeComponent } from './component/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import {CountryGeoClearanceComponent} from './component/country-geo-clearance/country-geo-clearance.component';
 import { CelaFeedbackComponent } from './component/cela/cela-feedback-dialog/cela-feedback-dialog.component';
-import { GeoInputComponent } from './component/geo-items/geo-input/geo-input.component';
-import { GeoTextareaComponent } from './component/geo-items/geo-textarea/geo-textarea.component';
-import { DropdownComponent } from './component/geo-items/geo-dropdown/geo-dropdown.component';
-import { GeoMatDropdownComponent } from './component/geo-items/geo-mat-dropdown/geo-mat-dropdown.component';
-import { GeoActionComponent } from './component/geo-items/geo-action/geo-action.component';
-import { GeoMatInputComponent } from './component/geo-items/geo-mat-input/geo-mat-input.component';
 import { GapFeedbackComponent } from './component/gapfeedbackfiles/gapfeedback/gapfeedback.component';
+import { RiskManagementFeedbackDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/risk-management-feedback-dialog/risk-management-feedback-dialog.component';
+import { GeoPhysicalSecurityFeedbackComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
+import { FeedbackFormDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
+import { CelaFeedbackDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/cela-feedback-dialog/cela-feedback-dialog.component';
+import { GeoMatTextareaComponent } from './component/shared/geo-items/geo-mat-textarea/geo-mat-textarea.component';
+import { GeoMatInputComponent } from './component/shared/geo-items/geo-mat-input/geo-mat-input.component';
+import { GeoMatDropdownComponent } from './component/shared/geo-items/geo-mat-dropdown/geo-mat-dropdown.component';
+import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-action.component';
 
 @NgModule({
   declarations: [
@@ -36,15 +38,17 @@ import { GapFeedbackComponent } from './component/gapfeedbackfiles/gapfeedback/g
     HomeComponent,
     CountryGeoClearanceComponent,
     CelaFeedbackComponent,
-    GeoInputComponent,
-    GeoTextareaComponent,
-    DropdownComponent,
-    GeoMatDropdownComponent,
     MatCheckbox,
     MatButton,
-    GeoActionComponent,
+    GapFeedbackComponent,
+    RiskManagementFeedbackDialogComponent,
+    GeoPhysicalSecurityFeedbackComponent,
+    FeedbackFormDialogComponent,
+    CelaFeedbackDialogComponent,
+    GeoMatTextareaComponent,
     GeoMatInputComponent,
-    GapFeedbackComponent
+    GeoMatDropdownComponent,
+    GeoActionComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,10 +67,15 @@ import { GapFeedbackComponent } from './component/gapfeedbackfiles/gapfeedback/g
     MatRadioModule,
     MatCardModule,
     MatRippleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
   ],
   entryComponents: [
-    CelaFeedbackComponent
+    CelaFeedbackComponent,
+    RiskManagementFeedbackDialogComponent,
+    GeoPhysicalSecurityFeedbackComponent,
+    FeedbackFormDialogComponent,
+    CelaFeedbackDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

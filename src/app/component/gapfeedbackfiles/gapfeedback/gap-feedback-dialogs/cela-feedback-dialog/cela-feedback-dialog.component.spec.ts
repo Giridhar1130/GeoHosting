@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DropdownComponent } from './geo-dropdown.component';
+import { CelaFeedbackDialogComponent } from './cela-feedback-dialog.component';
 
-describe('DropdownComponent', () => {
-  let component: DropdownComponent;
-  let fixture: ComponentFixture<DropdownComponent>;
+describe('CelaFeedbackComponent', () => {
+  let component: CelaFeedbackDialogComponent;
+  let fixture: ComponentFixture<CelaFeedbackDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DropdownComponent ]
+      declarations: [ CelaFeedbackDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DropdownComponent);
+    fixture = TestBed.createComponent(CelaFeedbackDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

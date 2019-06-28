@@ -1,8 +1,10 @@
 <mat-form-field class="geo-input">
     <input  matInput 
             [(ngModel)]="input"
-            placeholder={{label2}} 
+            placeholder={{labelGeoInput}} 
             (input)="input=$event.target.value" 
             (ngModelChange)="onChange($event)"
+            [required]="IsRequired"
+            [disabled]="toDisable"
     >
 </mat-form-field>

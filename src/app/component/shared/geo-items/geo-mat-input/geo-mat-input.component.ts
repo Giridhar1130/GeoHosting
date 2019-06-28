@@ -1,18 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'geo-input',
-  templateUrl: './geo-input.component.html',
-  styleUrls: ['./geo-input.component.css']
+  selector: 'geo-mat-input',
+  templateUrl: './geo-mat-input.component.html',
+  styleUrls: ['./geo-mat-input.component.css']
 })
-export class GeoInputComponent implements OnInit {
+export class GeoMatInputComponent implements OnInit {
+
     @Input() input?: string;
-    @Input() label: string;
+    @Input() labelGeoInput: string;
+    @Input() toDisable?: boolean;
+    @Input() IsRequired?: boolean;
     @Output() output = new EventEmitter<string>();
     constructor() { }
 
     ngOnInit() {
         this.input = this.input === null || this.input === undefined ? "" : this.input;
+        this.labelGeoInput = this.labelGeoInput || '';
     }
   
     public onChange(input: string){

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeoInputComponent } from './geo-input.component';
+import { GeoMatTextareaComponent } from './geo-mat-textarea.component';
 
-describe('GeoInputComponent', () => {
-  let component: GeoInputComponent;
-  let fixture: ComponentFixture<GeoInputComponent>;
+describe('GeoMatTextareaComponent', () => {
+  let component: GeoMatTextareaComponent;
+  let fixture: ComponentFixture<GeoMatTextareaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeoInputComponent ]
+      declarations: [ GeoMatTextareaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeoInputComponent);
+    fixture = TestBed.createComponent(GeoMatTextareaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
