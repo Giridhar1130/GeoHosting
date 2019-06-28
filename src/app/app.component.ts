@@ -16,9 +16,9 @@ export class AppComponent {
     title = 'GeoHosting';
     constructor(public dialog: MatDialog) {}
 
-    // ngOnInit() {
-    //     this.openFeedbackFormDialogComponent();
-    // }
+  ngOnInit() {
+}
+
 
     // public openCelaFeedbackComponentDialog() {
     //     console.log('openCelaFeedbackDialogComponentDialog');

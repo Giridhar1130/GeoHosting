@@ -220,8 +220,8 @@ export interface ILocalTaxContact {
 }
 
 export interface IDialogConfig {
-  title: string,
-  country: string,
+  title: string;
+  country: string;
   user: {
       owner: string,
       scope: string,
@@ -229,5 +229,5 @@ export interface IDialogConfig {
       dueDate: Date,
       priority: string,
       completedDate: Date,
-  },
+  }
 }

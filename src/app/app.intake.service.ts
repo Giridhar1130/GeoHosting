@@ -24,8 +24,8 @@ export class IntakeService {
   }
   postintakeForm(intakeForm) {
     console.log('postintakeForm work', intakeForm.FormId);
-    const countryIntake = JSON.stringify(intakeForm);
-    return this.http.patch<CountryIntake>(this.intakesUrl + '/update', countryIntake)
+   // const countryIntake = JSON.stringify(intakeForm);
+    return this.http.patch<CountryIntake>(this.intakesUrl + '/update', intakeForm)
     .pipe(catchError(this.handleError)
     );
   }

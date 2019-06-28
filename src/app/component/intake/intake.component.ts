@@ -87,20 +87,105 @@ export class IntakeComponent implements OnInit {
     });
 
   }
-  openBottomSheet(element): void {
-    console.log(element);
+
+  openIntakeForm(countryIntake: CountryIntake): void {
+    if (!countryIntake) {
+      const countryIntakeEmptyItem: CountryIntake = {
+        Id: null,
+        IsActive: true,
+        AssessmentStatus: '',
+        Scope: '',
+        Owner: null,
+        Priority: '',
+        Country: '',
+        AdminComments: '',
+        MyFields: {
+          AssessmentID: '',
+          FormName: '',
+          GAPIntakeName: '',
+          GapAdminGroupDetails: {
+            FormID: 0,
+            GAPStatus: '',
+            NewFormStatus: '',
+            AdminComments: '',
+            Admin: '',
+          },
+          NewForm: '',
+          Section1details: {
+            Priority: '',
+            Country: '',
+            Justification: '',
+            Scope: '',
+            DateSubmitted: null,
+            GeoLocationOwner: '',
+          },
+          Section2details: {
+            PortfolioComments: '',
+            ProposedSites: '',
+            group16: {
+              CurrentPortfolio: [
+                {
+                  CurrentITCapacity: 0,
+                  CurrentPortEstimatedSize: 0,
+                  CurrentPortFacilitytype: '',
+                  CurrentPortOperationalTax: '',
+                  CurrentPortfolioDCcode: '',
+                }
+              ]
+            }
+          },
+          Section3details: {
+            group9: {
+              InProgressSitesGroup: [
+                {
+                  InProgSitesDCcode: '',
+                  InProgOperationalTax: '',
+                  InProgFacilityType: '',
+                  InProgInitialSize: '',
+                  InProgEstimatedSize: '',
+                  InProgEstimatedInvestment: '',
+                  InProgEstimatedGoLive: '',
+                }
+              ]
+            },
+            CurrentOnlineSvr: '',
+            CurrentOtherSvr: '',
+            CustomerComments: '',
+            DataRequirements: '',
+            PlannedOnlineSvr: '',
+            PlannedOtherSvr: '',
+            ProposedOnlineSvr: '',
+            ProposedOtherSvr: '',
+            ServiceTargets: '',
+            Latency: '',
+            CrossBorderDataFlows: '',
+          },
+        },
+        KickoffDate: null,
+        DueDate: null,
+        AverageRating: '',
+        CompletedDate: null,
+        FormId: 1,
+        Modified: null
+      };
+
+      countryIntake = countryIntakeEmptyItem;
+    }
+
     const passdata = {
-      data: element,
+      data: countryIntake,
       width: '80%',
       height: '75%',
       panelClass: 'intakeFomrbody'
     };
+
     this.bottomSheet.open(IntakeFormComponent, passdata);
   }
+
   ngOnInit() {
 
     this.intakeService.getintake()
-      .subscribe(async (callbackfromgetAPI: any[]) => {
+      .subscribe(async (callbackfromgetAPI: CountryIntake[]) => {
         this.allIntakeData = callbackfromgetAPI;
         this.getdata(this.allIntakeData);
         this.currentRightItem = this.allIntakeData;
