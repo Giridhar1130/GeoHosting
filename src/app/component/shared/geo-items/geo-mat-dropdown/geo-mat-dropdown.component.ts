@@ -16,6 +16,9 @@ export class GeoMatDropdownComponent implements OnInit, OnChanges {
 
     public SelectedItemKey?: string;
 
+    @Input() ToolTip?: string;
+  
+    @Input() Selected?: any;
     @Output() OutputHandler = new EventEmitter<string>();
 
     constructor() { }

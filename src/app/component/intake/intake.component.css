@@ -1,48 +1,63 @@
 
-.leftchildren{
+.leftchildren {
     line-height: 150%;
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-radius: 0px;
 }
-.leftHeadStyle{
+
+.leftHeadStyle {
     font-size: 16px;
 }
-.leftchildren:hover{
+
+.leftchildren:hover {
     background-color: rgb(244, 244, 244)
 }
-.leftStyle{
-    width:220px;
-    margin-left: 10px;
-}
-.rightStyle{
-    /* min-width: 4000px; */
-     overflow-x:auto;
-}
-/* .mat-column-Scope{
-    width:400px;
-} */
 
-table{
+.rightStyle {
+    height: 100%;
+}
+
+table {
     width: 100%;
-    
-   
-   }
-
-.inkatebutton{
-height: 100%;
-background-color: #f5f5f5;
-border:none;
 }
-.leftRootHeader{
+
+.inkatebutton {
+    height: 100%;
+    background-color: #f5f5f5;
+    border:none;
+}
+
+.leftRootHeader {
     background-color:  rgb(244, 244, 244)
 }
-.namestyle{
+
+.namestyle {
+    font-size: 12px;
+    text-align: left;
+}
+
+.search-btn {
+    padding: .015rem 0.5rem;
+}
+
+.search-btn .material-icons {
+    margin-top: 3px;
+}
+
+td.mat-cell {
+    padding: .375rem .75rem;
+    font-size: 12px;
+}
+
+th.mat-header-cell {
+    padding: .375rem .75rem;
     font-size: 14px;
 }
-/* .leftRootHeader:hover{
-    background-color:  rgb(244, 244, 244)
-} */
-.searchIcon{margin-top: 0.7vh}
-/* .mat-expansion-panel-content.ng-trigger.ng-trigger-bodyExpansion */
+
+.table-overflow {
+    overflow: auto;
+    max-height: 90vh;
+}

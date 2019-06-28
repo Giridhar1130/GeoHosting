@@ -16,13 +16,8 @@
     background-color: rgb(244, 244, 244)
 }
 
-.leftStyle {
-    width:220px;
-    margin-left: 10px;
-}
-
 .rightStyle {
-     overflow-x:auto;
+    height: 100%;
 }
 
 table {
@@ -40,7 +35,8 @@ table {
 }
 
 .namestyle {
-    font-size: 14px;
+    font-size: 12px;
+    text-align: left;
 }
 
 .search-btn {
@@ -49,4 +45,19 @@ table {
 
 .search-btn .material-icons {
     margin-top: 3px;
+}
+
+td.mat-cell {
+    padding: .375rem .75rem;
+    font-size: 12px;
+}
+
+th.mat-header-cell {
+    padding: .375rem .75rem;
+    font-size: 14px;
+}
+
+.table-overflow {
+    overflow: auto;
+    max-height: 90vh;
 }

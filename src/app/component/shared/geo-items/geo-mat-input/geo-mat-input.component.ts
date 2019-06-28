@@ -11,7 +11,10 @@ export class GeoMatInputComponent implements OnInit {
     @Input() labelGeoInput: string;
     @Input() toDisable?: boolean;
     @Input() IsRequired?: boolean;
+    @Input() ToolTip?: string;
+
     @Output() output = new EventEmitter<string>();
+    
     constructor() { }
 
     ngOnInit() {

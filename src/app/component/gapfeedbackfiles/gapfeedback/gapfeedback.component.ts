@@ -7,6 +7,8 @@ import { GapFeedBack } from '../gapfeedback/types/gapfeedback.type';
 import { CelaFeedbackComponent } from '../../cela/cela-feedback-dialog/cela-feedback-dialog.component';
 import { MatDialog } from '@angular/material';
 import { GeoPhysicalSecurityFeedbackComponent } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
+import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
+
 
 @Component({
   selector: 'app-gapfeedback',
@@ -31,6 +33,7 @@ export class GapFeedbackComponent implements OnInit {
   constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService,private dialog: MatDialog) {
 
   }
+
   getgapfeedbackInfo(): void {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (callbackfromgetAPI: any[]) => {
@@ -40,6 +43,7 @@ export class GapFeedbackComponent implements OnInit {
       });
 
   }
+
   rightChildrenSelected(target) {
     console.log('aaa', target)
     this.currentRightItem = this.allGapFeedbackData.filter((items: GapFeedBack) =>
@@ -96,7 +100,25 @@ export class GapFeedbackComponent implements OnInit {
     });
 
   }
-  openBottomSheet(value): void {
+
+  openFeedbackTask(value): void {
+    const matDialogConfig = {
+      data: value,
+      width: '80%',
+      height: '75%',
+      panelClass: 'geo-dialog'
+    };
+
+    const dialogRef = this.dialog.open(FeedbackFormDialogComponent, matDialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+  
+  openFeedbackForm(value): void {
     const matDialogConfig = {
       data: value,
       width: '80%',

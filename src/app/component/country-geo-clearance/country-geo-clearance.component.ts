@@ -26,7 +26,7 @@ export class CountryGeoClearanceComponent implements OnInit, AfterViewInit{
 
   constructor(private countryGeoClearanceService: CountryGeoClearanceService) {
 
-    this.countryGeoClearanceService.getCountryList(0)
+    this.countryGeoClearanceService.getCommonSourceList(0)
       .subscribe((data) => {
         this.countries = data[0].sourceItems;
       });
@@ -42,7 +42,6 @@ export class CountryGeoClearanceComponent implements OnInit, AfterViewInit{
     // //   });
     // //   this.pushpin = new Microsoft.Maps.Pushpin(this.map.getCenter(), null);
     // //   this.layer = new Microsoft.Maps.Layer();
-  
     // //   this.layer.add(this.pushpin);
     // //   this.map.layers.insert(this.layer);
     // // },1000)
