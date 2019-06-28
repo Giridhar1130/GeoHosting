@@ -1,0 +1,14 @@
+.actions-area {
+	margin: 25px;
+	
+}
+.mat-button {
+	border-radius: 0px;
+	padding: 0 30px;
+	background-color: rgb(234, 234, 234);
+}
+
+.geo-button-margin {
+	display:inline-block;
+	margin: 0 5px;
+}
