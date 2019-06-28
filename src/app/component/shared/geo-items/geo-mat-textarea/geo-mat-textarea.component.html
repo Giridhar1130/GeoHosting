@@ -3,6 +3,10 @@
                 placeholder={{labelTextAreaSummary}} 
                 (input)="feedbackSummary=$event.target.value" 
                 [(ngModel)]="input"
-                (ngModelChange)="ngOnChange($event)">
+                (ngModelChange)="ngOnChange($event)"
+                [matTooltip]="toolTip"
+                [disabled]="toDisable"
+                [required]="IsRequired"
+                matTooltipPosition="below">
     </textarea>
 </mat-form-field>

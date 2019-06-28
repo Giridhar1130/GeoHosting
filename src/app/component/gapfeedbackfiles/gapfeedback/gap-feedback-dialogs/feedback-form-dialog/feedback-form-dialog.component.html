@@ -1,0 +1,50 @@
+<div class="cela-dialog">
+    <div class="cela-header">
+        <div>
+            {{dialogConfig.title}}
+        </div>
+        <div>
+            {{dialogConfig.country}}
+        </div>
+    </div>
+
+    <div class="cela-content">
+        <form>
+
+            <mat-card>
+                <mat-card-header>
+                    <h6>Details</h6>
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <geo-mat-input  [labelGeoInput]="taskNameLabel"
+                                            [input]="showvalue"
+                                            (output)="onActionItemHandler($event)"
+                                            name="actionItemInput">
+                            </geo-mat-input>
+                        </div>
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="raskSatusLabel"
+                                                [InputTextArray]="riskLevels"
+                                                [SelectedValue]="riskLevels[1].key"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <div class="cela-actions">
+                <geo-action [IsCloseButton]="true"
+                            (CloseAction)="onCloseDialog()"
+                            [IsActionButton]="true"
+                            [ActionButtonText]="actionButtonText"
+                            (GeoAction)="onAction()">
+                </geo-action>
+            </div>
+        </form>
+    </div>
+</div>

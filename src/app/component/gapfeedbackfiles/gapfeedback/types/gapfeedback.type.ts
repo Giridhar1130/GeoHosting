@@ -219,3 +219,15 @@ export interface ILocalTaxContact {
   DisplayName: string;
 }
 
+export interface IDialogConfig {
+  title: string,
+  country: string,
+  user: {
+      owner: string,
+      scope: string,
+      asignedTo: string,
+      dueDate: Date,
+      priority: string,
+      completedDate: Date,
+  },
+}

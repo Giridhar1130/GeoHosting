@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeoTextareaComponent } from './geo-textarea.component';
+import { FeedbackFormDialogComponent } from './feedback-form-dialog.component';
 
-describe('GeoTextareaComponent', () => {
-  let component: GeoTextareaComponent;
-  let fixture: ComponentFixture<GeoTextareaComponent>;
+describe('FeedbackFormDialogComponent', () => {
+  let component: FeedbackFormDialogComponent;
+  let fixture: ComponentFixture<FeedbackFormDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeoTextareaComponent ]
+      declarations: [ FeedbackFormDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeoTextareaComponent);
+    fixture = TestBed.createComponent(FeedbackFormDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

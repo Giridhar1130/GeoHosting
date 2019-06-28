@@ -1,0 +1,67 @@
+h6 {
+	font-weight: bold;
+	color: #554d4d;
+}
+
+
+
+.cela-header {
+    background: #002050;
+	color: #fff;
+	flex: 1 1 auto;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    text-align: center;
+    align-items: center;
+	font-size: 28px;
+	font-weight: bold;
+	
+}
+
+.container-data {
+	font-size:14px;
+	padding: 20px;
+}
+
+.cela-content {
+	margin: 15px;
+}
+
+.specific-action {
+	margin: 10px;
+	width: 100%;
+	padding: 10px;
+}
+
+.mat-card {
+	border-radius: 0px;
+	margin: 15px;
+}
+
+.add-site-button{
+	border-radius: 0px;
+}
+
+.specific-items {
+}
+
+.mat-checkbox, .container-data {
+	margin: 15px;
+}
+
+.cela-actions {
+	float: right;
+	bottom:0px;
+}
+
+.checkbox-details-section {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	height: 60px;
+}
+
+.checkbox-margin {
+	margin: 0 10px;
+	padding: 0px;
+}

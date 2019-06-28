@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="actions-area">
+        <div class="geo-button-margin">
+            <button mat-button 
+                (click)="onConfirm()" 
+                [disabled]="IsDisabledConfirmButton"
+                *ngIf="IsConfirmButton">{{ConfirmButtonText}}
+            </button>
+        </div>
+        <div class="geo-button-margin"></div>
+        <div class="geo-button-margin">
+            <button mat-button
+                (click)="onClose()" 
+                [disabled]="IsDisabledCloseButton"
+                *ngIf="IsCloseButton">{{CloseButtonText}}
+            </button>
+        </div>
+        <div class="geo-button-margin"></div>
+        <div class="geo-button-margin">
+            <button mat-button 
+                (click)="onAction()" 
+                [disabled]="IsDisabledActionButton"
+                *ngIf="IsActionButton">{{ActionButtonText}}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+<div class="cela-dialog">
+    <div class="cela-header">
+        <div>
+            {{dialogConfig.title}}
+        </div>
+        <div>
+            {{dialogConfig.country}}
+        </div>
+    </div>
+
+    <div class="cela-content">
+        <form>
+            <div class="container-data">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>
+                            <span>GeoHosting Owner: </span>
+                            <span>{{dialogConfig.user.owner}}</span>
+                        </p>
+                        <p><span>Scope: </span>
+                            <span>{{dialogConfig.user.scope}}</span>
+                        </p>
+                        <p>
+                            <span>Assigned To: </span>
+                            <span>{{dialogConfig.user.scope}}</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>
+                            <span>Due Date: </span>
+                            <span>{{dialogConfig.user.dueDate}}</span>
+                        </p>
+                        <p>
+                            <span>Priority: </span>
+                            <span>{{dialogConfig.user.priority}}</span>
+                        </p>
+                        <p>
+                            <span>Completed Date: </span>
+                            <span>{{dialogConfig.user.completedDate}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <mat-card>
+                <mat-card-header>
+                    <h6>Summary</h6>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="summaryCountryRiskLevel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+
+                    <mat-label>Feedback Summary - <i>Summarize feedback in 300 characters or less.</i></mat-label>
+                    <geo-mat-textarea   [labelTextAreaSummary]="feedbackSummaryLabel"
+                                        [input]=""
+                                        (summary)="onSummary($event)"
+                                        name="detailsSummaryTextarea">
+                    </geo-mat-textarea>
+
+                    <mat-label>Are there any country-specific Action Items or Next Steps?</mat-label>
+                    <div class="row">
+                        <div class="specific-action">
+                            <div class="row specific-items" *ngFor="let site of specificActionSites">
+                                <div class="col-sm-3">
+                                    <geo-mat-input  [labelGeoInput]="actionItemLabel"
+                                                    [input]="site.actionItem"
+                                                    (output)="onActionItemHandler($event)"
+                                                    name="actionItemInput">
+                                    </geo-mat-input>
+                                </div>
+                                <div class="col-sm-6">
+                                    <geo-mat-textarea   [labelTextAreaSummary]="detailsSpecificLabel"
+                                                        [input]="site.details"
+                                                        [toolTip]="specificActionTooltip"
+                                                        [toDisable]="false"
+                                                        (summary)="onFeedbackSummaryHandler($event)"
+                                                        name="detailsSummaryTextarea">
+                                    </geo-mat-textarea>
+                                </div>
+                                <div class="col-sm-3">
+                                    <geo-mat-input  [labelGeoInput]="contactsSummary"
+                                                    [input]="site.contacts"
+                                                    (output)="onContactsHandler($event)"
+                                                    name="contactsInput">
+                                    </geo-mat-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <button class="coll-sm-6" 
+                                        mat-button 
+                                        (click)="onAddSite()" 
+                                        class="add-site-button"
+                                        matTooltip="Please include only country-specific action items. Standard process should be documented and implemented separately."
+                                        matTooltipPosition="after"><i class="material-icons">keyboard_arrow_down</i>Add another site
+                                </button>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card>
+                <mat-card-header>
+                    <h6>Details</h6>
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <div class="col-sm-6">
+                        <geo-mat-textarea   [labelTextAreaSummary]="generalRiskConsiderationsLabel"
+                                            [input]=""
+                                            (summary)="onSummary($event)"
+                                            name="detailsSummaryTextarea">
+                        </geo-mat-textarea>
+                    </div>
+                    <div class="col-sm-6"></div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card>
+                <mat-card-header>
+                    <h6>Risks</h6>
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="exchangeTransferRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="supplyChainRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="sovereignNonPaymentRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="legalAndRegulatoryRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="politicalInterferenceRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                        <div class="col-sm-6">
+                            <geo-mat-dropdown   [Title]="politicalViolenceRiskLabel"
+                                                [InputTextArray]="riskLevels"
+                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                id="summaryRiskLevelDropdown">
+                            </geo-mat-dropdown>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+    
+            <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
+
+            <div class="cela-actions">
+                <geo-action [IsCloseButton]="true"
+                            (CloseAction)="onCloseDialog()">
+                </geo-action>
+            </div>
+        </form>
+    </div>
+</div>
