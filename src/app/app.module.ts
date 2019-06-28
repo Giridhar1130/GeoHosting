@@ -25,6 +25,7 @@ import { RiskManagementFeedbackDialogComponent } from './component/gapfeedbackfi
 import { GeoPhysicalSecurityFeedbackComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 import { FeedbackFormDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
 import { CelaFeedbackDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/cela-feedback-dialog/cela-feedback-dialog.component';
+import { TaxFeedbackDialogComponent } from './component/gapfeedbackfiles/gapfeedback/gap-feedback-dialogs/tax-feedback-dialog/tax-feedback-dialog.component';
 import { GeoMatTextareaComponent } from './component/shared/geo-items/geo-mat-textarea/geo-mat-textarea.component';
 import { GeoMatInputComponent } from './component/shared/geo-items/geo-mat-input/geo-mat-input.component';
 import { GeoMatDropdownComponent } from './component/shared/geo-items/geo-mat-dropdown/geo-mat-dropdown.component';
@@ -43,6 +44,7 @@ import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-
     GapFeedbackComponent,
     RiskManagementFeedbackDialogComponent,
     GeoPhysicalSecurityFeedbackComponent,
+    TaxFeedbackDialogComponent,
     FeedbackFormDialogComponent,
     CelaFeedbackDialogComponent,
     GeoMatTextareaComponent,

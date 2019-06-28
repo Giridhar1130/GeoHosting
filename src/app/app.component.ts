@@ -17,7 +17,6 @@ export class AppComponent {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.openFeedbackFormDialogComponent();
 }
 
 public openCelaFeedbackComponentDialog() {

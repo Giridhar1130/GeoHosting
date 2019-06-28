@@ -35,9 +35,9 @@ export interface IOperationalTaxonomy {
 
 })
 export class IntakeFormComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public element: CountryIntake,
-              private bottomSheetRef: MatDialogRef<IntakeFormComponent>,
-              private countryGeoClearanceService: CountryGeoClearanceService, private intakeService: IntakeService) {
+  constructor(private bottomSheetRef: MatDialogRef<IntakeFormComponent>,
+              private countryGeoClearanceService: CountryGeoClearanceService, private intakeService: IntakeService,
+              @Inject(MAT_DIALOG_DATA) public element?: CountryIntake) {
 
     this.countryGeoClearanceService.getCountryList(0)
       .subscribe((data) => {
@@ -167,12 +167,12 @@ export class IntakeFormComponent implements OnInit {
     });
   }
   ngOnInit() {
-
-    currentPortfolio = currentPortfolio.concat(this.element.MyFields.Section2details.group16.CurrentPortfolio);
-    currentInprogresssites = currentInprogresssites
+  console.log('get element{0}', this.element);
+  currentPortfolio = currentPortfolio.concat(this.element.MyFields.Section2details.group16.CurrentPortfolio);
+  currentInprogresssites = currentInprogresssites
                                 .concat(this.element.MyFields.Section3details.group9.InProgressSitesGroup);
-    this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
-    this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
-    console.log('child', this.element, this.element.MyFields.Section2details.group16.CurrentPortfolio);
+  this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
+  this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
+  console.log('child', this.element, this.element.MyFields.Section2details.group16.CurrentPortfolio);
   }
 }

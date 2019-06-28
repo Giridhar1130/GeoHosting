@@ -25,11 +25,6 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
     public physicalSecurityRiskLevelLabel = "Physical Security Risk Level Definition";
     public applicableBaselineSecurityRequirementsLabel = "Applicable Baseline Security Requirements";
     public physicalSecurityPointofContactLabel = "Physical Security Point of Contact";
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
 
     public riskLevels: ITextArray[] = [
         {key: 'noFly', text: 'No Fly'},
