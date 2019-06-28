@@ -13,7 +13,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {IntakeFormComponent } from './component/intake-form/intake-form.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
-import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule, MatTooltipModule} from '@angular/material';
+import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule, MatTooltipModule, MatDatepickerModule, MatButtonModule, MatNativeDateModule} from '@angular/material';
 import { HomeComponent } from './component/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
@@ -30,6 +30,7 @@ import { GeoMatTextareaComponent } from './component/shared/geo-items/geo-mat-te
 import { GeoMatInputComponent } from './component/shared/geo-items/geo-mat-input/geo-mat-input.component';
 import { GeoMatDropdownComponent } from './component/shared/geo-items/geo-mat-dropdown/geo-mat-dropdown.component';
 import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-action.component';
+import { GeoMatDatepickerComponent } from './component/shared/geo-items/geo-mat-datepicker/geo-mat-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,6 @@ import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-
     CountryGeoClearanceComponent,
     CelaFeedbackComponent,
     MatCheckbox,
-    MatButton,
     GapFeedbackComponent,
     RiskManagementFeedbackDialogComponent,
     GeoPhysicalSecurityFeedbackComponent,
@@ -51,6 +51,7 @@ import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-
     GeoMatInputComponent,
     GeoMatDropdownComponent,
     GeoActionComponent,
+    GeoMatDatepickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +72,9 @@ import { GeoActionComponent } from './component/shared/geo-items/geo-action/geo-
     MatRippleModule,
     MatDialogModule,
     MatTooltipModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatNativeDateModule,
   ],
   entryComponents: [
     CelaFeedbackComponent,

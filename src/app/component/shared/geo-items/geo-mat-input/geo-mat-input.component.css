@@ -1,3 +1,7 @@
 .geo-input {
 	width:100%;
 }
+
+.mat-tooltip-class {
+	border-radius: 0px !important;
+}

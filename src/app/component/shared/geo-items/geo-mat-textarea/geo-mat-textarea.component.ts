@@ -18,7 +18,6 @@ export class GeoMatTextareaComponent implements OnInit {
     constructor() { }
   
     ngOnInit() {
-        console.log("toolTip: ", this.toolTip)
         this.toolTip = this.toolTip || '';
     }
   

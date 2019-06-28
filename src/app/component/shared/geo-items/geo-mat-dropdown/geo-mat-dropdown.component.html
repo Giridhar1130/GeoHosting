@@ -1,6 +1,11 @@
 <mat-form-field>
   <mat-label>{{Title}}</mat-label>
-  <mat-select (selectionChange)="onChangeHandler($event)" [required]="IsRequired" [(value)]="Value" [disabled]="toDisable">
+  <mat-select (selectionChange)="onChangeHandler($event)" 
+              [required]="IsRequired" 
+              [(value)]="Value" 
+              [matTooltip]="ToolTip"
+              matTooltipClass="mat-tooltip-class"
+              [disabled]="toDisable">
     <mat-option *ngFor="let item of InputTextArray" [value]="item.key">
       {{item.text}}
     </mat-option>
