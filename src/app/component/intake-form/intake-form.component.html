@@ -1,6 +1,7 @@
 <div>
   <div class="header text-center  flex-xs-middle ">
     <span>GeoHosting Country Assessment</span>
+    <button class="material-icons close-icon " (click)="close($event)">close</button>
     <div>Intake Form</div>
   </div>
   <form
@@ -570,17 +571,17 @@
         </div>
       </div>
       <div class="footer  ">
-        <button type="submit" class="float-right btn btn-light footbutton"(click)="makeCopy">
+        <button type="submit" class="float-right btn btn-light footbutton"(click)="makeCopy()">
           Make a Copy
         </button>
         <button
           type="submit"
           class="float-right btn btn-light footbutton"
-          (click)="openLink($event)"
+          (click)="close($event)"
         >
           Save and Close
         </button>
-        <button class="float-right btn btn-light footbutton">Save</button>
+        <button type="submit" class="float-right btn btn-light footbutton">Save</button>
       </div>
     </div>
   </form>

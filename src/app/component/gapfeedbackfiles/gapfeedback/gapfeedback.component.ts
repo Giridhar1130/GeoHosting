@@ -32,6 +32,7 @@ export class GapFeedbackComponent implements OnInit {
   constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService,private dialog: MatDialog) {
 
   }
+
   getgapfeedbackInfo(): void {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (callbackfromgetAPI: any[]) => {
@@ -41,6 +42,7 @@ export class GapFeedbackComponent implements OnInit {
       });
 
   }
+
   rightChildrenSelected(target) {
     console.log('aaa', target)
     this.currentRightItem = this.allGapFeedbackData.filter((items: IJsondate) =>
