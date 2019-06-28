@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
     [x: string]: any;
     title = 'GeoHosting';
-    constructor(public dialog: MatDialog) {}
+    constructor() {}
 
   ngOnInit() {
 }

@@ -118,7 +118,7 @@ export class GapFeedbackComponent implements OnInit {
     });
   }
   
-  openFeedbackForm(value): void {
+  public openFeedbackForm(value): void {
     const matDialogConfig = {
       data: value,
       width: '80%',
@@ -128,19 +128,21 @@ export class GapFeedbackComponent implements OnInit {
     };
     let dialogRef;
     console.log(value.TeamName)
-    if(value.TeamName==="CELA"){
-      dialogRef= this.dialog.open(CelaFeedbackComponent, matDialogConfig);
-    };
-    if(value.TeamName==="Physical Security"){
-      dialogRef= this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
+    if (value.TeamName === "CELA") {
+      dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-      }
-    });
-   
 
+    if (value.TeamName === "Physical Security"){
+      dialogRef = this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
+    }
+
+    if (dialogRef) {
+      dialogRef.afterClosed().subscribe (result => {
+        if (result) {
+          console.log(result);
+        }
+      });
+    }
   }
   ngOnInit() {
 
