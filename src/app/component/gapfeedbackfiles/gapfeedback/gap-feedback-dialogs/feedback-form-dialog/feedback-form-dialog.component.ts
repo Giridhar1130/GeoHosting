@@ -25,13 +25,16 @@ export class FeedbackFormDialogComponent implements OnInit {
         {key: 'lowRisk', text: 'Low Risk'}
     ];
 
+    // temp data
+    public tempDate = new Date('2222-12-17T11:11:11');
+
     constructor(public dialogRef: MatDialogRef<FeedbackFormDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
         this.dialogConfig = this.data;
     }
     ngOnInit() {
     }
 
-    public onPhysicalSecurityRiskLevelHandler(value: any) {
+    public onDateHandler(value: any) {
     }
   
 }

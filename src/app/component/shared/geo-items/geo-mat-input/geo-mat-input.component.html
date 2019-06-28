@@ -5,6 +5,8 @@
             (input)="input=$event.target.value" 
             (ngModelChange)="onChange($event)"
             [required]="IsRequired"
+            [matTooltip]="ToolTip"
+            matTooltipClass="mat-tooltip-class"
             [disabled]="toDisable"
     >
 </mat-form-field>
