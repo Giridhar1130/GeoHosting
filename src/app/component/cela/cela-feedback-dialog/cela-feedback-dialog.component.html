@@ -1,410 +1,441 @@
 <div class="cela-dialog">
   <div class="cela-header">
-      <div>
-            CELA Feedback
-      </div>
-      <div>
-            {{country}}
-      </div>
+    <div>
+      CELA Feedback
+    </div>
+    <div>
+      {{ country }}
+    </div>
   </div>
 
   <div class="cela-content">
-      <form >
-          <div class="container-data">
-              <div class="row">
-                  <div class="col-sm-6">
-                      <p>
-                          <span>GeoHosting Owner: </span>
-                          <span>{{Owner}}</span>
-                      </p>
-                      <p><span>Scope: </span>
-                          <span>{{Scope}}</span>
-                      </p>
-                      <p>
-                          <span>Assigned To: </span>
-                          <span>{{Assigned}}</span>
-                      </p>
-                  </div>
-                  <div class="col-sm-6">
-                      <p>
-                          <span>Due Date: </span>
-                          <span>3/25/2016</span>
-                      </p>
-                      <p>
-                          <span>Priority: </span>
-                          <span>{{Priority}}</span>
-                      </p>
-                      <p>
-                          <span>Completed Date: </span>
-                          <span>5/31/2016</span>
-                      </p>
-                  </div>
+    <form>
+      <div class="container-data">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>
+              <span>GeoHosting Owner: </span>
+              <span>{{ Owner }}</span>
+            </p>
+            <p>
+              <span>Scope: </span>
+              <span>{{ Scope }}</span>
+            </p>
+            <p>
+              <span>Assigned To: </span>
+              <span>{{ Assigned }}</span>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p>
+              <span>Due Date: </span>
+              <span>3/25/2016</span>
+            </p>
+            <p>
+              <span>Priority: </span>
+              <span>{{ Priority }}</span>
+            </p>
+            <p>
+              <span>Completed Date: </span>
+              <span>5/31/2016</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Summary</h6>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-5">
+              <geo-mat-dropdown
+                [InputTextArray]="riskLevels"
+                Title="Select an option"
+                [SelectedValue]="RiskLevel"
+                (OutputHandler)="onRiskLevelHandler($event)"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5"></div>
+          </div>
+
+          <geo-mat-textarea
+            [labelTextAreaSummary]="labelTextAreaSummary"
+            [input]="FeedbackSummary"
+            (summary)="onSummary($event)"
+          >
+          </geo-mat-textarea>
+
+          <mat-label
+            >Are there any country-specific Action Items or Next
+            Steps?</mat-label
+          >
+          <div class="row">
+            <div class="specific-action">
+              <table
+                mat-table
+                [(dataSource)]="summaryTableDataSource"
+                class="mat-elevation-z0 table-width progresssitesstyle"
+              >
+                <!-- Action Item Column -->
+                <ng-container matColumnDef="ActionName">
+                  <th mat-header-cell *matHeaderCellDef>Action Item</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-form-field class="matfieldstyle" appearance="outline">
+                      <input
+                        matInput
+                        [(value)]="element.ActionName"
+                        name="element.ActionName"
+                      />
+                    </mat-form-field>
+                  </td>
+                </ng-container>
+
+                <!-- Details Column -->
+                <ng-container matColumnDef="Details">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Details, including specific triggers or conditions in which
+                    the action item applies
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-form-field class="matfieldstyle" appearance="outline">
+                      <input
+                        matInput
+                        [(value)]="element.Details"
+                        name="element.Details"
+                      />
+                    </mat-form-field>
+                  </td>
+                </ng-container>
+
+                <!-- Contact(s) Column -->
+                <ng-container matColumnDef="Contact">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Contact(s)
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-form-field class="matfieldstyle" appearance="outline">
+                      <input
+                        matInput
+                        [(value)]="element.Contact"
+                        name="element.Contact"
+                      />
+                    </mat-form-field>
+                  </td>
+                </ng-container>
+
+                <tr
+                  mat-header-row
+                  *matHeaderRowDef="summaryTableDisplayedColumns"
+                ></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: summaryTableDisplayedColumns"
+                ></tr>
+              </table>
+              <div (click)="addonCurrentportfoliosite($event)">
+                <i class="material-icons">arrow_drop_down</i>Add another site
               </div>
+            </div>
           </div>
+        </mat-card-content>
+   
+      </mat-card>
 
-          <mat-card>
-              <mat-card-header>
-                  <h6>Summary</h6>
-              </mat-card-header>
+      <mat-card>
+        <mat-card-header>
+          <h6>Details</h6>
+        </mat-card-header>
 
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-5">
-                          <geo-mat-dropdown
-             
-                              [InputTextArray]="riskLevels"
-                              Title="inputTitle"
-                              
-                              (OutputHandler)="onRiskLevelHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-1"></div>
-                      <div class="col-sm-5">
-                          <geo-mat-dropdown
-                              [InputTextArray]="riskLevels"
-                              [Title]="inputTitle"
-                              (OutputHandler)="onRiskLevelHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-1"></div>
-                  </div>
-
-                  <geo-mat-textarea   [labelTextAreaSummary]="labelTextAreaSummary"
-                                  (summary)="onSummary($event)">
-                  </geo-mat-textarea>
-
-                  <mat-label>Are there any country-specific Action Items or Next Steps?</mat-label>
-                  <div class="row">
-                      <div class="specific-action">
-                            <table
-                            mat-table
-                            [(dataSource)]="summaryTableDataSource"
-                            class="mat-elevation-z0 table-width progresssitesstyle">
-
-                            <!-- Action Item Column -->
-                            <ng-container matColumnDef="ActionItem">
-                              <th mat-header-cell *matHeaderCellDef>Action Item</th>
-                              <td mat-cell *matCellDef="let element">
-                                <mat-form-field class="matfieldstyle">
-                                  <input
-                                    matInput
-                                    [(ngModel)]="element.InProgSitesDCcode"
-                                    name="a"
-                                  />
-                                </mat-form-field>
-                              </td>
-                            </ng-container>
-                
-                
-                            <!-- Details Column -->
-                            <ng-container matColumnDef="Details">
-                              <th mat-header-cell *matHeaderCellDef>Details, including specific triggers or conditions in which the action item applies</th>
-                              <td mat-cell *matCellDef="let element">
-                                <mat-form-field class="matfieldstyle">
-                                  <input
-                                    matInput
-                                    [(value)]="element.InProgInitialSize"
-                                    name="element.InProgInitialSize"
-                                  />
-                                </mat-form-field></td >
-                              </ng-container>
-                
-                            <!-- Contact(s) Column -->
-                            <ng-container matColumnDef="Contact">
-                              <th mat-header-cell *matHeaderCellDef>
-                                    Contact(s)
-                              </th>
-                              <td mat-cell *matCellDef="let element">
-                                  <mat-form-field class="matfieldstyle">
-                                    <input
-                                      matInput
-                                      [(value)]="element.InProgEstimatedSize"
-                                      name="element.InProgEstimatedSize"
-                                    />
-                                  </mat-form-field></td >
-                            </ng-container>
-                
-  
-                            <tr
-                              mat-header-row
-                              *matHeaderRowDef="summaryTableDisplayedColumns"
-                            ></tr>
-                            <tr
-                              mat-row
-                              *matRowDef="let row; columns: summaryTableDisplayedColumns"
-                            ></tr>
-                          </table>
-                          <!-- <div class="row specific-items" *ngFor="let site of specificActionSites">
-                              <div class="col-sm-3">
-                                  <geo-mat-input  [label2]="actionItemLabel"
-                                              [input]="site.actionItem"
-                                              (output)="onActionItemHandler($event)"
-                                              name="actionItemInput">
-                                  </geo-mat-input>
-                              </div>
-                              <div class="col-sm-6">
-                                  <geo-mat-textarea   [labelTextAreaSummary]="detailsSpecific"
-                                                  [input]="site.details"
-                                                  (summary)="onSummary($event)"
-                                                  name="detailsSummaryTextarea">
-                                  </geo-mat-textarea>
-                              </div>
-                              <div class="col-sm-3">
-                                  <geo-mat-input  [label2]="contactsSummary"
-                                              [input]="site.contacts"
-                                              (output)="onContactsHandler($event)"
-                                              name="contactsInput">
-                                  </geo-mat-input>
-                              </div>
-                          </div> -->
-                      </div>
-                  </div>
-              </mat-card-content>
-              <div (click)="onAddSite()" >
-                    <i class="material-icons">arrow_drop_down</i>Add another site
-                  </div>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Details</h6>
-              </mat-card-header>
-
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [InputTextArray]="cpiRaiting"
-                              [Title]="CPIRaitingTitle"
-                              (OutputHandler)="onCPIRaintingHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8"></div>
-                  </div>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>License Requirements for Terrestrial Fiber</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onCPIRaintingHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8"></div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onSummaryLicense($event)">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Global Network Initiative (GNI)</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-2"></div>
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="FreedomRaitingTitle"
-                              [InputTextArray]="freedomRaiting"
-                              (OutputHandler)="onFreedom($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-2"></div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Law Enforcement Compliance</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Privacy</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Data Security</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Media / Content Liability</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Telecommunications</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-          
-          <mat-card>
-              <mat-card-header>
-                  <h6>Pending Laws or Regulations</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card> 
-
-          <mat-card>
-              <mat-card-header>
-                  <h6>Data Residency Regulations</h6>
-              </mat-card-header>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-sm-4">
-                          <geo-mat-dropdown
-                              [Title]="risk"
-                              [InputTextArray]="riskLevels"
-                              (OutputHandler)="onFreeRiskHandler($event)">
-                          </geo-mat-dropdown>
-                      </div>
-                      <div class="col-sm-8">
-                      </div>
-                  </div>
-                  <geo-mat-textarea   
-                      [labelTextAreaSummary]="summary"
-                      (summary)="onFormHandler($event, 'GlobalNetworkSummary')">
-                  </geo-mat-textarea>
-              </mat-card-content>
-          </mat-card>
-
-          <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
-
-          <div class="cela-actions">
-            <geo-action    [IsCloseButton]="true"
-                            (CloseAction)="onCloseDialog()">
-              </geo-action>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [InputTextArray]="cpiRaiting"
+                [Title]="CPIRaitingTitle"
+                [SelectedValue]="CPIRating"
+                (OutputHandler)="onCPIRaintingHandler($event)"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
           </div>
-          
-      </form>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>License Requirements for Terrestrial Fiber</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onTerrestrialRisk($event)"
+                [SelectedValue]="TerrestrialRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onTerrestrialSummary($event)"
+            [input]="TerrestrialSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>License Requirements for Submarine Cables</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onSubmarineRisk ($event)"
+                [SelectedValue]="SubmarineRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onSubmarineSummary($event)"
+            [input]="SubmarineSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <h6>Global Network Initiative (GNI)</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onGNIRisk($event)"
+                [SelectedValue]="GNIRating"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-2"></div>
+
+            <div class="col-sm-2"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onGNISummary($event, 'GlobalNetworkSummary')"
+            [input]="GNISummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Law Enforcement Compliance</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="LECRisk($event)"
+                [SelectedValue]="LECRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onLECSummary($event, 'GlobalNetworkSummary')"
+            [input]="LECSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Privacy</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onPrivacyRisk($event)"
+                [SelectedValue]="PrivacyRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onPrivacySummary($event, 'GlobalNetworkSummary')"
+            [input]="PrivacySummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Data Security</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onDataSecurityRisk($event)"
+                [SelectedValue]="DataSecurityRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onDataSecuritySummary($event, 'GlobalNetworkSummary')"
+            [input]="DataSecuritySummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Media / Content Liability</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onMediaContentLiabilityRis($event)"
+                [SelectedValue]="MediaContentLiabilityRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onMediaContentLiabilitySummary($event, 'GlobalNetworkSummary')"
+            [input]="MediaContentLiabilitySummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Telecommunications</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onTelecommunicationsRisk($event)"
+                [SelectedValue]="TelecommunicationsRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"           
+            (summary)="onTelecommunicationsSummary($event, 'GlobalNetworkSummary')"
+            [input]="TelecommunicationsSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Pending Laws or Regulations</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onPendingRisk($event)"
+                [SelectedValue]="PendingRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onPendingSummary($event, 'GlobalNetworkSummary')"
+            [input]="PendingSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-header>
+          <h6>Data Residency Regulations</h6>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-4">
+              <geo-mat-dropdown
+                [Title]="risk"
+                [InputTextArray]="riskLevels"
+                (OutputHandler)="onDataResiReguRisk($event)"
+                [SelectedValue]="DataResiReguRisk"
+              >
+              </geo-mat-dropdown>
+            </div>
+            <div class="col-sm-8"></div>
+          </div>
+          <geo-mat-textarea
+            [labelTextAreaSummary]="summary"
+            (summary)="onDataResiReguSummary($event, 'GlobalNetworkSummary')"
+            [input]="DataResiReguSummary"
+          >
+          </geo-mat-textarea>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk"
+        >No changes in the risk level and Action Item</mat-checkbox
+      >
+
+      <div class="cela-actions">
+        <geo-action [IsCloseButton]="true" (CloseAction)="onCloseDialog()">
+        </geo-action>
+      </div>
+    </form>
   </div>
 </div>

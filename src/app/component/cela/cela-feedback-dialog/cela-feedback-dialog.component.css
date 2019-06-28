@@ -21,7 +21,9 @@ h6 {
 .container-data {
 	font-size:14px;
 }
-
+.matfieldstyle {
+	width: 70%;
+  }
 .cela-content {
 	margin: 15px;
 }

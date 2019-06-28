@@ -3,10 +3,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { GapFeedbackService } from '../../../app.gapfeedback.service';
-import { IJsondate } from '../gapfeedback/types/gapfeedback.type';
-import { element } from 'protractor';
+import { GapFeedBack } from '../gapfeedback/types/gapfeedback.type';
 import { CelaFeedbackComponent } from '../../cela/cela-feedback-dialog/cela-feedback-dialog.component';
 import { MatDialog } from '@angular/material';
+import { GeoPhysicalSecurityFeedbackComponent } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 
 @Component({
   selector: 'app-gapfeedback',
@@ -25,7 +25,7 @@ export class GapFeedbackComponent implements OnInit {
   objectvalues = Object.values;
   tmpAssessmentStatus: string[] = [];
   leftItemOrginal: object[] = [];
-  currentRightItem: IJsondate[];
+  currentRightItem: GapFeedBack[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService,private dialog: MatDialog) {
@@ -42,7 +42,7 @@ export class GapFeedbackComponent implements OnInit {
   }
   rightChildrenSelected(target) {
     console.log('aaa', target)
-    this.currentRightItem = this.allGapFeedbackData.filter((items: IJsondate) =>
+    this.currentRightItem = this.allGapFeedbackData.filter((items: GapFeedBack) =>
       items.GeoHostingOwner === target.GeoHostingOwner && items.AssessmentStatus === target.AssessmentStatus
     );
     this.dataSource = new MatTableDataSource(this.currentRightItem);
@@ -51,13 +51,13 @@ export class GapFeedbackComponent implements OnInit {
 
   afterLeftRootCollapse(ev: any) {
     console.log(ev[0], this.currentRightItem);
-    this.currentRightItem = this.currentRightItem.filter((items: IJsondate) => !(items.AssessmentStatus === ev[0]));
+    this.currentRightItem = this.currentRightItem.filter((items: GapFeedBack) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
   afterLeftRootExpend(ev) {
     this.currentRightItem = this.currentRightItem.concat(
-      this.allGapFeedbackData.filter((items: IJsondate) => items.AssessmentStatus === ev[0]));
+      this.allGapFeedbackData.filter((items: GapFeedBack) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
@@ -73,7 +73,7 @@ export class GapFeedbackComponent implements OnInit {
 
   //   Left Navigation
   getdata(data) {
-    data.map((items: IJsondate) => {
+    data.map((items: GapFeedBack) => {
 
       if (!this.tmpAssessmentStatus.includes(items.AssessmentStatus)) {
         if (items.AssessmentStatus !== null) {
@@ -101,16 +101,24 @@ export class GapFeedbackComponent implements OnInit {
       data: value,
       width: '80%',
       height: '75%',
-      panelClass: 'geo-dialog'
+      panelClass: 'geo-dialog',
+      disableClose: true
     };
-
-    const dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
-
+    let dialogRef;
+    console.log(value.TeamName)
+    if(value.TeamName==="CELA"){
+      dialogRef= this.dialog.open(CelaFeedbackComponent, matDialogConfig);
+    };
+    if(value.TeamName==="Physical Security"){
+      dialogRef= this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
+    }
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
       }
     });
+   
+
   }
   ngOnInit() {
 

@@ -93,7 +93,8 @@ export class IntakeComponent implements OnInit {
       data: element,
       width: '80%',
       height: '75%',
-      panelClass: 'intakeFomrbody'
+      panelClass: 'intakeFomrbody',
+      disableClose: true
     };
     this.bottomSheet.open(IntakeFormComponent, passdata);
   }

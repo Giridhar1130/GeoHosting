@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MessagesService } from './messages.service';
+import { GapFeedBack } from './component/gapfeedbackfiles/gapfeedback/types/gapfeedback.type';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +24,15 @@ export class GapFeedbackService {
       .pipe(catchError(this.handleError)
       );
   }
+
+  postintakeForm(intakeForm) {
+    console.log('postintakeForm work', intakeForm.FormId);
+
+    return this.http.patch<GapFeedBack>(this.intakesUrl + '/update', intakeForm)
+    .pipe(catchError(this.handleError)
+    );
+  }
+
   private log(arg0: string) {
     throw new Error('Method not implemented.');
   }

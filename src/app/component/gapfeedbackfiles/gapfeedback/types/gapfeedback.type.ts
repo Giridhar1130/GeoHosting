@@ -1,17 +1,24 @@
 import { IWebDriverOptionsCookie } from 'selenium-webdriver';
 
-export interface IJsondate {
+export interface GapFeedBack {
+    Id: string;
+    IsActive: boolean;
     GeoHostingOwner: string;
     AssessmentID: string;
     AssessmentStatus: string;
+    AssignedTo: string;
+    Author: Author;
     CompletedDate: Date;
     CountryName: string;
     DataCenterRiskLevel: string;
+    AverageRating : string;
+    Country: string;
+    CountryID: string;
     Editor: {Email: string, LookupValue: string};
     FeedbackSummary: string;
     FormId: string;
     Modified: Date;
-    MyFields: IMyFields;
+    MyFields: MyFields;
     NetworkRiskLevel: string;
     NewCompleteAssessmentID: string;
     NewCountryAssessmentID: string;
@@ -24,7 +31,7 @@ export interface IJsondate {
     WorkflowVersion: number;
 }
 
-export interface IMyFields {
+export interface MyFields {
   CommonFields: ICommonFields;
   Energy: IEnergy;
   InformationSecurityComplaince: IInformationSecurityComplaince;
@@ -36,6 +43,12 @@ export interface IMyFields {
   TaskName: ITaskName;
   Tax: ITax;
   Treasury: ITreasury;
+}
+interface Author{
+  Email: string;
+  LookupId: string;
+  LookupValue: string;
+  TypeId: string;
 }
 
 export interface ICommonFields {
@@ -80,6 +93,7 @@ export interface ILCADetails {
   other: IOther;
   privacy: IPrivacy;
   telecommunications: ITelecommunications;
+  LicenseRequirements: LicenseRequirements;
 }
 
 export interface IDataSecurity { // Data Security
@@ -104,8 +118,8 @@ export interface IMediaContntLiability { // Media / Content Liability
 
 export interface IOther { // Pending Laws or Regulations
   DataResiReguSummary: string;
-  DataResidencyRegulation: string;
-  PendingLawRegulations: string;
+  DataResidencyRegulation: string; // data risk
+  PendingLawRegulations: string; // pending summary
   PendingRisk: string;
 }
 
@@ -117,6 +131,12 @@ export interface IPrivacy { // Privacy
 export interface ITelecommunications { // Telecommunications
   TelecommunicationsRisk: string;
   TelecommunicationsSummary: string;
+}
+export interface LicenseRequirements{
+  TerrestrialRisk: string;
+  TerrestrialSummary: string;
+  SubmarineRisk: string;
+  SubmarineSummary: string;
 }
 
 export interface ILogicalSecurity {
@@ -137,11 +157,11 @@ export interface IPhysicalSecurityDetails {
   BaselineSecurityRequirements: string;
   DepartTravelWarning: string;
   MicrosoftHeadCount: string;
-  PhysicalSecurityPointofContact: IPhysicalSecurityPointofContact;
+  PhysicalSecurityPointofContact: Person;
   optionPhysical: string;
 }
 
-export interface IPhysicalSecurityPointofContact {
+export interface Person {
   AccountId: string;
   AccountType: string;
   DisplayName: string;
@@ -174,14 +194,18 @@ export interface IRisk {
 }
 
 export interface ISummary {
-  ActionItems: string;
+  ActionItems: ActionItems[];
   FeedbackSummary: string;
   RiskMgmtRiskLevel: string;
 }
 export interface ITaskName {
   Name: string;
 }
-
+export interface ActionItems{
+  ActionName: string;
+  Details: string;
+  Contact: string;
+}
 export interface ITreasury {
   TreasuryDetails: ITreasuryDetails;
 }

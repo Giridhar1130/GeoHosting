@@ -1,46 +1,47 @@
 <div class="cela-dialog">
     <div class="cela-header">
-        <div>
-            {{dialogConfig.title}}
-        </div>
-        <div>
-            {{dialogConfig.country}}
-        </div>
+      <div>
+        Physical Security
+      </div>
+      <div>
+        {{ country }}
+      </div>
     </div>
-
+  
     <div class="cela-content">
-        <form>
-            <div class="container-data">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>
-                            <span>GeoHosting Owner: </span>
-                            <span>{{dialogConfig.user.owner}}</span>
-                        </p>
-                        <p><span>Scope: </span>
-                            <span>{{dialogConfig.user.scope}}</span>
-                        </p>
-                        <p>
-                            <span>Assigned To: </span>
-                            <span>{{dialogConfig.user.scope}}</span>
-                        </p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>
-                            <span>Due Date: </span>
-                            <span>{{dialogConfig.user.dueDate}}</span>
-                        </p>
-                        <p>
-                            <span>Priority: </span>
-                            <span>{{dialogConfig.user.priority}}</span>
-                        </p>
-                        <p>
-                            <span>Completed Date: </span>
-                            <span>{{dialogConfig.user.completedDate}}</span>
-                        </p>
-                    </div>
-                </div>
+      <form>
+        <div class="container-data">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>
+                <span>GeoHosting Owner: </span>
+                <span>{{ Owner }}</span>
+              </p>
+              <p>
+                <span>Scope: </span>
+                <span>{{ Scope }}</span>
+              </p>
+              <p>
+                <span>Assigned To: </span>
+                <span>{{ Assigned }}</span>
+              </p>
             </div>
+            <div class="col-sm-6">
+              <p>
+                <span>Due Date: </span>
+                <span>3/25/2016</span>
+              </p>
+              <p>
+                <span>Priority: </span>
+                <span>{{ Priority }}</span>
+              </p>
+              <p>
+                <span>Completed Date: </span>
+                <span>5/31/2016</span>
+              </p>
+            </div>
+          </div>
+        </div>
             
             <mat-card>
                 <mat-card-header>
@@ -52,28 +53,26 @@
                         <div class="col-sm-4">
                             <geo-mat-dropdown   [Title]="summaryRiskLevel"
                                                 [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                (OutputHandler)="onRiskLevel($event)"
                                                 id="summaryRiskLevelDropdown">
+                                                [SelectedValue]="RiskLevel"
                             </geo-mat-dropdown>
                         </div>
                         <div class="col-sm-8"></div>
                     </div>
-                    
-                    <geo-mat-textarea>
-                        
-                    </geo-mat-textarea>
-
-
                     <geo-mat-textarea   [labelTextAreaSummary]="feedbackSummaryLabel"
-                                        (summary)="onFeedbackSummaryHandler($event)">
+                                        (summary)="onFeedbackSummary($event)">
+                                        [input]="FeedbackSummary"
                     </geo-mat-textarea>
 
                     <geo-mat-textarea   [labelTextAreaSummary]="securityDetailsAndInquiriesLabel"
-                                        (summary)="onFeedbackSummaryHandler($event)">
+                                        (summary)="onSecurityIssues($event)">
+                                        [input]="SecurityIssues"
                     </geo-mat-textarea>
 
                     <geo-mat-textarea   [labelTextAreaSummary]="physicalSecurityRiskLevelDefinitionLabel"
-                                        (summary)="onFeedbackSummaryHandler($event)">
+                                        (summary)="onTravelWarningSection($event)">
+                                        [input]="TravelWarningSection"
                     </geo-mat-textarea>
 
 
@@ -107,15 +106,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                                <button class="coll-sm-6" 
-                                        mat-button 
-                                        (click)="onAddSite()" 
-                                        class="add-site-button"
-                                        matTooltip="Please include only country-specific action items. Standard process should be documented and implemented separately."
-                                        matTooltipPosition="after"><i class="material-icons">keyboard_arrow_down</i>Add another site
-                                </button>
-                        </div>
+                        <div (click)="addonCurrentportfoliosite($event)">
+                            <i class="material-icons">arrow_drop_down</i>Add another site
+                          </div>
                         <div class="col-sm-6"></div>
                     </div>
 
@@ -129,12 +122,13 @@
                 <mat-card-content>
                     <geo-mat-textarea   
                         [labelTextAreaSummary]="physicalSecurityRiskLevelLabel"
-                        (summary)="onFeedbackSummaryHandler($event)">
+                        (summary)="onDepartTravelWarning($event)">
+                        [input]="DepartTravelWarning"
                     </geo-mat-textarea>
                     <div>
                         <section class="checkbox-details-section">
                             <label class="checkbox-margin">U.S. State Department Travel Advisory Level (2-4)</label>
-                            <mat-radio-group [(ngModel)]="stateDepartmentTravelAdvisoryLevelCheckBox">
+                            <mat-radio-group [(ngModel)]="MicrosoftHeadCount">
                                 <mat-radio-button color="primary" class="checkbox-margin" value="Yes">Yes</mat-radio-button>
                                 <mat-radio-button color="primary" class="checkbox-margin" value="No">No</mat-radio-button>
                             </mat-radio-group>
@@ -142,18 +136,16 @@
                     </div>
                     <geo-mat-textarea   
                         [labelTextAreaSummary]="applicableBaselineSecurityRequirementsLabel"
-                        (summary)="onFeedbackSummaryHandler($event)">
+                        (summary)="onBaselineSecurityRequirements($event)">
+                        [input]="BaselineSecurityRequirements"
                     </geo-mat-textarea> 
-                    <div class="row">
-                        <div class="col-sm-4">Physical Security Point of Contact</div>
-                        <div class="col-sm-8">
-                            <geo-mat-input  [labelGeoInput]="physicalSecurityPointofContactLabel"
-                                            [input]=""
-                                            (output)="onFeedbackSummaryHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                    </div>
+                    
+                        <geo-mat-textarea   
+                        [labelTextAreaSummary]="physicalSecurityPointofContactLabel"
+                        (summary)="onphysicalSecurityPointofContactLabel($event)">
+                        [input]="PhysicalSecurityPointofContactName"
+                    </geo-mat-textarea> 
+                 
                     <div>
                         <p>
                             <span>

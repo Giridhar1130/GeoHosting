@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { ITextArray } from 'src/app/component/types/cela-feedbackType';
 
 @Component({
   selector: 'geo-mat-dropdown',
@@ -7,23 +8,24 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 })
 export class GeoMatDropdownComponent implements OnInit, OnChanges {
 
-    @Input() InputTextArray?: any;
-    @Input() SelectedValue?: any;
+    @Input() InputTextArray?: ITextArray[];
+    @Input() SelectedValue?: string;
     @Input() Title: string;
     @Input() toDisable?: boolean;
     @Input() IsRequired?: boolean;
-  
-    @Input() Selected?: any;
+
+    public SelectedItemKey?: string;
+
     @Output() OutputHandler = new EventEmitter<string>();
-  
+
     constructor() { }
-  
+
     ngOnInit() {
     }
-    
+
     ngOnChanges(){
     }
-  
+
     public onChangeHandler(value: any) {
         this.OutputHandler.emit(value.value);
     }

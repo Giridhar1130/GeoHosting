@@ -48,6 +48,7 @@ export class IntakeFormComponent implements OnInit {
         this.prorityList = data[0].sourceItems;
         this.prorityList.forEach((items: Ipority) => {
           items.Value = items.SourceId + '-' + items.Value;
+          console.log(this.prorityList)
         });
       });
     this.countryGeoClearanceService.getCountryList(3)
@@ -74,10 +75,10 @@ export class IntakeFormComponent implements OnInit {
     'Current', 'Planned', 'Proposed'];
   TargetSeconddisplayColumns: string[] = [
     'Current', 'Planned', 'Proposed'];
-  // scopeList: object[] = [
-  //   { ID: 123, Value: 'Full' },
-  //   { ID: 345, Value: 'Edge' },
-  //   { ID: 567, Value: 'Full Refresh' }];
+  scopeList: object[] = [
+    { ID: 123, Value: 'Full' },
+    { ID: 345, Value: 'Edge' },
+    { ID: 567, Value: 'Full Refresh' }];
   prorityChoice: string = this.element.MyFields.Section1details.Priority;
   TargetFirstTableDatasource = new MatTableDataSource(targetFirst);
   TargetSecondTableDatasource = new MatTableDataSource(targetSecond);
@@ -98,7 +99,7 @@ export class IntakeFormComponent implements OnInit {
   ServiceTargets: string = this.element.MyFields.Section3details.ServiceTargets;
   CrossBorderDataFlows: string = this.element.MyFields.Section3details.CrossBorderDataFlows;
   Latency: string = this.element.MyFields.Section3details.Latency;
-  currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
+  currentPortfoliodataSource = new MatTableDataSource<CurrentPortfolio>();
   currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
   submitted = false;
   tabletest: any;
@@ -106,13 +107,15 @@ export class IntakeFormComponent implements OnInit {
     setTimeout(() => this.bottomSheetRef.close(), 100);
   }
   private addonCurrentportfoliosite() {
+
     const tmp: CurrentPortfolio = {
       CurrentPortfolioDCcode: null
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
     };
+  //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
     currentPortfolio.push(tmp);
-    console.log('data');
-    this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
+    console.log('data', currentPortfolio);
+    this.currentPortfoliodataSource.data = currentPortfolio;
   }
   private addonInprogresssitessite() {
     const tmp: InProgressSitesGroup = {
@@ -127,33 +130,33 @@ export class IntakeFormComponent implements OnInit {
   // get all the data from the form
   saveAllData() {
     const countryIntake: CountryIntake = Object.assign({}, this.element);
-    // countryIntake.MyFields.Section1details.Country = this.selectedCountry;
-    console.log('this.prorityChoice', this.prorityChoice);
-    // countryIntake.MyFields.Section1details.Priority = this.prorityChoice;
-    // countryIntake.MyFields.Section1details.Scope = this.selectedScope;
-    // countryIntake.MyFields.Section1details.Justification = this.Justification;
-    // countryIntake.MyFields.GapAdminGroupDetails.AdminComments = this.adminComments;
-    // countryIntake.MyFields.Section2details.group16.CurrentPortfolio = currentPortfolio;
-    // countryIntake.MyFields.Section3details.group9.InProgressSitesGroup = currentInprogresssites;
-    // countryIntake.MyFields.Section2details.ProposedSites = this.ProposedSites;
-    // countryIntake.MyFields.Section2details.PortfolioComments = this.PortfolioComments;
-    // countryIntake.MyFields.Section3details.CurrentOnlineSvr = this.CurrentOnlineSvr;
-    // countryIntake.MyFields.Section3details.PlannedOnlineSvr = this.PlannedOnlineSvr;
-    // countryIntake.MyFields.Section3details.ProposedOnlineSvr = this.ProposedOnlineSvr;
-    // countryIntake.MyFields.Section3details.CurrentOtherSvr = this.CurrentOtherSvr;
-    // countryIntake.MyFields.Section3details.PlannedOtherSvr = this.PlannedOtherSvr;
-    // countryIntake.MyFields.Section3details.ProposedOtherSvr = this.ProposedOtherSvr;
-    // countryIntake.MyFields.Section3details.CustomerComments = this.CustomerComments;
-    // countryIntake.MyFields.Section3details.DataRequirements = this.DataRequirements;
-    // countryIntake.MyFields.Section3details.ServiceTargets = this.ServiceTargets;
-    // countryIntake.MyFields.Section3details.Latency = this.Latency;
-    // countryIntake.MyFields.Section3details.CrossBorderDataFlows = this.CrossBorderDataFlows;
+    countryIntake.MyFields.Section1details.Country = this.selectedCountry;
+    console.log('this.prorityChoice',  );
+    countryIntake.MyFields.Section1details.Priority = this.prorityChoice;
+    countryIntake.MyFields.Section1details.Scope = this.selectedScope;
+    countryIntake.MyFields.Section1details.Justification = this.Justification;
+    countryIntake.MyFields.GapAdminGroupDetails.AdminComments = this.adminComments;
+    countryIntake.MyFields.Section2details.group16.CurrentPortfolio = currentPortfolio;
+    countryIntake.MyFields.Section3details.group9.InProgressSitesGroup = currentInprogresssites;
+    countryIntake.MyFields.Section2details.ProposedSites = this.ProposedSites;
+    countryIntake.MyFields.Section2details.PortfolioComments = this.PortfolioComments;
+    countryIntake.MyFields.Section3details.CurrentOnlineSvr = this.CurrentOnlineSvr;
+    countryIntake.MyFields.Section3details.PlannedOnlineSvr = this.PlannedOnlineSvr;
+    countryIntake.MyFields.Section3details.ProposedOnlineSvr = this.ProposedOnlineSvr;
+    countryIntake.MyFields.Section3details.CurrentOtherSvr = this.CurrentOtherSvr;
+    countryIntake.MyFields.Section3details.PlannedOtherSvr = this.PlannedOtherSvr;
+    countryIntake.MyFields.Section3details.ProposedOtherSvr = this.ProposedOtherSvr;
+    countryIntake.MyFields.Section3details.CustomerComments = this.CustomerComments;
+    countryIntake.MyFields.Section3details.DataRequirements = this.DataRequirements;
+    countryIntake.MyFields.Section3details.ServiceTargets = this.ServiceTargets;
+    countryIntake.MyFields.Section3details.Latency = this.Latency;
+    countryIntake.MyFields.Section3details.CrossBorderDataFlows = this.CrossBorderDataFlows;
     return countryIntake;
   }
   makeCopy() {
-    const data = this.saveAllData();
-    data.Modified = new Date();
-    this.intakeService.postintakeFormtocopy(data).subscribe((callbackfromgetAPI: any[]) => {
+    const intakeform = this.saveAllData();
+    intakeform.Modified = new Date();
+    this.intakeService.postintakeFormtocopy(intakeform).subscribe((callbackfromgetAPI: any[]) => {
       console.log('callbackfromgetAPI', callbackfromgetAPI);
     });
   }
@@ -172,7 +175,7 @@ export class IntakeFormComponent implements OnInit {
     currentInprogresssites = currentInprogresssites
                                 .concat(this.element.MyFields.Section3details.group9.InProgressSitesGroup);
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
-    this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
+    this.currentPortfoliodataSource.data = currentPortfolio;
     console.log('child', this.element, this.element.MyFields.Section2details.group16.CurrentPortfolio);
   }
 }

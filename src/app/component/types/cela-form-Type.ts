@@ -1,4 +1,4 @@
-export interface IcelaAll{
+export interface IcelaAll {
     GeoHostingOwner: string;
     Scope: string;
     AssignedTo: string;
