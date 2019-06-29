@@ -16,7 +16,7 @@ export class IntakeComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   public allIntakeData: any[];
-  public displayedColumns: string[] = ['ID', 'Name', 'AssessmentStatus', 'Priority', 'Scope', 'Country', 'Territory'];
+  public displayedColumns: string[] = ['ID', 'MyFields.FormName', 'AssessmentStatus', 'MyFields.Section1details.Priority', 'MyFields.Section1details.Scope', 'Country', 'MyFields.Territory'];
   public dataSource = new MatTableDataSource(this.allIntakeData);
   public objectkeys = Object.keys;
   public objectvalues = Object.values;
@@ -39,12 +39,14 @@ export class IntakeComponent implements OnInit {
       LookupValue === target.Owner.LookupValue && items.AssessmentStatus === target.AssessmentStatus
     );
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   public afterLeftRootCollapse(ev: any): void {
     this.currentRightItem = this.currentRightItem.filter((items: CountryIntake) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
@@ -52,44 +54,21 @@ export class IntakeComponent implements OnInit {
     this.currentRightItem = this.currentRightItem.concat(
                                 this.allIntakeData.filter((items: CountryIntake) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   public applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allIntakeData);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
-  }
-
-  public sortData(sort: Sort): void {
-    const data = this.allIntakeData.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'FormId': return this.compare(a.ID, b.ID, isAsc);
-        case 'FormName': return this.compare(a.Name, b.Name, isAsc);
-        case 'AssessmentStatus': return this.compare(a.AssessmentStatus, b.AssessmentStatus, isAsc);
-        case 'Priority': return this.compare(a.Priority, b.Priority, isAsc);
-        case 'Scope': return this.compare(a.Scope, b.Scope, isAsc);
-        case 'Country': return this.compare(a.Country, b.Country, isAsc);
-        case 'Territory': return this.compare(a.Territory, b.Territory, isAsc);
-        default: return 0;
-      }
-    });
-  }
-
-  public compare(a: number | string, b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  }
+  }  
 
   public getdata(data): void {
     data.map((items: CountryIntake) => {
@@ -204,6 +183,14 @@ export class IntakeComponent implements OnInit {
     };
 
     this.countryIntakeDialog.open(IntakeFormComponent, passdata);
+  }  
+
+  sortingDataAccessor(item, property) {
+    if (property.includes('.')) {
+      return property.split('.')
+        .reduce((object, key) => object[key], item);
+    }
+    return item[property];
   }
 
   ngOnInit() {
@@ -218,6 +205,7 @@ export class IntakeComponent implements OnInit {
         this.showALl();
       });
 
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 }

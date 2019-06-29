@@ -18,7 +18,7 @@ export class IntakeService {
     private messageService: MessagesService) { }
 
   getintake() {
-    return this.http.get<any[]>('https://localhost:44376/api/countryIntake/Forms')
+    return this.http.get<CountryIntake[]>('https://localhost:44376/api/countryIntake/Forms')
       .pipe(catchError(this.handleError)
       );
   }

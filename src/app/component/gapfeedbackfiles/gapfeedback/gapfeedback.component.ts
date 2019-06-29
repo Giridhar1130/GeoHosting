@@ -19,10 +19,10 @@ export class GapFeedbackComponent implements OnInit {
 
 
   public allGapFeedbackData: GapFeedBack[];
-  public displayedColumns: string[] = ['Name', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
-                                      'CountryIntakeForm', 'Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
-                                      'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'ModifiedBy',
-                                      'CountryID', 'AssessmentStatus'];
+  public displayedColumns: string[] = ['AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
+                                      'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
+                                      'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
+                                      'MyFields.CommonFields.CountryID', 'AssessmentStatus'];
   public dataSource = new MatTableDataSource(this.allGapFeedbackData);
   public objectkeys = Object.keys;
   public objectvalues = Object.values;
@@ -37,7 +37,7 @@ export class GapFeedbackComponent implements OnInit {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (data: GapFeedBack[]) => {
         if (data) {
-          this.allGapFeedbackData = data;
+          this.allGapFeedbackData = data;          
         }
       });
   }
@@ -47,6 +47,7 @@ export class GapFeedbackComponent implements OnInit {
       items.GeoHostingOwner === target.GeoHostingOwner && items.AssessmentStatus === target.AssessmentStatus
     );
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
@@ -54,6 +55,7 @@ export class GapFeedbackComponent implements OnInit {
     console.log(ev[0], this.currentRightItem);
     this.currentRightItem = this.currentRightItem.filter((items: GapFeedBack) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
@@ -61,23 +63,25 @@ export class GapFeedbackComponent implements OnInit {
     this.currentRightItem = this.currentRightItem.concat(
       this.allGapFeedbackData.filter((items: GapFeedBack) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   public applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allGapFeedbackData);
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
 
   //   Left Navigation
   public getdata(data): void {
     data.map((items: GapFeedBack) => {
-
       if (!this.tmpAssessmentStatus.includes(items.AssessmentStatus)) {
         if (items.AssessmentStatus !== null) {
           this.tmpAssessmentStatus.push(items.AssessmentStatus);
@@ -144,11 +148,19 @@ export class GapFeedbackComponent implements OnInit {
     }
   }
 
+  sortingDataAccessor(item, property) {
+    if (property.includes('.')) {
+      return property.split('.')
+        .reduce((object, key) => object[key], item);
+    }
+    return item[property];
+  }
+
   ngOnInit() {
     this.gapfeedbackService.getgapfeedback()
-      .subscribe(async (callbackfromgetAPI: any[]) => {
-        this.allGapFeedbackData = callbackfromgetAPI;
-        this.getdata(this.allGapFeedbackData);
+      .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {        
+        this.allGapFeedbackData = callbackfromgetAPI;        
+        this.getdata(this.allGapFeedbackData);                
         this.currentRightItem = this.allGapFeedbackData;
         this.leftItemOrginal.sort((val1, val2) => {
           return Object.keys(val1)[0] > Object.keys(val2)[0] ? 1 : Object.keys(val1)[0] < Object.keys(val2)[0] ? -1 : 0;
@@ -157,6 +169,7 @@ export class GapFeedbackComponent implements OnInit {
 
       });
 
-    this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+      this.dataSource.sort = this.sort;
   }
 }
