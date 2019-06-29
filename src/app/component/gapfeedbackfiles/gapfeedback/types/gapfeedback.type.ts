@@ -40,10 +40,11 @@ export interface MyFields {
   PhysicalSecurity: IPhysicalSecurity;
   RiskManagement: IRiskManagement;
   Summary: ISummary;
-  TaskName: ITaskName;
+  TaskName: ITaskName;  
   Tax: ITax;
   Treasury: ITreasury;
 }
+
 interface Author{
   Email: string;
   LookupId: string;
