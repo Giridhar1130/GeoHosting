@@ -2,6 +2,7 @@ import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { CountryList } from '../types/country.type';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,16 +15,22 @@ export class CountryGeoClearanceService {
   constructor(
     private http: HttpClient) { }
 
-    getCountryList(sourceType: number) {
+    getCommonSourceList(sourceType: number) {
       return this.http.get<any[]>('https://localhost:44376/api/CommonSource/Source?sourceType='+ sourceType)
 			.pipe(catchError(this.handleError)
         );
     }
 
-    getCountryList1() {
+    getCountryList() {
         return this.http.get<any[]>('https://localhost:44376/api/country/AllItems')
 			.pipe(catchError(this.handleError)
         );
+    }
+
+    public getAllCountriesWithRiskDetails (includeRiskDetails = true) {	
+      return this.http.get<CountryList[]>('https://localhost:44376/api/country/AllItems?includeRiskDetails='+ includeRiskDetails)	
+        .pipe(catchError(this.handleError)	
+        );	
     }
 
   
