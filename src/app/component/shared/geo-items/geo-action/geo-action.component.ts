@@ -22,10 +22,16 @@ export class GeoActionComponent implements OnInit {
     @Input() IsDisabledActionButton?: boolean;
     @Input() ActionButtonText?: string;
 
+    // Submit Input Section
+    @Input() IsSubmitButton?: boolean;
+    @Input() IsDisabledSubmitButton?: boolean;
+    @Input() SubmitButtonText?: string;
+
     // Output Section
     @Output() ConfirmAction ? = new EventEmitter<boolean>();
     @Output() GeoAction ? = new EventEmitter<boolean>();
     @Output() CloseAction ? = new EventEmitter<boolean>();
+    @Output() SubmitAction ? = new EventEmitter<boolean>();
 
     constructor() { }
 
@@ -45,5 +51,9 @@ export class GeoActionComponent implements OnInit {
 
     public onAction() {
         this.GeoAction.emit();
+    }
+
+    public onSubmit() {
+        this.SubmitAction.emit();
     }
 }

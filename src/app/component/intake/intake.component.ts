@@ -220,7 +220,6 @@ export class IntakeComponent implements OnInit {
           return Object.keys(val1)[0] > Object.keys(val2)[0] ? 1 : Object.keys(val1)[0] < Object.keys(val2)[0] ? -1 : 0; });
         this.showALl();
       });
-    
     this.dataSource.sort = this.sort;
   }
 

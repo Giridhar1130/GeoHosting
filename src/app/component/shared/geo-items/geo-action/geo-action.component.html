@@ -4,24 +4,35 @@
             <button mat-button 
                 (click)="onConfirm()" 
                 [disabled]="IsDisabledConfirmButton"
+                type="button"
                 *ngIf="IsConfirmButton">{{ConfirmButtonText}}
             </button>
         </div>
         <div class="geo-button-margin"></div>
-        <div class="geo-button-margin">
-            <button mat-button
-                (click)="onClose()" 
-                [disabled]="IsDisabledCloseButton"
-                *ngIf="IsCloseButton">{{CloseButtonText}}
-            </button>
-        </div>
         <div class="geo-button-margin"></div>
         <div class="geo-button-margin">
             <button mat-button 
-                (click)="onAction()" 
+                (click)="onAction()"
+                type="button"
                 [disabled]="IsDisabledActionButton"
                 *ngIf="IsActionButton">{{ActionButtonText}}
             </button>
         </div>
-    </div>
+        <div class="geo-button-margin">
+            <button mat-button 
+                (click)="onSubmit()"
+                type="submit"
+                [disabled]="IsDisabledSubmitButton"
+                *ngIf="IsSubmitButton">{{SubmitButtonText}}
+            </button>
+        </div>
+        <div class="geo-button-margin">
+            <button mat-button
+                (click)="onClose()"
+                type="button" 
+                [disabled]="IsDisabledCloseButton"
+                *ngIf="IsCloseButton">{{CloseButtonText}}
+            </button>
+        </div>
+</div>
 </div>

@@ -6,7 +6,8 @@ import { GapFeedbackService } from '../../../app.gapfeedback.service';
 import { GapFeedBack } from '../gapfeedback/types/gapfeedback.type';
 import { CelaFeedbackComponent } from '../../cela/cela-feedback-dialog/cela-feedback-dialog.component';
 import { MatDialog } from '@angular/material';
-import { GeoPhysicalSecurityFeedbackComponent } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
+import { GeoPhysicalSecurityFeedbackComponent
+} from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
 
 
@@ -30,7 +31,7 @@ export class GapFeedbackComponent implements OnInit {
   currentRightItem: GapFeedBack[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService,private dialog: MatDialog) {
+  constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService, private dialog: MatDialog) {
 
   }
 
@@ -45,7 +46,7 @@ export class GapFeedbackComponent implements OnInit {
   }
 
   rightChildrenSelected(target) {
-    console.log('aaa', target)
+    console.log('aaa', target);
     this.currentRightItem = this.allGapFeedbackData.filter((items: GapFeedBack) =>
       items.GeoHostingOwner === target.GeoHostingOwner && items.AssessmentStatus === target.AssessmentStatus
     );
@@ -102,8 +103,183 @@ export class GapFeedbackComponent implements OnInit {
   }
 
   openFeedbackTask(value): void {
+    const emptyGapFeedBack: GapFeedBack = {
+      Id: '',
+      IsActive: true,
+      GeoHostingOwner: '',
+      AssessmentID: '',
+      AssessmentStatus: '',
+      AssignedTo: '',
+      Author: {
+        Email: '',
+        LookupId: '',
+        LookupValue: '',
+        TypeId: '',
+      },
+      CompletedDate: null,
+      CountryName: '',
+      DataCenterRiskLevel: '',
+      AverageRating : '',
+      Country: '',
+      CountryID: '',
+      Editor: {Email: '', LookupValue: ''},
+      FeedbackSummary: '',
+      FormId: '',
+      Modified: null,
+      MyFields: {
+        CommonFields: {
+          AssignedTo: '',
+          Country: '',
+          CountryID: '',
+          GeoHostingOwner: 0,
+          Priority: '',
+          Scope: '',
+        },
+        Energy: {
+          EnergyDetails: {
+            Co2Emission: '',
+            EnergyRate: '',
+            MarketStructure: '',
+            Reliability: '',
+          }
+        },
+        InformationSecurityComplaince: {
+          InformationSecurityComplainceDetails:{
+            ComplainceIssues:  '',
+            NationalInformationSecurity:  '',
+          }
+        },
+        LCA: {
+          lcaDetails:{
+            CPIRating: '',
+            dataSecurity: {
+              DataSecurityRisk: '',
+              DataSecuritySummary: '',
+            },
+            gni: {
+              GNIRating: '',
+              GNISummary: '',
+            },
+            lawEnforcementCompliance: {
+              LECRisk: '',
+              LECSummary: '',
+            },
+            mediaContentLiability: {
+              MediaContentLiabilityRisk: '',
+              MediaContentLiabilitySummary:  '',
+            },
+            other: {
+              DataResiReguSummary:  '',
+              DataResidencyRegulation:  '',
+              PendingLawRegulations: '',
+              PendingRisk:  '',
+            },
+            privacy: {
+              PrivacyRisk: '',
+              PrivacySummary:  '',
+            },
+            telecommunications: {
+              TelecommunicationsRisk:  '',
+              TelecommunicationsSummary:  '',
+            },
+            LicenseRequirements: {
+              TerrestrialRisk: '',
+              TerrestrialSummary: '',
+              SubmarineRisk:  '',
+              SubmarineSummary:  '',
+            }
+          }
+        },
+        LogicalSecurity: {
+          logicalSecuritydetails:{
+            SecurityIssues: ''
+          }
+        },
+        PhysicalSecurity: {
+          PhysicalSecurityDetails: {
+            BaselineSecurityRequirements: '',
+            DepartTravelWarning: '',
+            MicrosoftHeadCount:  '',
+            PhysicalSecurityPointofContact: {
+              AccountId: '',
+              AccountType: '',
+              DisplayName: '',
+            },
+            optionPhysical:  '',
+          },
+          SecurityIssues: '',
+          TravelWarningSection: ''
+        },
+        RiskManagement: {
+          RiskManagementDetails: {
+            GeneralRsikConsiderations: '',
+            Insurability: {
+              CyberRisk:  '',
+              GeneralLiability: '',
+              PoliticalRisk:  '',
+              Property: '',
+            },
+            Risk: {
+              ExchangeTransferRisk:  '',
+              LegalandRegulartoryRisk: '',
+              PoliticalViolenceRisk:  '',
+              LegalandRegulatoryRisk:  '',
+            },
+          },
+          SecurityIssues: '',
+          TravelWarningSection: '',
+        },
+        Summary: {
+          ActionItems: [],
+          FeedbackSummary: '',
+          RiskMgmtRiskLevel: '',
+        },
+        TaskName: {
+          Name: '',
+        },
+        Tax: {
+          DatacenterConsideration: {
+            CorporateTaxRate: '',
+            CreditableOptions: '',
+            IncentivesandExemptions: '',
+            PersonalPropertyTax: '',
+            RealPropertyTax: '',
+            RestrictionOnDatacenter: '',
+            SalesTax: '',
+            SalesTaxonServers: '',
+            TaxRatesOptions: '',
+            VATRates: '',
+          },
+          LegalEntity: '',
+          LocalTaxContact: {
+            AccountId: '',
+            AccountType: '',
+            DisplayName: '',
+          },
+          RestrictionsOnLocations: '',
+          RestrictionOrTaxConsideration: '',
+        },
+        Treasury: {
+          TreasuryDetails: {
+            CountryCurrency: '',
+            CurrencyRestrictionForiegnMarket: '',
+            delayCountryPermission: '',
+          }
+        },
+      },
+      NetworkRiskLevel: '',
+      NewCompleteAssessmentID: '',
+      NewCountryAssessmentID: '',
+      NewFormName: '',
+      RiskLevel: '',
+      SubmitStatus: '',
+      Submitted: null,
+      TaskStatus: '',
+      TeamName: '',
+      WorkflowVersion: 0
+    };
     const matDialogConfig = {
-      data: value,
+      data: emptyGapFeedBack,
       width: '80%',
       height: '75%',
       panelClass: 'geo-dialog'
@@ -117,7 +293,7 @@ export class GapFeedbackComponent implements OnInit {
       }
     });
   }
-  
+
   public openFeedbackForm(value): void {
     const matDialogConfig = {
       data: value,
@@ -127,12 +303,12 @@ export class GapFeedbackComponent implements OnInit {
       disableClose: true
     };
     let dialogRef;
-    console.log(value.TeamName)
-    if (value.TeamName === "CELA") {
+    console.log(value.TeamName);
+    if (value.TeamName === 'CELA') {
       dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
 
-    if (value.TeamName === "Physical Security"){
+    if (value.TeamName === 'Physical Security') {
       dialogRef = this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
     }
 
