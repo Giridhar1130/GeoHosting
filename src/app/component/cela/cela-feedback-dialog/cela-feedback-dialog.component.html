@@ -3,6 +3,7 @@
     <div>
       CELA Feedback
     </div>
+    <button class="material-icons close-icon" (click)="onCloseDialog()">close</button>
     <div>
       {{ country }}
     </div>
@@ -428,12 +429,10 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk"
-        >No changes in the risk level and Action Item</mat-checkbox
-      >
+      <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
 
       <div class="cela-actions">
-        <geo-action [IsCloseButton]="true" (CloseAction)="onCloseDialog()">
+        <geo-action [IsConfirmButton]="true" (ConfirmAction)="onSaveandCloseDialog()">
         </geo-action>
       </div>
     </form>

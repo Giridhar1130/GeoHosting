@@ -10,31 +10,31 @@ import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/m
   templateUrl: './intake.component.html',
   styleUrls: ['./intake.component.css']
 })
+
 export class IntakeComponent implements OnInit {
   constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog) { }
 
-
-  allIntakeData: any[];
-  displayedColumns: string[] = ['ID', 'Name', 'AssessmentStatus', 'Priority', 'Scope', 'Country', 'Territory'];
-  dataSource = new MatTableDataSource(this.allIntakeData);
-  objectkeys = Object.keys;
-  objectvalues = Object.values;
-  tmpAssessmentStatus: string[] = [];
-  leftItemOrginal: object[] = [];
-  currentRightItem: CountryIntake[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  public allIntakeData: any[];
+  public displayedColumns: string[] = ['ID', 'Name', 'AssessmentStatus', 'Priority', 'Scope', 'Country', 'Territory'];
+  public dataSource = new MatTableDataSource(this.allIntakeData);
+  public objectkeys = Object.keys;
+  public objectvalues = Object.values;
+  public tmpAssessmentStatus: string[] = [];
+  public leftItemOrginal: object[] = [];
+  public currentRightItem: CountryIntake[];
   public sortedData: CountryIntake[];
-  getintakeInfo(): void {
+
+  public getintakeInfo(): void {
     this.intakeService.getintake()
       .subscribe(async (callbackfromgetAPI: any[]) => {
 
         this.allIntakeData = await callbackfromgetAPI;
 
       });
-
   }
-  rightChildrenSelected(target) {
 
+  public rightChildrenSelected(target): void {
     this.currentRightItem = this.allIntakeData.filter((items: CountryIntake) => items.Owner.
       LookupValue === target.Owner.LookupValue && items.AssessmentStatus === target.AssessmentStatus
     );
@@ -42,31 +42,30 @@ export class IntakeComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  afterLeftRootCollapse(ev: any) {
-    console.log(ev[0], this.currentRightItem);
+  public afterLeftRootCollapse(ev: any): void {
     this.currentRightItem = this.currentRightItem.filter((items: CountryIntake) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
-  afterLeftRootExpend(ev) {
-    console.log(ev, this.currentRightItem);
+
+  public afterLeftRootExpend(ev): void {
     this.currentRightItem = this.currentRightItem.concat(
                                 this.allIntakeData.filter((items: CountryIntake) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.dataSource.sort = this.sort;
   }
-  showALl() {
-    console.log(this.allIntakeData)
+
+  public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allIntakeData);
     this.dataSource.sort = this.sort;
   }
 
-  sortData(sort: Sort) {
+  public sortData(sort: Sort): void {
     const data = this.allIntakeData.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
@@ -88,11 +87,11 @@ export class IntakeComponent implements OnInit {
     });
   }
 
-  compare(a: number | string, b: number | string, isAsc: boolean) {
+  public compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  getdata(data) {
+  public getdata(data): void {
     data.map((items: CountryIntake) => {
       if (!this.tmpAssessmentStatus.includes(items.AssessmentStatus)) {
         this.tmpAssessmentStatus.push(items.AssessmentStatus);
@@ -109,12 +108,10 @@ export class IntakeComponent implements OnInit {
           }
         });
       }
-
     });
-
   }
 
-  openIntakeForm(countryIntake: CountryIntake): void {
+  public openIntakeForm(countryIntake: CountryIntake): void {
     if (!countryIntake) {
       const countryIntakeEmptyItem: CountryIntake = {
         Id: null,
@@ -220,9 +217,7 @@ export class IntakeComponent implements OnInit {
           return Object.keys(val1)[0] > Object.keys(val2)[0] ? 1 : Object.keys(val1)[0] < Object.keys(val2)[0] ? -1 : 0; });
         this.showALl();
       });
-    
+
     this.dataSource.sort = this.sort;
   }
-
-
 }

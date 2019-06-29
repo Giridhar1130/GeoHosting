@@ -8,22 +8,23 @@ import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
     templateUrl: './geo-physical-security-feedback.component.html',
     styleUrls: ['./geo-physical-security-feedback.component.css']
 })
+
 export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
 
     public dialogConfig: IDialogConfig;
-    public labelPosition = 'after';
-    public summaryRiskLevel = 'Physical Security Risk Level:';
-    public feedbackSummaryLabel = 'Feedback Summary - Summarize feedback in 300 characters or less.';
-    public securityDetailsAndInquiriesLabel = 'Security Details and Inquiries';
-    public physicalSecurityRiskLevelDefinitionLabel = 'Physical Security Risk Level Definition';
-    public specificActionLabel = 'Are there any country-specific Action Items or Next Steps?';
-    public actionItemScpecificSummaryInputLabel = 'Action Item';
-    public detailsSpecificSummaryTextareaSummaryLabel = 'Details';
-    public matSpecificSummaryTextAreaTooltip = 'Details, including specific triggers or conditions in which the action item applies';
-    public contactsSpecificSummaryLabel = 'Contact(s)';
-    public physicalSecurityRiskLevelLabel = 'Physical Security Risk Level Definition';
-    public applicableBaselineSecurityRequirementsLabel = 'Applicable Baseline Security Requirements';
-    public physicalSecurityPointofContactLabel = 'Physical Security Point of Contact';
+    public labelPosition: string = 'after';
+    public summaryRiskLevel: string = 'Physical Security Risk Level:';
+    public feedbackSummaryLabel: string = 'Feedback Summary - Summarize feedback in 300 characters or less.';
+    public securityDetailsAndInquiriesLabel: string = 'Security Details and Inquiries';
+    public physicalSecurityRiskLevelDefinitionLabel: string = 'Physical Security Risk Level Definition';
+    public specificActionLabel: string = 'Are there any country-specific Action Items or Next Steps?';
+    public actionItemScpecificSummaryInputLabel: string = 'Action Item';
+    public detailsSpecificSummaryTextareaSummaryLabel: string = 'Details';
+    public matSpecificSummaryTextAreaTooltip: string = 'Details, including specific triggers or conditions in which the action item applies';
+    public contactsSpecificSummaryLabel: string = 'Contact(s)';
+    public physicalSecurityRiskLevelLabel: string = 'Physical Security Risk Level Definition';
+    public applicableBaselineSecurityRequirementsLabel: string = 'Applicable Baseline Security Requirements';
+    public physicalSecurityPointofContactLabel: string = 'Physical Security Point of Contact';
 
 
     public riskLevels: ITextArray[] = [
@@ -41,26 +42,26 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
 
 
     constructor(public dialogRef: MatDialogRef<GeoPhysicalSecurityFeedbackComponent>,
-                @Inject(MAT_DIALOG_DATA) private element: GapFeedBack,
+                @Inject(MAT_DIALOG_DATA) private gapFeedbackDataItem: GapFeedBack,
                 private gapfeedbackService: GapFeedbackService) { }
-    public Owner: number = this.element.MyFields.CommonFields.GeoHostingOwner;
-    public Scope: string = this.element.MyFields.CommonFields.Scope;
-    public Assigned: string = this.element.MyFields.CommonFields.AssignedTo;
-    public Priority: string = this.element.MyFields.CommonFields.Priority;
-    public country: string = this.element.MyFields.CommonFields.Country;
-    public RiskLevel: string = this.element.RiskLevel;
-    public FeedbackSummary: string = this.element.FeedbackSummary;
-    public SecurityIssues: string = this.element.MyFields.PhysicalSecurity.SecurityIssues;
-    public TravelWarningSection: string = this.element.MyFields.PhysicalSecurity.TravelWarningSection;
+    public Owner: number = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
+    public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
+    public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;
+    public Priority: string = this.gapFeedbackDataItem.MyFields.CommonFields.Priority;
+    public country: string = this.gapFeedbackDataItem.MyFields.CommonFields.Country;
+    public RiskLevel: string = this.gapFeedbackDataItem.RiskLevel;
+    public FeedbackSummary: string = this.gapFeedbackDataItem.FeedbackSummary;
+    public SecurityIssues: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.SecurityIssues;
+    public TravelWarningSection: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.TravelWarningSection;
     public ActionItems: ActionItems[] = [];
-    public DepartTravelWarning: string = this.element.MyFields.PhysicalSecurity.PhysicalSecurityDetails.DepartTravelWarning;
-    public optionPhysical: string = this.element.MyFields.PhysicalSecurity.PhysicalSecurityDetails.optionPhysical;
-    public BaselineSecurityRequirements: string = this.element.MyFields.
+    public DepartTravelWarning: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.PhysicalSecurityDetails.DepartTravelWarning;
+    public optionPhysical: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.PhysicalSecurityDetails.optionPhysical;
+    public BaselineSecurityRequirements: string = this.gapFeedbackDataItem.MyFields.
                                                   PhysicalSecurity.PhysicalSecurityDetails.BaselineSecurityRequirements;
-    public MicrosoftHeadCount: string = this.element.MyFields.
+    public MicrosoftHeadCount: string = this.gapFeedbackDataItem.MyFields.
                                         PhysicalSecurity.PhysicalSecurityDetails.MicrosoftHeadCount;
-    public PhysicalSecurityPointofContactName: string = this.element.MyFields.PhysicalSecurity.PhysicalSecurityDetails.
-                                                        PhysicalSecurityPointofContact === undefined ? '' : this.element.MyFields.
+    public PhysicalSecurityPointofContactName: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.PhysicalSecurityDetails.
+                                                        PhysicalSecurityPointofContact === undefined ? '' : this.gapFeedbackDataItem.MyFields.
                                                         PhysicalSecurity.PhysicalSecurityDetails.PhysicalSecurityPointofContact.DisplayName;
     ngOnInit() {
     }
@@ -92,8 +93,8 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
         this.specificActionSites.push({ actionItem: '1234', details: 'qwer', contacts: 'qwer1234' });
     }
 
-    public onCloseDialog() {
-        const PhysicalSecurityForm = Object.assign(this.element, {});
+    public onSaveandCloseDialog() {
+        const PhysicalSecurityForm = Object.assign(this.gapFeedbackDataItem, {});
         PhysicalSecurityForm.RiskLevel = this.RiskLevel;
         PhysicalSecurityForm.FeedbackSummary = this.FeedbackSummary;
         PhysicalSecurityForm.MyFields.PhysicalSecurity.SecurityIssues = this.SecurityIssues;
@@ -107,10 +108,16 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
             PhysicalSecurity.PhysicalSecurityDetails.MicrosoftHeadCount = this.MicrosoftHeadCount;
         PhysicalSecurityForm.MyFields.PhysicalSecurity.PhysicalSecurityDetails.
             PhysicalSecurityPointofContact = { DisplayName: this.PhysicalSecurityPointofContactName, AccountType: '', AccountId: '' };
-        console.log('submit', PhysicalSecurityForm);
-        this.gapfeedbackService.postintakeForm(PhysicalSecurityForm).subscribe((callbackfromgetAPI: any[]) => {
-            console.log('callbackfromgetAPI', callbackfromgetAPI);
+        this.gapfeedbackService.postintakeForm(PhysicalSecurityForm).subscribe((data: GapFeedBack) => {
+            if (data) {
+                this.gapFeedbackDataItem = data;
+            }
         });
+
+        this.onCloseDialog();
+    }
+
+    public onCloseDialog() {
         this.dialogRef.close();
     }
 }
