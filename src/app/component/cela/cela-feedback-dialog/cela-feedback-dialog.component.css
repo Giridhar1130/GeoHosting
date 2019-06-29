@@ -43,13 +43,18 @@ h6 {
 	border-radius: 0px;
 }
 
-.specific-items {
-}
-
 .mat-checkbox, .container-data {
 	margin: 15px;
 }
 
 .cela-actions {
 	float: right;
+}
+
+.close-icon {
+	float: right;
+	margin: 1rem;
+	background-color: transparent;
+	color: #fff;
+	border: none;
 }

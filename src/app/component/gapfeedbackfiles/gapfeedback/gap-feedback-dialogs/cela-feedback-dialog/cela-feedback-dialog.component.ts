@@ -112,7 +112,6 @@ export class CelaFeedbackDialogComponent implements OnInit {
         this.CELAFeedBack.GlobalNetworkSummary = summary;
     }
 
-    
     // to do, simplify handling
     public onFormHandler(data: string, fieldName: string) {
         const item = `{"${fieldName}": "${data}"}`.toString();

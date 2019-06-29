@@ -3,48 +3,38 @@ import { ITextArray } from 'src/app/component/types/cela-feedbackType';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IDialogConfig } from '../../types/gapfeedback.type';
 import { constructor } from 'q';
+import { CountryGeoClearanceService } from 'src/app/component/country-geo-clearance/country-geo-clearance.service';
+
+export interface ICommonsourceType {
+    SourceId: string;
+    Value: string;
+}
 
 @Component({
   selector: 'geo-risk-management-feedback-dialog',
   templateUrl: './risk-management-feedback-dialog.component.html',
   styleUrls: ['./risk-management-feedback-dialog.component.css']
 })
+
 export class RiskManagementFeedbackDialogComponent implements OnInit {
 
     public dialogConfig: IDialogConfig;
-    
-    public labelPosition = 'after';
-    public stateDepartmentTravelAdvisoryLevelCheckBox = "Yes";
+    public labelPosition: string = 'after';
+    public stateDepartmentTravelAdvisoryLevelCheckBox: string = "Yes";
+    public summaryCountryRiskLevel: string = 'Country Risk Level:';
+    public feedbackSummaryLabel: string = 'Feedback Summary';
+    public specificActionTooltip: string = 'Details, including specific triggers or conditions in which the action item applies';
+    public generalRiskConsiderationsLabel: string = "General Risk Considerations";
+    public actionItemLabel: string = 'Action Item';
+    public detailsSpecificLabel: string = 'Details';
+    public exchangeTransferRiskLabel: string =  'Exchange Transfer Risk:';
+    public supplyChainRiskLabel: string = 'Supply Chain Risk:';
+    public sovereignNonPaymentRiskLabel: string = 'Sovereign Non-Payment Risk:';
+    public legalAndRegulatoryRiskLabel: string = 'Legal and Regulatory Risk:';
+    public politicalInterferenceRiskLabel: string = 'Political Interference Risk:';
+    public politicalViolenceRiskLabel: string = 'Political Violence Risk:';
 
-    public summaryCountryRiskLevel = 'Country Risk Level:';
-    public feedbackSummaryLabel = 'Feedback Summary';
-    public specificActionTooltip = 'Details, including specific triggers or conditions in which the action item applies';
-    public generalRiskConsiderationsLabel = "General Risk Considerations";
-    public actionItemLabel = 'Action Item';
-    public detailsSpecificLabel = 'Details';
-    
-    public exchangeTransferRiskLabel =  'Exchange Transfer Risk:';
-    public supplyChainRiskLabel = 'Supply Chain Risk:';
-    public sovereignNonPaymentRiskLabel = 'Sovereign Non-Payment Risk:';
-    public legalAndRegulatoryRiskLabel = 'Legal and Regulatory Risk:';
-    public politicalInterferenceRiskLabel = 'Political Interference Risk:';
-    public politicalViolenceRiskLabel = 'Political Violence Risk:';
-
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-    // public Label = 
-
-    public riskLevels: ITextArray[] = [
-        {key: 'noFly', text: 'No Fly'},
-        {key: 'highRisk', text: 'High Risk'},
-        {key: 'mediumRisk', text: 'Medium Risk'},
-        {key: 'lowRisk', text: 'Low Risk'}
-    ];
+    public RiskLevels: ICommonsourceType[] = [];
 
     public specificActionSites: {actionItem: string, details: string, contacts: string}[] = [
         {actionItem: '1111', details: 'details', contacts: 'contact'},
@@ -53,15 +43,21 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     ];
 
     public tempRiskModel: any = {
-        prop1: true, 
+        prop1: true,
         tempString: "tempstr"
     }
 
-    constructor(public dialogRef: MatDialogRef<RiskManagementFeedbackDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    constructor(public dialogRef: MatDialogRef<RiskManagementFeedbackDialogComponent>,
+        private countryGeoClearanceService: CountryGeoClearanceService,
+        @Inject(MAT_DIALOG_DATA) public data: any) {
         this.dialogConfig = this.data;
     }
 
     ngOnInit() {
+        this.countryGeoClearanceService.getCommonSourceList(1)
+        .subscribe((data) => {
+            this.RiskLevels = data[0].sourceItems;
+        });
     }
 
     public onPhysicalSecurityRiskLevelHandler(risk: string){
@@ -69,7 +65,7 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     }
 
     public onFeedbackSummaryHandler(feedback: string){
-        
+
     }
 
     public onAddSite(){
@@ -78,5 +74,9 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
 
     public onCloseDialog() {
         this.dialogRef.close();
-    }  
+    }
+
+    public onSaveandCloseDialog() {
+
+    }
 }

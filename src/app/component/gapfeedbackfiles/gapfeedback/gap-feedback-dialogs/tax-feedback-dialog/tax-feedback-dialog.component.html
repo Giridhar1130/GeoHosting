@@ -3,6 +3,7 @@
         <div>
             {{dialogConfig.title}}
         </div>
+        <button class="material-icons close-icon " (click)="close($event)">close</button>
         <div>
             {{dialogConfig.country}}
         </div>
@@ -192,7 +193,7 @@
 
             <div class="cela-actions">
                 <geo-action [IsCloseButton]="true"
-                            (CloseAction)="onCloseDialog()">
+                            (CloseAction)="onSaveandCloseDialog()">
                 </geo-action>
             </div>
         </form>

@@ -1,7 +1,11 @@
 <div class="cela-dialog">
     <div class="cela-header">
         <div>
-            {{title}}
+            {{dialogConfig.title}}
+        </div>
+        <button class="material-icons close-icon " (click)="close($event)">close</button>
+        <div>
+            {{dialogConfig.country}}
         </div>
     </div>
 

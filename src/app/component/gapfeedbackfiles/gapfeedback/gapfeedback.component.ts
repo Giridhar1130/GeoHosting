@@ -19,34 +19,31 @@ import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-for
 export class GapFeedbackComponent implements OnInit {
 
 
-  allGapFeedbackData: any[];
-  displayedColumns: string[] = ['Name', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
-    'CountryIntakeForm', 'Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 'DataCenterRiskLevel', 'NetworkRiskLevel',
-    'Modified', 'AssessmentID', 'WorkflowVersion', 'ModifiedBy', 'CountryID', 'AssessmentStatus'];
-  dataSource = new MatTableDataSource(this.allGapFeedbackData);
-  objectkeys = Object.keys;
-  objectvalues = Object.values;
-  tmpAssessmentStatus: string[] = [];
-  leftItemOrginal: object[] = [];
-  currentRightItem: GapFeedBack[];
+  public allGapFeedbackData: GapFeedBack[];
+  public displayedColumns: string[] = ['Name', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
+                                      'CountryIntakeForm', 'Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
+                                      'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'ModifiedBy',
+                                      'CountryID', 'AssessmentStatus'];
+  public dataSource = new MatTableDataSource(this.allGapFeedbackData);
+  public objectkeys = Object.keys;
+  public objectvalues = Object.values;
+  public tmpAssessmentStatus: string[] = [];
+  public leftItemOrginal: object[] = [];
+  public currentRightItem: GapFeedBack[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService, private dialog: MatDialog) {
+  constructor(private bottomSheet: MatBottomSheet, private gapfeedbackService: GapFeedbackService, private dialog: MatDialog) {}
 
-  }
-
-  getgapfeedbackInfo(): void {
+  public getgapfeedbackInfo(): void {
     this.gapfeedbackService.getgapfeedback()
-      .subscribe(async (callbackfromgetAPI: any[]) => {
-
-        this.allGapFeedbackData = await callbackfromgetAPI;
-
+      .subscribe(async (data: GapFeedBack[]) => {
+        if (data) {
+          this.allGapFeedbackData = data;
+        }
       });
-
   }
 
-  rightChildrenSelected(target) {
-    console.log('aaa', target);
+  public rightChildrenSelected(target): void {
     this.currentRightItem = this.allGapFeedbackData.filter((items: GapFeedBack) =>
       items.GeoHostingOwner === target.GeoHostingOwner && items.AssessmentStatus === target.AssessmentStatus
     );
@@ -54,30 +51,32 @@ export class GapFeedbackComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  afterLeftRootCollapse(ev: any) {
+  public afterLeftRootCollapse(ev: any): void {
     console.log(ev[0], this.currentRightItem);
     this.currentRightItem = this.currentRightItem.filter((items: GapFeedBack) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
-  afterLeftRootExpend(ev) {
+
+  public afterLeftRootExpend(ev): void {
     this.currentRightItem = this.currentRightItem.concat(
       this.allGapFeedbackData.filter((items: GapFeedBack) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.dataSource.sort = this.sort;
   }
-  showALl() {
+
+  public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allGapFeedbackData);
     this.dataSource.sort = this.sort;
   }
 
   //   Left Navigation
-  getdata(data) {
+  public getdata(data): void {
     data.map((items: GapFeedBack) => {
 
       if (!this.tmpAssessmentStatus.includes(items.AssessmentStatus)) {
@@ -302,8 +301,8 @@ export class GapFeedbackComponent implements OnInit {
       panelClass: 'geo-dialog',
       disableClose: true
     };
+    
     let dialogRef;
-    console.log(value.TeamName);
     if (value.TeamName === 'CELA') {
       dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
@@ -320,8 +319,8 @@ export class GapFeedbackComponent implements OnInit {
       });
     }
   }
-  ngOnInit() {
 
+  ngOnInit() {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (callbackfromgetAPI: any[]) => {
         this.allGapFeedbackData = callbackfromgetAPI;
@@ -333,10 +332,7 @@ export class GapFeedbackComponent implements OnInit {
         this.showALl();
 
       });
+
     this.dataSource.sort = this.sort;
-
-
   }
-
-
 }
