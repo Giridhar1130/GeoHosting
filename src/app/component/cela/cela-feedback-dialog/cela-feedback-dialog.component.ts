@@ -22,7 +22,7 @@ export class CelaFeedbackComponent implements OnInit {
     public summary = 'summary';
     public FreedomRaitingTitle = 'Freedom Rating:';
     public checkBox = false;
-    summaryTableDisplayedColumns: string[] = ['ActionName', 'Details', 'Contact'];
+    public summaryTableDisplayedColumns: string[] = ['ActionName', 'Details', 'Contact'];
  
     public dialogConfig: GapFeedBack;
 
