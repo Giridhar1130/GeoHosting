@@ -18,3 +18,13 @@ export interface CountryList {
     Modified: Date;
     Created: Date;
 }
+
+export interface ICountryModel {
+    CountryId: number;
+    Title: string;
+    DatacenterGeoClearance: string;
+    EdgeGeoClearance: string;
+    AssessmentScope: string;
+    AssessmentSchedule: string;
+    Owner: string;
+}

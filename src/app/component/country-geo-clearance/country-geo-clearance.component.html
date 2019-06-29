@@ -1,146 +1,124 @@
 <div>
-  <div class="jumbotron">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Australia</h2>
+                        </div>
+                        <div class="col-sm-3 countryDropdown">
+                        </div>
+                        <geo-mat-dropdown   [InputTextArray]='countries'
+                                            class="col-sm-3 countryDropdown"
+                                            Title='Country'
+                                            (OutputHandler)='searchLocationBingMap($event)'>
+                        </geo-mat-dropdown>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="margin-top-20 row">
+                <div class="col-sm-3">
+                    <h6>Datacenter GeoClearance</h6>
+                    <div class="geoclearance-status">No Fly</div>
+                </div>
+                <div class="col-sm-3">
+                    <h6>Network GeoClearance</h6>
+                    <div class="geoclearance-status">No Fly</div>
+                </div>
+                
+                <div class="bingmaps col-sm-6" style="margin-bottom: 135px; padding-bottom: 15px;">
+                    <div class='panel panel-primary' style="margin-bottom: 15px; padding-bottom: 15px;">
+                        <div id='myMap' style='width: 100%; height: 500px;'></div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-
-        <div class="row">
-            <div class="container">
+        <div class="margin-top-20 margin-bottom-50 card">
+            <div class="card-header">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Australia</h2>
+                    <div>Assessment Status: In Progress</div>
+                    <div>Completed Date: NA</div>
+                    <div>Next assessment scheduled: Q3 (Fiscal Quarter)</div>
                     </div>
-                    <div class="col-sm-6 countryDropdown">
-                        <div class="ms-Dropdown-container">
-                            <mat-form-field>
-                                <mat-label>Country</mat-label>
-                                <mat-select>
-                                    <mat-option *ngFor="let country of countries" [value]="country.SourceId">
-                                        {{country.Value}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                    <div class="text-right col-sm-6">
+                    <div>Scope: Edge Refresh</div>
+                    <div>Owner: Tom Cochrane</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="margin-top-20 row">
+                    <div class="col-sm-4">
+                        <div class="card text-white" style="background: rgb(0, 114, 51);">
+                            <div class="card-body">
+                            <div class="card-title h5">CELA</div>
+                            <div class="mb-2 card-subtitle h6">No Risk</div>
+                            <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
+                            <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
+                                Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
+                                Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                            <div class="card-title h5">Physical Security</div>
+                            <div class="mb-2 card-subtitle h6">Medium Risk</div>
+                            <div class="mb-2 card-subtitle h6">Completed: Aug 16, 2018</div>
+                            <p class="card-text">Medium level of physical security concern. Due to ongoing secessionist violence in
+                                Cabinda, that province is not cleared, however, the rest of Angola is conditionally cleared for
+                                locating an E Class facility, subject to regular project specific revie...</p><a class="card-link"
+                                href="#">View Form</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card text-white" style="background: rgb(251, 141, 0);">
+                            <div class="card-body">
+                            <div class="card-title h5">Country Risk</div>
+                            <div class="mb-2 card-subtitle h6">High Risk</div>
+                            <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
+                            <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
+                                Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
+                                Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-top-20 row">
+                    <div class="col-sm-4">
+                        <div class="card text-white" style="background: rgb(186, 20, 26);">
+                            <div class="card-body">
+                            <div class="card-title h5">Tax</div>
+                            <div class="mb-2 card-subtitle h6">No Fly</div>
+                            <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
+                            <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
+                                Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
+                                Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                            <div class="card-title h5">Tax</div>
+                            <div class="mb-2 card-subtitle h6">Feedback Pending</div>
+                            <div class="mb-2 card-subtitle h6">Due: Aug 09, 2018</div>
+                            <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
+                                Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
+                                Level. For Datacenters - this country is No Fly.</p><a class="color-black card-link" href="#">View
+                                Form</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="margin-top-20 row">
-            <div class="col-sm-3">
-                <h6>Datacenter GeoClearance</h6>
-                <div class="geoclearance-status">No Fly</div>
-            </div>
-            <div class="col-sm-3">
-                <h6>Network GeoClearance</h6>
-                <div class="geoclearance-status">No Fly</div>
-            </div>
-            
-            <div class="bingmaps col-sm-6">
-        
-                    <div class='panel panel-primary'>
-                        <div class='panel-heading'>
-                            {{pageTitle}}
-                        </div>
-                        <div id='myMap' style='width: 100%; height: 500px;'></div> 
-                    </div>
-                
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  </div>
-  <div class="container">
-    <div class="margin-top-20 margin-bottom-50 card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-sm-6">
-            <div>Assessment Status: In Progress</div>
-            <div>Completed Date: NA</div>
-            <div>Next assessment scheduled: Q3 (Fiscal Quarter)</div>
-          </div>
-          <div class="text-right col-sm-6">
-            <div>Scope: Edge Refresh</div>
-            <div>Owner: Tom Cochrane</div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="margin-top-20 row">
-          <div class="col-sm-4">
-            <div class="card text-white" style="background: rgb(0, 114, 51);">
-              <div class="card-body">
-                <div class="card-title h5">CELA</div>
-                <div class="mb-2 card-subtitle h6">No Risk</div>
-                <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
-                <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
-                  Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
-                  Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card bg-warning text-white">
-              <div class="card-body">
-                <div class="card-title h5">Physical Security</div>
-                <div class="mb-2 card-subtitle h6">Medium Risk</div>
-                <div class="mb-2 card-subtitle h6">Completed: Aug 16, 2018</div>
-                <p class="card-text">Medium level of physical security concern. Due to ongoing secessionist violence in
-                  Cabinda, that province is not cleared, however, the rest of Angola is conditionally cleared for
-                  locating an E Class facility, subject to regular project specific revie...</p><a class="card-link"
-                  href="#">View Form</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card text-white" style="background: rgb(251, 141, 0);">
-              <div class="card-body">
-                <div class="card-title h5">Country Risk</div>
-                <div class="mb-2 card-subtitle h6">High Risk</div>
-                <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
-                <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
-                  Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
-                  Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="margin-top-20 row">
-          <div class="col-sm-4">
-            <div class="card text-white" style="background: rgb(186, 20, 26);">
-              <div class="card-body">
-                <div class="card-title h5">Tax</div>
-                <div class="mb-2 card-subtitle h6">No Fly</div>
-                <div class="mb-2 card-subtitle h6">Completed: Aug 09, 2018</div>
-                <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
-                  Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
-                  Level. For Datacenters - this country is No Fly.</p><a class="card-link" href="#">View Form</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-title h5">Tax</div>
-                <div class="mb-2 card-subtitle h6">Feedback Pending</div>
-                <div class="mb-2 card-subtitle h6">Due: Aug 09, 2018</div>
-                <p class="card-text">High Risk for Networking Sites due to concerns regarding (i) GNI Rating; (ii) Law
-                  Enforcement Compliance; (iii) Data Security); (iv) Privacy; (v) Data Retention; and (vi) Corruption
-                  Level. For Datacenters - this country is No Fly.</p><a class="color-black card-link" href="#">View
-                  Form</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
