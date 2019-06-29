@@ -9,6 +9,8 @@ export interface CountryList {
     AssessmentSchedule: string;
     Restrictions: string;
     CountryID: string;
+    Latitude: number;
+    Longitude: number;
     Region: string;
     Territory: string;
     LastGAPDate: Date;
