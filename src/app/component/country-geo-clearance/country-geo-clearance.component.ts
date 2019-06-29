@@ -31,7 +31,7 @@ export class CountryGeoClearanceComponent implements OnInit {
     constructor(private countryGeoClearanceService: CountryGeoClearanceService) {}
 
     ngOnInit() { 
-        this.countryGeoClearanceService.getCountryList1()
+        this.countryGeoClearanceService.getCountryList()
             .subscribe((data) => {
             this.countriesList = data as any[];
         });
@@ -50,14 +50,14 @@ export class CountryGeoClearanceComponent implements OnInit {
 
     /* #region temp dataset */
 
-    public selectedCountry: ICountryCoordinates = {
+    public selectedCountry: any = {
         countryName: 'Ukraine',
             latitude: 50.434341,
             longitude: 30.527756,
             zoom: 5
     };
 
-    public countriesData: ICountryCoordinates[] = [
+    public countriesData: any[] = [
         {
             countryName: 'Ukraine',
             latitude: 50.434341,
