@@ -11,6 +11,7 @@ interface ITargetTable {
   Planned: string;
   Proposed: string;
 }
+
 let currentPortfolio: CurrentPortfolio[] = [];
 const targetFirst: ITargetTable[] = [{ position: 1, Current: '', Planned: '', Proposed: '' }];
 const targetSecond = [{ ActionItem: '', Details: '', Contact: '' }];
@@ -20,15 +21,16 @@ export interface ICommonsourceType {
   SourceId: string;
   Value: string;
 }
+
 export interface IOperationalTaxonomy {
   ID: number;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-intakeform',
   templateUrl: './intake-form.component.html',
   styleUrls: ['./intake-form.component.css'],
-
 })
 
 export class IntakeFormComponent implements OnInit {
@@ -37,10 +39,13 @@ export class IntakeFormComponent implements OnInit {
               private intakeService: IntakeService,
               @Inject(MAT_DIALOG_DATA) public countryIntake: CountryIntake) {
 
+    // Country
     this.countryGeoClearanceService.getCommonSourceList(0)
       .subscribe((data) => {
         this.countryList = data[0].sourceItems;
       });
+
+    // Priority
     this.countryGeoClearanceService.getCommonSourceList(2)
       .subscribe((data) => {
         this.prorityList = data[0].sourceItems;
@@ -49,17 +54,23 @@ export class IntakeFormComponent implements OnInit {
           console.log(this.prorityList)
         });
       });
+
+    // FacilityType
     this.countryGeoClearanceService.getCommonSourceList(3)
       .subscribe((data) => {
         this.FacilityType = data[0].sourceItems;
       });
+    
+    // OperationalTaxonomy
     this.countryGeoClearanceService.getCommonSourceList(4)
       .subscribe((data) => {
         this.OperationalTaxonomy = data[0].sourceItems;
       });
+     
+    // Scope
     this.countryGeoClearanceService.getCommonSourceList(5)
       .subscribe((data) => {
-        this.scopeList = data[0].sourceItems;
+        this.ScopeList = data[0].sourceItems;
       });
   }
 
@@ -67,7 +78,7 @@ export class IntakeFormComponent implements OnInit {
   public OperationalTaxonomy: IOperationalTaxonomy[] = [];
   public countryList: ICommonsourceType[] = [];
   public prorityList: ICommonsourceType[] = [];
-  public scopeList: ICommonsourceType[] = [];
+  public ScopeList: ICommonsourceType[] = [];
   public CurrentportfoliodisplayedColumns: string[] =
     ['DcCode', 'FacilityType', 'OperationalTaxonomy', 'CurrentITCapacity', 'EstimatedITCapacityin5years'];
   public InprogresssitesdisplayedColumns: string[] =
@@ -103,12 +114,11 @@ export class IntakeFormComponent implements OnInit {
   public SaveSuccessful: boolean;
   public tabletest: any;
 
-  close(event: MouseEvent): void {
+  public close(event: MouseEvent): void {
     setTimeout(() => this.countryIntakeDialog.close(), 100);
   }
 
-  private addonCurrentportfoliosite() {
-
+  public addonCurrentportfoliosite() {
     const tmp: CurrentPortfolio = {
       CurrentPortfolioDCcode: null
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
@@ -118,7 +128,7 @@ export class IntakeFormComponent implements OnInit {
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
   }
 
-  private addonInprogresssitessite() {
+  public addonInprogresssitessite(): void {
     const tmp: InProgressSitesGroup = {
       InProgSitesDCcode: ''
       , InProgFacilityType: '', InProgOperationalTax: '', InProgInitialSize: null,
@@ -129,7 +139,7 @@ export class IntakeFormComponent implements OnInit {
   }
 
   // get all the data from the form
-  saveAllData() {
+  public saveAllData(): CountryIntake {
     const countryIntake: CountryIntake = Object.assign({}, this.countryIntake);
     countryIntake.MyFields.Section1details.Country = this.selectedCountry;
     countryIntake.MyFields.Section1details.Priority = this.prorityChoice;
@@ -154,15 +164,14 @@ export class IntakeFormComponent implements OnInit {
     return countryIntake;
   }
 
-  makeCopy() {
+  public makeCopy(): void {
     const intakeform = this.saveAllData();
     intakeform.Modified = new Date();
     this.intakeService.patchintakeFormtocopy(intakeform).subscribe((callbackfromgetAPI: any[]) => {
-      console.log('callbackfromgetAPI', callbackfromgetAPI);
     });
   }
 
-  onSubmit(e) {
+  public onSubmit(e) :void {
     const data = this.saveAllData();
     data.Modified = new Date();
     this.Submitted = true;
@@ -171,21 +180,17 @@ export class IntakeFormComponent implements OnInit {
       if (callbackfromgetAPI) {
           this.countryIntake = callbackfromgetAPI;
           this.SaveSuccessful = true;
-          console.log('callbackfromgetAPI', callbackfromgetAPI);
       }
-
     });
   }
 
   ngOnInit() {
     this.Submitted = false;
     this.SaveSuccessful = false;
-    console.log('get element{0}', this.countryIntake);
     currentPortfolio = currentPortfolio.concat(this.countryIntake.MyFields.Section2details.group16.CurrentPortfolio);
     currentInprogresssites = currentInprogresssites
                                   .concat(this.countryIntake.MyFields.Section3details.group9.InProgressSitesGroup);
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
-    console.log('child', this.countryIntake, this.countryIntake.MyFields.Section2details.group16.CurrentPortfolio);
   }
 }

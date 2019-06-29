@@ -4,7 +4,7 @@ import { ITextArray, ICelaFeedbackModel } from 'src/app/component/types/cela-fee
 import { GapFeedBack, ActionItems} from '../../gapfeedbackfiles/gapfeedback/types/gapfeedback.type'
 import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 
-let specificActionSites: ActionItems[] = []; 
+
 
 @Component({
   selector: 'app-geo-cela-feedback-dialog',
@@ -48,51 +48,53 @@ export class CelaFeedbackComponent implements OnInit {
     
     constructor(
         public dialogRef: MatDialogRef<CelaFeedbackComponent>,
-        @Inject(MAT_DIALOG_DATA) public element: GapFeedBack,
+        @Inject(MAT_DIALOG_DATA) public gapFeedbackDataItem: GapFeedBack,
         private gapfeedbackService: GapFeedbackService) { }
-        Owner: number = this.element.MyFields.CommonFields.GeoHostingOwner;
-        Scope: string = this.element.MyFields.CommonFields.Scope;
-        Assigned: string = this.element.MyFields.CommonFields.AssignedTo;
-        Priority: string = this.element.MyFields.CommonFields.Priority;
-        country: string = this.element.MyFields.CommonFields.Country;
-        RiskLevel: string = this.element.RiskLevel;
-        FeedbackSummary: string = this.element.FeedbackSummary;
-        CPIRating: string = this.element.MyFields.LCA.lcaDetails.CPIRating;
-        TerrestrialRisk: string=this.element.MyFields.LCA.lcaDetails.LicenseRequirements===undefined?"":this.element.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialRisk;
-        TerrestrialSummary: string = this.element.MyFields.LCA.lcaDetails.LicenseRequirements===undefined?"":this.element.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialSummary;
-        SubmarineRisk: string = this.element.MyFields.LCA.lcaDetails.LicenseRequirements===undefined?"":this.element.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineRisk;
-        SubmarineSummary: string = this.element.MyFields.LCA.lcaDetails.LicenseRequirements===undefined?"":this.element.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineSummary;
-        GNIRating: string = this.element.MyFields.LCA.lcaDetails.gni.GNIRating;
-        GNISummary: string = this.element.MyFields.LCA.lcaDetails.gni.GNISummary;
-        LECRisk: string = this.element.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECRisk;
-        LECSummary: string = this.element.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECSummary;
-        PrivacyRisk: string = this.element.MyFields.LCA.lcaDetails.privacy.PrivacyRisk;
-        PrivacySummary: string = this.element.MyFields.LCA.lcaDetails.privacy.PrivacySummary;
-        DataSecurityRisk: string = this.element.MyFields.LCA.lcaDetails.dataSecurity.DataSecurityRisk;
-        DataSecuritySummary: string = this.element.MyFields.LCA.lcaDetails.dataSecurity.DataSecuritySummary;
-        MediaContentLiabilityRisk: string = this.element.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk;
-        MediaContentLiabilitySummary: string = this.element.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary;
-        TelecommunicationsRisk: string = this.element.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsRisk;
-        TelecommunicationsSummary: string = this.element.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary;
-        PendingRisk: string = this.element.MyFields.LCA.lcaDetails.other.PendingRisk;
-        PendingSummary: string = this.element.MyFields.LCA.lcaDetails.other.PendingLawRegulations;
-        DataResiReguSummary: string = this.element.MyFields.LCA.lcaDetails.other.DataResiReguSummary;
-        DataResiReguRisk: string = this.element.MyFields.LCA.lcaDetails.other.DataResidencyRegulation;  
-        ActionItems: ActionItems[];
-        summaryTableDataSource = new MatTableDataSource(specificActionSites);
+        public Owner: number = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
+        public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
+        public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;
+        public Priority: string = this.gapFeedbackDataItem.MyFields.CommonFields.Priority;
+        public country: string = this.gapFeedbackDataItem.MyFields.CommonFields.Country;
+        public RiskLevel: string = this.gapFeedbackDataItem.RiskLevel;
+        public FeedbackSummary: string = this.gapFeedbackDataItem.FeedbackSummary;
+        public CPIRating: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.CPIRating;
+        public TerrestrialRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
+        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialRisk;
+        public TerrestrialSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
+        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialSummary;
+        public SubmarineRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
+        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineRisk;
+        public SubmarineSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
+        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineSummary;
+        public GNIRating: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.gni.GNIRating;
+        public GNISummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.gni.GNISummary;
+        public LECRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECRisk;
+        public LECSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECSummary;
+        public PrivacyRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.privacy.PrivacyRisk;
+        public PrivacySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.privacy.PrivacySummary;
+        public DataSecurityRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.dataSecurity.DataSecurityRisk;
+        public DataSecuritySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.dataSecurity.DataSecuritySummary;
+        public MediaContentLiabilityRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk;
+        public MediaContentLiabilitySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary;
+        public TelecommunicationsRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsRisk;
+        public TelecommunicationsSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary;
+        public PendingRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.PendingRisk;
+        public PendingSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.PendingLawRegulations;
+        public DataResiReguSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResiReguSummary;
+        public DataResiReguRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResidencyRegulation;
+        public ActionItems: ActionItems[] = [];
+        public specificActionSites: ActionItems[] = []; 
+        public summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
     ngOnInit() {
-        console.log('child', this.element,specificActionSites === [], specificActionSites);
-        this.dialogConfig = this.element;
+        console.log('child', this.gapFeedbackDataItem, this.specificActionSites === [], this.specificActionSites);
+        this.dialogConfig = this.gapFeedbackDataItem;
         this.CELAFeedBack.RiskLevel = this.riskLevels[0];
-        // specificActionSites = specificActionSites
-        // .concat(this.element.MyFields.Section3details.group9.InProgressSitesGroup);
-        this.summaryTableDataSource = new MatTableDataSource(specificActionSites);
+        this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
-        if (specificActionSites.length<1) {
-            specificActionSites.push({ActionName: '', Details: '', Contact: ''});
-            console.log('test',specificActionSites)
-            this.summaryTableDataSource = new MatTableDataSource(specificActionSites);
+        if (this.specificActionSites.length < 1) {
+            this.specificActionSites.push({ActionName: '', Details: '', Contact: ''});
+            this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
         }
     }
 
@@ -109,15 +111,11 @@ export class CelaFeedbackComponent implements OnInit {
     }
 
     public addonCurrentportfoliosite(ev) {
-        ev.preventDefault();  
-        // specificActionSites = this.summaryTableDataSource.filteredData;
+        ev.preventDefault();
         const tmp: ActionItems = {
-            ActionName: '', Details: '', Contact: ''}; 
-            debugger; 
-            specificActionSites.push(tmp);  
-            debugger;
-        this.summaryTableDataSource = new MatTableDataSource(specificActionSites);
-        console.log(this.summaryTableDataSource)  
+            ActionName: '', Details: '', Contact: ''};
+        this.specificActionSites.push(tmp);
+        this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
     }
 
     public onDetailsSpecificHandler(details: string) {
@@ -201,8 +199,6 @@ export class CelaFeedbackComponent implements OnInit {
         this.DataResiReguSummary = summary;
     }
 
-
-    // to do, simplify handling
     public onFormHandler(data: string, fieldName: string) {
         const item = `{"${fieldName}": "${data}"}`.toString();
         const parsed: ICelaFeedbackModel = JSON.parse(item);
@@ -211,30 +207,41 @@ export class CelaFeedbackComponent implements OnInit {
         console.log(this.CELAFeedBack);
     }
 
-    public onCloseDialog() {
-        const CELAFeedBackForm: GapFeedBack = Object.assign(this.element,{})
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.CPIRating=this.CPIRating
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.LicenseRequirements = {TerrestrialRisk:this.TerrestrialRisk,TerrestrialSummary:this.TerrestrialSummary,SubmarineRisk:this.SubmarineRisk,SubmarineSummary:this.SubmarineSummary}
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.gni.GNIRating= this.GNIRating
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.gni.GNISummary= this.GNISummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECRisk= this.LECRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECSummary= this.LECSummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.privacy.PrivacyRisk= this.PrivacyRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.dataSecurity.DataSecurityRisk= this.DataSecurityRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.dataSecurity.DataSecuritySummary= this.DataSecuritySummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk= this.MediaContentLiabilityRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary= this.MediaContentLiabilitySummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsRisk= this.TelecommunicationsRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary= this.TelecommunicationsSummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.PendingRisk= this.PendingRisk
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.PendingLawRegulations= this.PendingSummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.DataResiReguSummary= this.DataResiReguSummary
-        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.DataResidencyRegulation= this.DataResiReguRisk
-        CELAFeedBackForm.MyFields.Summary.ActionItems=this.ActionItems;
-        console.log(CELAFeedBackForm);
-        this.gapfeedbackService.postintakeForm(CELAFeedBackForm).subscribe((callbackfromgetAPI: any[]) => {
-        console.log('callbackfromgetAPI', callbackfromgetAPI);
+    public onSaveandCloseDialog() {
+        const CELAFeedBackForm: GapFeedBack = Object.assign(this.gapFeedbackDataItem, { });
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.CPIRating = this.CPIRating;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.LicenseRequirements = { TerrestrialRisk: this.TerrestrialRisk,
+                                                                            TerrestrialSummary: this.TerrestrialSummary,
+                                                                            SubmarineRisk: this.SubmarineRisk,
+                                                                            SubmarineSummary: this.SubmarineSummary
+                                                                        };
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.gni.GNIRating = this.GNIRating;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.gni.GNISummary = this.GNISummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECRisk = this.LECRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECSummary = this.LECSummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.privacy.PrivacyRisk = this.PrivacyRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.dataSecurity.DataSecurityRisk = this.DataSecurityRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.dataSecurity.DataSecuritySummary = this.DataSecuritySummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk = this.MediaContentLiabilityRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary = this.MediaContentLiabilitySummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsRisk = this.TelecommunicationsRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary = this.TelecommunicationsSummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.PendingRisk = this.PendingRisk;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.PendingLawRegulations = this.PendingSummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.DataResiReguSummary = this.DataResiReguSummary;
+        CELAFeedBackForm.MyFields.LCA.lcaDetails.other.DataResidencyRegulation = this.DataResiReguRisk;
+        CELAFeedBackForm.MyFields.Summary.ActionItems = this.ActionItems;
+
+        this.gapfeedbackService.postintakeForm(CELAFeedBackForm).subscribe((data: GapFeedBack) => {
+            if (data) {
+                this.gapFeedbackDataItem = data;
+            }
         });
+
+        this.onCloseDialog();
+    }
+
+    public onCloseDialog() {
         this.dialogRef.close();
     }
 }
