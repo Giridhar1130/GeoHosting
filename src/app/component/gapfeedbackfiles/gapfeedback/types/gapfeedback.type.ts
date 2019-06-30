@@ -28,6 +28,7 @@ export interface GapFeedBack {
     Submitted: Date;
     TaskStatus: string;
     TeamName: string;
+    TaskName: string;
     WorkflowVersion: number;
 }
 
@@ -39,8 +40,7 @@ export interface MyFields {
   LogicalSecurity: ILogicalSecurity;
   PhysicalSecurity: IPhysicalSecurity;
   RiskManagement: IRiskManagement;
-  Summary: ISummary;
-  TaskName: ITaskName;  
+  Summary: ISummary; 
   Tax: ITax;
   Treasury: ITreasury;
 }
@@ -199,9 +199,7 @@ export interface ISummary {
   FeedbackSummary: string;
   RiskMgmtRiskLevel: string;
 }
-export interface ITaskName {
-  Name: string;
-}
+
 export interface ActionItems{
   ActionName: string;
   Details: string;

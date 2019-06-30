@@ -59,11 +59,12 @@
         [dataSource]="dataSource"
         matSort
         class="mat-elevation-z8 table-hover col-12">
+        
         <!-- TaskName Column -->
-        <!-- <ng-container matColumnDef="TaskName">
+        <ng-container matColumnDef="TaskName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Task Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.TeamName }}</td>
-        </ng-container> -->
+          <td mat-cell *matCellDef="let element">{{ element.TaskName }}</td>
+        </ng-container>
 
         <!-- AssignedTo Column -->
         <ng-container matColumnDef="AssignedTo">
