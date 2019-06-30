@@ -9,6 +9,9 @@ import { MatDialog } from '@angular/material';
 import { GeoPhysicalSecurityFeedbackComponent
 } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
+import { TaxFeedbackDialogComponent } from './gap-feedback-dialogs/tax-feedback-dialog/tax-feedback-dialog.component';
+import { RiskManagementFeedbackDialogComponent 
+} from './gap-feedback-dialogs/risk-management-feedback-dialog/risk-management-feedback-dialog.component';
 
 
 @Component({
@@ -218,11 +221,14 @@ export class GapFeedbackComponent implements OnInit {
               PoliticalRisk:  '',
               Property: '',
             },
-            Risk: {
+            Risks: {
               ExchangeTransferRisk:  '',
               LegalandRegulartoryRisk: '',
               PoliticalViolenceRisk:  '',
               LegalandRegulatoryRisk:  '',
+              PoliticalInteferenceRisk:  '',
+              SovereignNonPaymentRisk:  '',
+              SupplyChainRisk:  '',
             },
           },
           SecurityIssues: '',
@@ -288,6 +294,8 @@ export class GapFeedbackComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.currentRightItem.push(result);
+        this.allGapFeedbackData.push(result);
         console.log(result);
       }
     });
@@ -301,14 +309,18 @@ export class GapFeedbackComponent implements OnInit {
       panelClass: 'geo-dialog',
       disableClose: true
     };
-    
     let dialogRef;
     if (value.TeamName === 'CELA') {
       dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
-
+    if(value.TeamName === 'Tax') {
+      dialogRef = this.dialog.open(TaxFeedbackDialogComponent, matDialogConfig);
+    }
     if (value.TeamName === 'Physical Security') {
       dialogRef = this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
+    }
+    if (value.TeamName === 'Risk Management') {
+      dialogRef = this.dialog.open(RiskManagementFeedbackDialogComponent, matDialogConfig);
     }
 
     if (dialogRef) {

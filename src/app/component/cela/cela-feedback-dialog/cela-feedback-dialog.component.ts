@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/mate
 import { ITextArray, ICelaFeedbackModel } from 'src/app/component/types/cela-feedbackType';
 import { GapFeedBack, ActionItems} from '../../gapfeedbackfiles/gapfeedback/types/gapfeedback.type'
 import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
+import { CountryGeoClearanceService } from '../../country-geo-clearance/country-geo-clearance.service';
 
 
 
@@ -13,7 +14,7 @@ import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 })
 
 export class CelaFeedbackComponent implements OnInit {
-
+    public showSave: boolean = this.gapFeedbackDataItem.Submitted ? false : true;
     public inputTitle = 'CELA DataCenter GeoClearance Risk Level:';
     public labelTextAreaSummary = 'Feedback Summary - Summarize feedback in 300 characters or less.';
     public CELAFeedBack: ICelaFeedbackModel = {};
@@ -26,30 +27,16 @@ export class CelaFeedbackComponent implements OnInit {
  
     public dialogConfig: GapFeedBack;
 
-    public riskLevels: ITextArray[] = [
-        {key: 'noFly', text: 'No Fly'},
-        {key: 'highRisk', text: 'High'},
-        {key: 'mediumRisk', text: 'Medium'},
-        {key: 'lowRisk', text: 'Low'}
-    ];
+    public riskLevels: ITextArray[];
 
-    public cpiRaiting: ITextArray[] = [
-        {key: 'highCorrRisk', text: 'High Corruption Risk - Tier 1'},
-        {key: 'medCorrRisk', text: 'Medium Corruption Risk - Tier 2'},
-        {key: 'lowCorrRisk', text: 'Low Corruption Risk - Tier 3'}
-    ];
+    public cpiRaiting: ITextArray[] ;
 
-    public freedomRaiting: ITextArray[] = [
-        {key: 'free', text: 'Free'},
-        {key: 'partlyFree', text: 'Partly Free'},
-        {key: 'notFree', text: 'Not Free'},
-    ];
-
-    
+    public freedomRaiting: ITextArray[];
     constructor(
         public dialogRef: MatDialogRef<CelaFeedbackComponent>,
         @Inject(MAT_DIALOG_DATA) public gapFeedbackDataItem: GapFeedBack,
-        private gapfeedbackService: GapFeedbackService) { }
+        private gapfeedbackService: GapFeedbackService,
+        private countryGeoClearanceService: CountryGeoClearanceService) { }
         public Owner: number = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
         public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
         public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;
@@ -87,9 +74,19 @@ export class CelaFeedbackComponent implements OnInit {
         public summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
     ngOnInit() {
-        console.log('child', this.gapFeedbackDataItem, this.specificActionSites === [], this.specificActionSites);
-        this.dialogConfig = this.gapFeedbackDataItem;
-        this.CELAFeedBack.RiskLevel = this.riskLevels[0];
+            // Risk
+        this.countryGeoClearanceService.getCommonSourceList(0)
+        .subscribe((data) => {
+        this.riskLevels = data[0].sourceItems;
+        });
+        this.countryGeoClearanceService.getCommonSourceList(5)
+        .subscribe((data) => {
+        this.cpiRaiting = data[0].sourceItems;
+        });
+        this.countryGeoClearanceService.getCommonSourceList(6)
+        .subscribe((data) => {
+        this.freedomRaiting = data[0].sourceItems;
+        });
         this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
         if (this.specificActionSites.length < 1) {
@@ -207,8 +204,10 @@ export class CelaFeedbackComponent implements OnInit {
         console.log(this.CELAFeedBack);
     }
 
-    public onSaveandCloseDialog() {
+    public onSave() {
         const CELAFeedBackForm: GapFeedBack = Object.assign(this.gapFeedbackDataItem, { });
+        CELAFeedBackForm.RiskLevel = this.RiskLevel;
+        CELAFeedBackForm.FeedbackSummary = this.FeedbackSummary;
         CELAFeedBackForm.MyFields.LCA.lcaDetails.CPIRating = this.CPIRating;
         CELAFeedBackForm.MyFields.LCA.lcaDetails.LicenseRequirements = { TerrestrialRisk: this.TerrestrialRisk,
                                                                             TerrestrialSummary: this.TerrestrialSummary,

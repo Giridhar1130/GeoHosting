@@ -1,12 +1,13 @@
 <div class="cela-dialog">
-    <div class="cela-header">
-        <div>
-            {{dialogConfig.title}}
-        </div>
-        <button class="material-icons close-icon " (click)="close($event)">close</button>
-        <div>
-            {{dialogConfig.country}}
-        </div>
+        <div class="header text-center  flex-xs-middle ">
+                <span>Feedback Task</span>
+                <button class="material-icons close-icon " (click)="onCloseDialog($event)">
+                  close
+                </button>
+         
+             
+      
+
     </div>
 
     <div class="cela-content" >
@@ -15,128 +16,117 @@
             <mat-card>
         
                 <mat-card-content>
-                    <div class="row">
+                    <div class="row">            
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Task Name:"
-                                            [input]="showvalue"
-                                            
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-dropdown   [Title]="raskSatusLabel"
-                                                [InputTextArray]="RiskLevels"
+                            <geo-mat-dropdown   Title="Task Status"
+                                                [InputTextArray]="TaskStatus"
                                                 SelectedValue="No Fly"
                                                 ToolTip="Select an option"
                                                 (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
                                                 id="summaryRiskLevelDropdown">
                             </geo-mat-dropdown>
                         </div>
+                        <div class="col-sm-6">
+                                <geo-mat-input  labelGeoInput="Assigned To"
+                                                [input]="showvalue"
+                                                
+                                                ToolTip="Enter names or email addresses..."
+                                                name="actionItemInput">
+                                </geo-mat-input>
+                            </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Assigned To:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            ToolTip="Enter names or email addresses..."
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-datepicker DatepickerLabel="Birthday of Date:"
+                            <geo-mat-datepicker DatepickerLabel="DueDate"
                                         
                                                 ToolTip="click to select date"
-                                                (OnSelectectDate)="onBirthdayofDate($event)">
+                                                (OnSelectectDate)="onDueDate($event)">
                             </geo-mat-datepicker>
                         </div>
+                        <div class="col-sm-6">
+                                <geo-mat-datepicker DatepickerLabel="Completed Date"
+                                               
+                                                    ToolTip="click to select date"
+                                                    (OnSelectectDate)="onCompletedDate($event)">
+                                </geo-mat-datepicker>
+                            </div>
                     </div>
 
                     <div class="row">
+
                         <div class="col-sm-6">
-                            <geo-mat-datepicker DatepickerLabel="Completed Date:"
+                            <geo-mat-input  labelGeoInput="Priority"
+                                            [input]="showvalue"
                                            
-                                                ToolTip="click to select date"
-                                                (OnSelectectDate)="onCompletedDate($event)">
-                            </geo-mat-datepicker>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Priority:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
                                             name="actionItemInput">
                             </geo-mat-input>
                         </div>
+                        <div class="col-sm-6">
+                                <geo-mat-input  labelGeoInput="Scope"
+                                                [input]="showvalue"
+                                              
+                                                name="actionItemInput">
+                                </geo-mat-input>
+                            </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row">                        
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Scope:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Priority:"
+                            <geo-mat-input  labelGeoInput="Priority"
                                             [input]="showvalue"
                                             ToolTip="Enter a name of email address..."
-                                            (output)="onActionItemHandler($event)"
+                                           
                                             name="actionItemInput">
                             </geo-mat-input>
                         </div>
+                        <div class="col-sm-6">
+                                <geo-mat-input  labelGeoInput="Country"
+                                                [input]="showvalue"
+                                               
+                                                name="actionItemInput">
+                                </geo-mat-input>
+                            </div>
                     </div>
 
                     <div class="row">
+                            <div class="col-sm-6">
+                                    <geo-mat-dropdown  
+                                     Title="Team"
+                                     [InputTextArray]="TeamNames"
+                                     [SelectedValue]="TeamName"
+                                    (OutputHandler)="onTeamHandler($event)"
+
+                                                        >
+                                    </geo-mat-dropdown>
+                                </div>
+
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Country:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Team:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
+                                <geo-mat-input  labelGeoInput="WorkflowReminder"
+                                                [input]="showvalue"
+                                             
+                                                name="actionItemInput">
+                                </geo-mat-input>
+                            </div>
                     </div>
                     
-                    <div class="row">
+                    <div class="row">                        
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="WorkflowReminder:"
+                            <geo-mat-input  labelGeoInput="DataCenter GeoClearance Risk Level"
                                             [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
+                                          
                                             name="actionItemInput">
                             </geo-mat-input>
                         </div>
                         <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="DataCenter GeoClearance Risk Level:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
+                                <geo-mat-input  labelGeoInput="Network GeoClearance Risk Level"
+                                                [input]="showvalue"
+                                         
+                                                name="actionItemInput">
+                                </geo-mat-input>
+                            </div>
                     </div>
                         
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="Network GeoClearance Risk Level:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                        <div class="col-sm-6">
-                            <geo-mat-input  labelGeoInput="StatusFlag:"
-                                            [input]="showvalue"
-                                            (output)="onActionItemHandler($event)"
-                                            name="actionItemInput">
-                            </geo-mat-input>
-                        </div>
-                    </div>
+
                 </mat-card-content>
             </mat-card>
 

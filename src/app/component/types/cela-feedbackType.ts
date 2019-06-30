@@ -1,6 +1,6 @@
 export interface ITextArray {
-key: string;
-text: string;
+  SourceId: number;  // before key
+  Value: string;    // bebofre text
 }
 
 export interface ICelaFeedbackModel {

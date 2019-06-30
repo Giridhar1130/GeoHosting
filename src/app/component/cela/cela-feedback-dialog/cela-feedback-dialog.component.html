@@ -1,13 +1,11 @@
 <div class="cela-dialog">
-  <div class="cela-header">
-    <div>
-      CELA Feedback
-    </div>
-    <button class="material-icons close-icon" (click)="onCloseDialog()">close</button>
-    <div>
-      {{ country }}
-    </div>
-  </div>
+    <div class="header text-center  flex-xs-middle ">
+        <span>CELA Feedback</span>
+        <button class="material-icons close-icon " (click)="onCloseDialog($event)">
+          close
+        </button>
+        <div>{{ titleCountry }}</div>
+      </div>
 
   <div class="cela-content">
     <form>
@@ -86,7 +84,7 @@
                 <ng-container matColumnDef="ActionName">
                   <th mat-header-cell *matHeaderCellDef>Action Item</th>
                   <td mat-cell *matCellDef="let element">
-                    <mat-form-field class="matfieldstyle" appearance="outline">
+                    <mat-form-field class="matfieldstyle" >
                       <input
                         matInput
                         [(value)]="element.ActionName"
@@ -103,7 +101,7 @@
                     the action item applies
                   </th>
                   <td mat-cell *matCellDef="let element">
-                    <mat-form-field class="matfieldstyle" appearance="outline">
+                    <mat-form-field class="matfieldstyle">
                       <input
                         matInput
                         [(value)]="element.Details"
@@ -119,7 +117,7 @@
                     Contact(s)
                   </th>
                   <td mat-cell *matCellDef="let element">
-                    <mat-form-field class="matfieldstyle" appearance="outline">
+                    <mat-form-field class="matfieldstyle">
                       <input
                         matInput
                         [(value)]="element.Contact"
@@ -432,7 +430,14 @@
       <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
 
       <div class="cela-actions">
-        <geo-action [IsConfirmButton]="true" (ConfirmAction)="onSaveandCloseDialog()">
+          <geo-action
+          [IsCloseButton]="true"
+          (CloseAction)="onCloseDialog()"
+          ActionButtonText="Save"
+          CloseButtonText="Cancel"
+          [IsActionButton]="showSave"
+          (GeoAction)="onSave()"
+        >
         </geo-action>
       </div>
     </form>

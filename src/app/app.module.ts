@@ -82,6 +82,7 @@ import { GeoMatDatepickerComponent } from './component/shared/geo-items/geo-mat-
     GeoPhysicalSecurityFeedbackComponent,
     FeedbackFormDialogComponent,
     CelaFeedbackDialogComponent,
+    TaxFeedbackDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

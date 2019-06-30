@@ -13,7 +13,11 @@ export class CountryGeoClearanceService {
   commonSourceurl = 'https://localhost:44376/api/CommonSource';
   constructor(
     private http: HttpClient) { }
-
+  getCountryList() {
+    return this.http.get<any[]>('https://localhost:44376/api/country/AllItems')
+      .pipe(catchError(this.handleError)
+      );
+  }
   getCommonSourceList(sourceType: number) {
     return this.http.get<any[]>('https://localhost:44376/api/CommonSource/Source?sourceType='+ sourceType)
       .pipe(catchError(this.handleError)

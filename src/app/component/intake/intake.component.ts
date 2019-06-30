@@ -203,7 +203,14 @@ export class IntakeComponent implements OnInit {
       disableClose: true
     };
 
-    this.countryIntakeDialog.open(IntakeFormComponent, passdata);
+    const dialogRef = this.countryIntakeDialog.open(IntakeFormComponent, passdata);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.currentRightItem.push(result);
+        this.allIntakeData.push(result);
+        console.log(result);
+      }
+    });
   }
 
   ngOnInit() {
