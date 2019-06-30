@@ -132,7 +132,7 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
       AssignedTo: '',
       Author: {
         Email: '',
-        LookupId: '',
+        LookupId: null,
         LookupValue: '',
         TypeId: '',
       },
@@ -144,14 +144,14 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
       CountryID: '',
       Editor: {Email: '', LookupValue: ''},
       FeedbackSummary: '',
-      FormId: '',
+      FormId: null,
       Modified: null,
       MyFields: {
         CommonFields: {
           AssignedTo: '',
           Country: '',
           CountryID: '',
-          GeoHostingOwner: 0,
+          GeoHostingOwner: null,
           Priority: '',
           Scope: '',
         },
