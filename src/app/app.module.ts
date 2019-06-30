@@ -13,7 +13,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {IntakeFormComponent } from './component/intake-form/intake-form.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
-import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule, MatTooltipModule, MatDatepickerModule, MatButtonModule, MatNativeDateModule} from '@angular/material';
+import { MatInputModule, MatCheckbox, MatButton, MatRippleModule, MatDialog, MatDialogModule, MatTooltipModule, MatDatepickerModule, MatButtonModule, MatNativeDateModule, MatPaginator, MatPaginatorModule} from '@angular/material';
 import { HomeComponent } from './component/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
@@ -51,7 +51,7 @@ import { GeoMatDatepickerComponent } from './component/shared/geo-items/geo-mat-
     GeoMatInputComponent,
     GeoMatDropdownComponent,
     GeoActionComponent,
-    GeoMatDatepickerComponent,
+    GeoMatDatepickerComponent, 
   ],
   imports: [
     BrowserModule,
@@ -75,6 +75,7 @@ import { GeoMatDatepickerComponent } from './component/shared/geo-items/geo-mat-
     MatDatepickerModule,
     MatButtonModule,
     MatNativeDateModule,
+    MatPaginatorModule,
   ],
   entryComponents: [
     CelaFeedbackComponent,
