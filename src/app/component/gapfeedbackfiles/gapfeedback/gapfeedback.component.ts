@@ -10,7 +10,7 @@ import { GeoPhysicalSecurityFeedbackComponent
 } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
 import { TaxFeedbackDialogComponent } from './gap-feedback-dialogs/tax-feedback-dialog/tax-feedback-dialog.component';
-import { RiskManagementFeedbackDialogComponent 
+import { RiskManagementFeedbackDialogComponent
 } from './gap-feedback-dialogs/risk-management-feedback-dialog/risk-management-feedback-dialog.component';
 
 
@@ -24,8 +24,10 @@ export class GapFeedbackComponent implements OnInit {
 
   public allGapFeedbackData: GapFeedBack[];
   public displayedColumns: string[] = ['TaskName', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
-                                      'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
-                                      'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
+                                      'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope',
+                                      'TeamName', 'NewCountryAssessmentID', 'RiskLevel',
+                                      'DataCenterRiskLevel', 'NetworkRiskLevel', 'Modified',
+                                      'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
                                       'MyFields.CommonFields.CountryID', 'AssessmentStatus'];
   public dataSource = new MatTableDataSource(this.allGapFeedbackData);
   public objectkeys = Object.keys;
@@ -41,7 +43,7 @@ export class GapFeedbackComponent implements OnInit {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (data: GapFeedBack[]) => {
         if (data) {
-          this.allGapFeedbackData = data;          
+          this.allGapFeedbackData = data;
         }
       });
   }
@@ -150,13 +152,13 @@ export class GapFeedbackComponent implements OnInit {
           }
         },
         InformationSecurityComplaince: {
-          InformationSecurityComplainceDetails:{
+          InformationSecurityComplainceDetails: {
             ComplainceIssues:  '',
             NationalInformationSecurity:  '',
           }
         },
         LCA: {
-          lcaDetails:{
+          lcaDetails: {
             CPIRating: '',
             dataSecurity: {
               DataSecurityRisk: '',
@@ -197,7 +199,7 @@ export class GapFeedbackComponent implements OnInit {
           }
         },
         LogicalSecurity: {
-          logicalSecuritydetails:{
+          logicalSecuritydetails: {
             SecurityIssues: ''
           }
         },
@@ -243,9 +245,6 @@ export class GapFeedbackComponent implements OnInit {
           FeedbackSummary: '',
           RiskMgmtRiskLevel: '',
         },
-        TaskName: {
-          Name: '',
-        },
         Tax: {
           DatacenterConsideration: {
             CorporateTaxRate: '',
@@ -284,6 +283,7 @@ export class GapFeedbackComponent implements OnInit {
       SubmitStatus: '',
       Submitted: null,
       TaskStatus: '',
+      TaskName: '',
       TeamName: '',
       WorkflowVersion: 0
     };
@@ -317,7 +317,7 @@ export class GapFeedbackComponent implements OnInit {
     if (value.TeamName === 'CELA') {
       dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
-    if(value.TeamName === 'Tax') {
+    if (value.TeamName === 'Tax') {
       dialogRef = this.dialog.open(TaxFeedbackDialogComponent, matDialogConfig);
     }
     if (value.TeamName === 'Physical Security') {
@@ -346,9 +346,9 @@ export class GapFeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.gapfeedbackService.getgapfeedback()
-      .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {        
-        this.allGapFeedbackData = callbackfromgetAPI;        
-        this.getdata(this.allGapFeedbackData);                
+      .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {
+        this.allGapFeedbackData = callbackfromgetAPI;
+        this.getdata(this.allGapFeedbackData);
         this.currentRightItem = this.allGapFeedbackData;
         this.leftItemOrginal.sort((val1, val2) => {
           return Object.keys(val1)[0] > Object.keys(val2)[0] ? 1 : Object.keys(val1)[0] < Object.keys(val2)[0] ? -1 : 0;
@@ -357,7 +357,7 @@ export class GapFeedbackComponent implements OnInit {
 
       });
 
-      this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-      this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.dataSource.sort = this.sort;
   }
 }

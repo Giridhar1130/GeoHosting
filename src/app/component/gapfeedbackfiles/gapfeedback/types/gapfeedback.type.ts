@@ -40,7 +40,7 @@ export interface MyFields {
   LogicalSecurity: ILogicalSecurity;
   PhysicalSecurity: IPhysicalSecurity;
   RiskManagement: IRiskManagement;
-  Summary: ISummary; 
+  Summary: ISummary;
   Tax: ITax;
   Treasury: ITreasury;
 }
@@ -183,7 +183,7 @@ export interface IRiskManagementDetails {
 export interface IInsurability {
   CyberRisk: string;
   GeneralLiability: string;
-  PoliticalRisk: string; 
+  PoliticalRisk: string;
   Property: string;
 }
 

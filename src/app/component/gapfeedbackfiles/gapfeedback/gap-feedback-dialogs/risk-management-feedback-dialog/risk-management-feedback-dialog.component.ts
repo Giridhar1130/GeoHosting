@@ -12,7 +12,7 @@ export interface ICommonsourceType {
 }
 
 @Component({
-  selector: 'geo-risk-management-feedback-dialog',
+  selector: 'app-geo-risk-management-feedback-dialog',
   templateUrl: './risk-management-feedback-dialog.component.html',
   styleUrls: ['./risk-management-feedback-dialog.component.css']
 })
@@ -45,11 +45,11 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
 
 
     public labelPosition = 'after';
-    public stateDepartmentTravelAdvisoryLevelCheckBox = "Yes";
+    public stateDepartmentTravelAdvisoryLevelCheckBox = 'Yes';
     public summaryCountryRiskLevel = 'Country Risk Level';
     public feedbackSummaryLabel = 'Feedback Summary';
     public specificActionTooltip = 'Details, including specific triggers or conditions in which the action item applies';
-    public generalRiskConsiderationsLabel = "General Risk Considerations";
+    public generalRiskConsiderationsLabel = 'General Risk Considerations';
     public actionItemLabel = 'Action Item';
     public detailsSpecificLabel = 'Details';
     public exchangeTransferRiskLabel =  'Exchange Transfer Risk';
@@ -78,7 +78,6 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
         this.RiskLevels = data[0].sourceItems;
       });
     }
-    
 
     public onRiskLevel(risk: string) {
         this.RiskLevel = risk;
@@ -91,7 +90,7 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
         this.Details = Summary;
     }
 
-    public onAddSite(){
+    public onAddSite() {
         this.specificActionSites.push({actionItem: '', details: '', contacts: ''});
     }
        public onExchangeTransferRisk(feeTransferRiskdback: string) {
@@ -106,8 +105,6 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     public onLegalandRegulartoryRisk(LegalandRegulartoryRisk: string) {
         this.LegalandRegulartoryRisk = LegalandRegulartoryRisk;
     }
-   
- 
     public onPoliticalRisk(PoliticalRisk: string) {
         this.PoliticalRisk = PoliticalRisk;
     }
