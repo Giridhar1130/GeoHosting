@@ -53,3 +53,29 @@
 .card {
     border-radius: 0px;
 }
+
+.nofly {
+    color:white;
+    background-color: #cc0000;
+    }
+    
+    .cleared {
+    color:white;
+    background-color: #548235;
+    }
+    
+    .limited {
+    color:white;
+    background-color: #cc9900;
+    }
+    
+    .restricted {
+    color:white;
+    background-color: #ff6600;
+    }
+    
+    .notassessed {
+    color: #000;
+    background-color: #FFF;
+    border: 1px solid #000;
+    }

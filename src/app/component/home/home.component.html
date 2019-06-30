@@ -44,7 +44,7 @@
                 <tbody *ngFor="let item of CountriesList">
                   <tr>
                     <td>
-                      <a href="#">{{item.Title}}</a>
+                      <a [routerLink]="['/geoclearance', item.Title]">{{item.Title}}</a>
                     </td>
                     <td [ngClass] = "{'nofly': item.DatacenterGeoClearance == 'No Fly', 
                                       'cleared': item.DatacenterGeoClearance == 'Cleared',
