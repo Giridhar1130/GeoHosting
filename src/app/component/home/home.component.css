@@ -234,3 +234,8 @@
     max-height: 100px;
     overflow-y: scroll;
   }
+
+  .geoclearance-table {
+    height: 400px;
+    overflow: auto;
+  }
