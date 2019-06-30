@@ -88,7 +88,6 @@ export class IntakeFormComponent implements OnInit {
     // Scope
     this.countryGeoClearanceService.getCommonSourceList(4)
       .subscribe((data) => {
-        console.log(data[0].sourceItems);
         this.ScopeList = data[0].sourceItems;
       });
   }
@@ -127,7 +126,7 @@ export class IntakeFormComponent implements OnInit {
   public ServiceTargets: string = this.countryIntake.MyFields.Section3details.ServiceTargets;
   public CrossBorderDataFlows: string = this.countryIntake.MyFields.Section3details.CrossBorderDataFlows;
   public Latency: string = this.countryIntake.MyFields.Section3details.Latency;
-  public currentPortfoliodataSource: MatTableDataSource<CurrentPortfolio> = new MatTableDataSource(currentPortfolio);
+  public currentPortfoliodataSource: MatTableDataSource<CurrentPortfolio> ;
   public currentInprogresssitesdataSource: MatTableDataSource<InProgressSitesGroup> = new MatTableDataSource(currentInprogresssites);
   public Submitted: boolean;
   public SaveSuccessful: boolean;
@@ -142,11 +141,9 @@ export class IntakeFormComponent implements OnInit {
 
   public addonCurrentportfoliosite() {
     const tmp: CurrentPortfolio = {
-      CurrentPortfolioDCcode: null
+      CurrentPortfolioDCcode: ''
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
     };
-    //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
-    console.log('add site', currentPortfolio);
     currentPortfolio.push(tmp);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
   }
@@ -198,7 +195,6 @@ export class IntakeFormComponent implements OnInit {
     const data = this.saveAllData();
     data.Modified = new Date();
     this.Submitted = true;
-    console.log('sumbit', data);
     this.intakeService.pacthintakeForm(data).subscribe((callbackfromgetAPI: CountryIntake) => {
       if (callbackfromgetAPI) {
           this.countryIntake = callbackfromgetAPI;
@@ -215,6 +211,5 @@ export class IntakeFormComponent implements OnInit {
                                   .concat(this.countryIntake.MyFields.Section3details.group9.InProgressSitesGroup);
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
-    console.log(currentPortfolio);
   }
 }
