@@ -20,7 +20,7 @@ export class GapFeedbackService {
     private messageService: MessagesService) { }
 
   getgapfeedback() {
-    return this.http.get<any[]>('https://localhost:44376/api/gapFeedback/Forms')
+    return this.http.get<GapFeedBack[]>('https://localhost:44376/api/gapFeedback/Forms')
       .pipe(catchError(this.handleError)
       );
   }

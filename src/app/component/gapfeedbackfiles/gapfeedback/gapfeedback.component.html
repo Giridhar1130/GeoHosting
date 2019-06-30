@@ -6,10 +6,8 @@
   <br />
   <div class="row">
     <div class="leftStyle col-2">
-      <mat-accordion multi="true"  >
-        
-        <mat-expansion-panel class="aaa" *ngFor="let left of leftItemOrginal" [expanded]=true (afterCollapse)="afterLeftRootCollapse(objectkeys(left))" (afterExpand)="afterLeftRootExpend(objectkeys(left))">
-          
+      <mat-accordion multi="true">        
+        <mat-expansion-panel class="aaa" *ngFor="let left of leftItemOrginal" [expanded]=true (afterCollapse)="afterLeftRootCollapse(objectkeys(left))" (afterExpand)="afterLeftRootExpend(objectkeys(left))">          
           <mat-expansion-panel-header  class="leftRootHeader">
             <mat-panel-title >
              <span class="leftHeadStyle">{{objectkeys(left)}}</span> 
@@ -19,10 +17,8 @@
             <div *ngFor="let leftchildren of objectvalues(left)">
               <div *ngFor="let targetchildren of leftchildren" data-toggle="tooltip" title={{targetchildren.GeoHostingOwner}} class="leftchildren btn text-left btn-light list-group-item"  (click)="rightChildrenSelected(targetchildren)" >{{targetchildren.GeoHostingOwner}}</div>
             </div>     
-          </div>
-        
-        </mat-expansion-panel>
-    
+          </div>        
+        </mat-expansion-panel>    
       </mat-accordion>
     </div>
     <div class="rightStyle col-10">
@@ -30,9 +26,8 @@
         <div
           class="btn-toolbar"
           role="toolbar"
-          aria-label="Toolbar with button groups"
-        >
-        <div class="btn-group mr-3" role="group" aria-label="First group" (click)="openFeedbackTask(null)">
+          aria-label="Toolbar with button groups">
+        <div class="btn-group mr-3" role="group" aria-label="First group" (click)="openFeedbackTask(element)">
           <button class="inkatebutton material-icons">note_add</button>
         </div>
           <div class="btn-group mr-3" role="group" aria-label="First group" (click)="showALl()">
@@ -51,8 +46,7 @@
               matInput
                (keyup)="applyFilter($event.target.value)"
               aria-label="search"
-              aria-describedby="btnGroupAddon2"
-            />
+              aria-describedby="btnGroupAddon2"/>
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary search-btn" type="button" (click)=applyFilter($event.target.value)><i class="material-icons">search</i></button>
               </div>
@@ -64,12 +58,12 @@
         mat-table
         [dataSource]="dataSource"
         matSort
-        class="mat-elevation-z8 table-hover col-12"
-      >
+        class="mat-elevation-z8 table-hover col-12">
+        
         <!-- TaskName Column -->
-        <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>TaskName</th>
-          <td mat-cell *matCellDef="let element">{{element.TeamName}}</td>
+        <ng-container matColumnDef="TaskName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Task Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.TaskName }}</td>
         </ng-container>
 
         <!-- AssignedTo Column -->
@@ -126,7 +120,7 @@
         </ng-container>
 
         <!-- Priority Column -->
-        <ng-container matColumnDef="Priority">
+        <ng-container matColumnDef="MyFields.CommonFields.Priority">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
             <td mat-cell *matCellDef="let element">{{ element.MyFields.CommonFields.Priority }}</td>
         </ng-container>
@@ -186,13 +180,13 @@
         </ng-container>
 
          <!-- Modified by Column -->
-         <ng-container matColumnDef="ModifiedBy">
+         <ng-container matColumnDef="Editor.LookupValue">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</th>
             <td mat-cell *matCellDef="let element">{{ element.Editor.LookupValue }}</td>
         </ng-container>
 
         <!-- Country ID Column -->
-        <ng-container matColumnDef="CountryID">
+        <ng-container matColumnDef="MyFields.CommonFields.CountryID">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Country ID</th>
             <td mat-cell *matCellDef="let element">{{ element.MyFields.CommonFields.CountryID}}</td>
         </ng-container>
