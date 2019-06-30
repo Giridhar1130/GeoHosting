@@ -19,7 +19,7 @@ export class GapFeedbackComponent implements OnInit {
 
 
   public allGapFeedbackData: GapFeedBack[];
-  public displayedColumns: string[] = ['AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
+  public displayedColumns: string[] = ['TaskName', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
                                       'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
                                       'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
                                       'MyFields.CommonFields.CountryID', 'AssessmentStatus'];
