@@ -41,7 +41,7 @@
           <div class="input-group">
               <input
               type="text"
-              class="form-control align-middle"
+              class="form-control align-middle search-input"
               placeholder="Search"
               matInput
                (keyup)="applyFilter($event.target.value)"
@@ -201,9 +201,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true" ></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>     
-          
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
+    
+    <!-- Pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
   </div>
 </div>

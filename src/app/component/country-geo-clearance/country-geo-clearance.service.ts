@@ -16,19 +16,19 @@ export class CountryGeoClearanceService {
     private http: HttpClient) { }
 
     getCommonSourceList(sourceType: number) {
-      return this.http.get<any[]>('https://localhost:44376/api/CommonSource/Source?sourceType='+ sourceType)
+      return this.http.get<any[]>('https://geohostingapi.azurewebsites.net/api/CommonSource/Source?sourceType='+ sourceType)
 			.pipe(catchError(this.handleError)
         );
     }
 
     getCountryList() {
-        return this.http.get<CountryList[]>('https://localhost:44376/api/country/AllItems')
+        return this.http.get<CountryList[]>('https://geohostingapi.azurewebsites.net/api/country/AllItems')
 			.pipe(catchError(this.handleError)
         );
     }
 
     public getAllCountriesWithRiskDetails (includeRiskDetails = true) {	
-      return this.http.get<CountryList[]>('https://localhost:44376/api/country/AllItems?includeRiskDetails='+ includeRiskDetails)	
+      return this.http.get<CountryList[]>('https://geohostingapi.azurewebsites.net/api/country/AllItems?includeRiskDetails='+ includeRiskDetails)	
         .pipe(catchError(this.handleError)	
         );	
     }

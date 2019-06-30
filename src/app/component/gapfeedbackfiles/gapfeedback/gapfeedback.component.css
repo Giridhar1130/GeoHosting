@@ -42,6 +42,14 @@ table {
 
 .search-btn {
     padding: .015rem 0.5rem;
+    margin-top: -1px;
+}
+
+.search-input {
+    font-size: 16px;
+    border: 0.5px solid gray;
+    background-color: #fff;
+    padding: 0.5rem;
 }
 
 .search-btn .material-icons {
