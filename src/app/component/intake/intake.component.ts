@@ -1,20 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IntakeFormComponent } from '../intake-form/intake-form.component';
 import { IntakeService } from '../../app.intake.service';
 import {CountryIntake} from '../types/countryintake.type';
-import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { MatDialog, MatPaginator,  throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 @Component({
   selector: 'app-intake',
   templateUrl: './intake.component.html',
   styleUrls: ['./intake.component.css']
 })
 
-export class IntakeComponent implements OnInit {
+export class IntakeComponent implements AfterViewInit, OnInit {
   constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog) { }
-
+  
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   public allIntakeData: any[];
   public displayedColumns: string[] = ['ID', 'MyFields.FormName', 'AssessmentStatus',
                                      'MyFields.Section1details.Priority',
@@ -42,12 +49,14 @@ export class IntakeComponent implements OnInit {
     );
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   public afterLeftRootCollapse(ev: any): void {
     this.currentRightItem = this.currentRightItem.filter((items: CountryIntake) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
@@ -56,6 +65,7 @@ export class IntakeComponent implements OnInit {
     this.currentRightItem = this.currentRightItem.concat(
                                 this.allIntakeData.filter((items: CountryIntake) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
@@ -68,6 +78,7 @@ export class IntakeComponent implements OnInit {
 
   public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allIntakeData);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
   }
@@ -216,6 +227,7 @@ export class IntakeComponent implements OnInit {
       });
 
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 }
