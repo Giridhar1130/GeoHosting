@@ -38,7 +38,7 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
                 private gapfeedbackService: GapFeedbackService,
                 private countryGeoClearanceService: CountryGeoClearanceService) { }
     public titleCountry: string = this.gapFeedbackDataItem.MyFields.CommonFields.Country;
-    public Owner: number = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
+    public Owner: string = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
     public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
     public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;
     public Priority: string = this.gapFeedbackDataItem.MyFields.CommonFields.Priority;

@@ -36,7 +36,7 @@ export class CelaFeedbackComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public gapFeedbackDataItem: GapFeedBack,
         private gapfeedbackService: GapFeedbackService,
         private countryGeoClearanceService: CountryGeoClearanceService) { }
-        public Owner: number = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
+        public Owner: string = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
         public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
         public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;
         public Priority: string = this.gapFeedbackDataItem.MyFields.CommonFields.Priority;
@@ -72,7 +72,7 @@ export class CelaFeedbackComponent implements OnInit {
         public DataResiReguSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResiReguSummary;
         public DataResiReguRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResidencyRegulation;
         public ActionItems: ActionItems[] = [];
-        public specificActionSites: ActionItems[] = [];
+        public specificActionSites: ActionItems[] = this.gapFeedbackDataItem.MyFields.Summary.ActionItems;
         public summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
     ngOnInit() {

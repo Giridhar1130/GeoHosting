@@ -37,6 +37,9 @@
           <div class="btn-group mr-3" role="group" aria-label="First group">
             <button class="inkatebutton">My Items</button>
           </div>
+          <div class="btn-group mr-3" role="group" aria-label="First group" *ngIf ='kickShow' >
+              <button  mat-raised-button color="primary">Kick off</button>
+            </div>
         </div>
         <div>
           <div class="input-group">
@@ -60,6 +63,12 @@
         [dataSource]="dataSource"
         matSort
         class="mat-elevation-z8 table-hover">
+        <!-- radio Column -->
+        <ng-container matColumnDef="Radio">  
+            <th mat-header-cell *matHeaderCellDef mat-sort-header='Radio'></th>
+            <td mat-cell *matCellDef="let element"><mat-radio-button value="1" (change)='allRowSelected(element)'></mat-radio-button></td>
+          </ng-container>
+
         <!-- ID Column -->
         <ng-container matColumnDef="ID">  
           <th mat-header-cell *matHeaderCellDef mat-sort-header='FormId'>ID</th>

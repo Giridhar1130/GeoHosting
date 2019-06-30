@@ -21,14 +21,14 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     public showSave: boolean = this.element.Submitted ? false : true;
     public title = 'Country Risk Feedback';
     public titleCountry: string = this.element.MyFields.CommonFields.Country;
-    public Owner: number = this.element.MyFields.CommonFields.GeoHostingOwner;
+    public Owner: string = this.element.MyFields.CommonFields.GeoHostingOwner;
     public Scope: string = this.element.MyFields.CommonFields.Scope;
     public Assigned: string = this.element.MyFields.CommonFields.AssignedTo;
     public Priority: string = this.element.MyFields.CommonFields.Priority;
     public country: string = this.element.MyFields.CommonFields.Country;
     public RiskLevel: string = this.element.RiskLevel;
     public FeedbackSummary: string = this.element.FeedbackSummary;
-    public ActionItems: ActionItems[] = [];
+    public ActionItems: ActionItems[] = this.element.MyFields.Summary.ActionItems;
     public Details: string = this.element.MyFields.RiskManagement.RiskManagementDetails.GeneralRsikConsiderations;
     public generalRsikConsiderations: string = this.element.MyFields.RiskManagement.RiskManagementDetails.GeneralRsikConsiderations;
     public ExchangeTransferRisk: string = this.element.MyFields.RiskManagement.RiskManagementDetails.Risks === undefined ?
@@ -61,8 +61,8 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
 
     public RiskLevels: ITextArray[];
 
-    public specificActionSites: {actionItem: string, details: string, contacts: string}[] = [
-        {actionItem: '', details: '', contacts: ''}
+    public specificActionSites: ActionItems[] = [
+        {ActionName: '', Details: '', Contact: ''}
     ];
 
 
@@ -91,7 +91,7 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     }
 
     public onAddSite() {
-        this.specificActionSites.push({actionItem: '', details: '', contacts: ''});
+        this.specificActionSites.push({ActionName: '', Details: '', Contact: ''});
     }
        public onExchangeTransferRisk(feeTransferRiskdback: string) {
         this.ExchangeTransferRisk = feeTransferRiskdback;

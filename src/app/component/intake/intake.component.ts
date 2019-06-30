@@ -5,6 +5,10 @@ import { IntakeFormComponent } from '../intake-form/intake-form.component';
 import { IntakeService } from '../../app.intake.service';
 import {CountryIntake} from '../types/countryintake.type';
 import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { GapFeedBack } from '../gapfeedbackfiles/gapfeedback/types/gapfeedback.type';
+import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { stringify } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-intake',
   templateUrl: './intake.component.html',
@@ -12,11 +16,12 @@ import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/m
 })
 
 export class IntakeComponent implements OnInit {
-  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog) { }
+  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog,
+               private gapFeedbackService: GapFeedbackService) { }
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   public allIntakeData: any[];
-  public displayedColumns: string[] = ['ID', 'MyFields.FormName', 'AssessmentStatus',
+  public displayedColumns: string[] = ['Radio', 'ID', 'MyFields.FormName', 'AssessmentStatus',
                                      'MyFields.Section1details.Priority',
                                      'MyFields.Section1details.Scope', 'Country', 'MyFields.Territory'];
   public dataSource = new MatTableDataSource(this.allIntakeData);
@@ -26,7 +31,7 @@ export class IntakeComponent implements OnInit {
   public leftItemOrginal: object[] = [];
   public currentRightItem: CountryIntake[];
   public sortedData: CountryIntake[];
-
+  public kickShow = false;
   public getintakeInfo(): void {
     this.intakeService.getintake()
       .subscribe(async (callbackfromgetAPI: any[]) => {
@@ -35,6 +40,196 @@ export class IntakeComponent implements OnInit {
 
       });
   }
+  public allRowSelected(ev: CountryIntake): void {
+    console.log(ev);
+    this.kickShow = true;
+    const kickOffAssignedDict = {
+      CELA: 'areyes@microsoft.com',
+      'Physical Security': 'wiheng@microsoft.com;comaccar@microsoft.com;rcahoon@microsoft.com;dsmall@microsoft.com',
+      'Risk Management': 'Mahin.Karim@microsoft.com;heidim@microsoft.com;Rebekah.Lay@microsoft.com',
+      Tax: 'jlundber@microsoft.com;scsiler@microsoft.com;danshaw@microsoft.com;ashwisa@microsoft.com;Ryan.Cooper@microsoft.com;kaaikawa@microsoft.com'
+    };
+
+    Object.keys(kickOffAssignedDict).forEach((item) => {
+      const gapFeedBackItem: GapFeedBack = {
+        Id: null,
+        IsActive: true,
+        GeoHostingOwner: ev.Owner.LookupValue,
+        AssessmentID: ev.MyFields.AssessmentID,
+        AssessmentStatus: ev.AssessmentStatus,
+        AssignedTo: kickOffAssignedDict[item],
+        Author: ev.Owner,
+        CompletedDate: null,
+        CountryName: ev.MyFields.Section1details.Country,
+        DataCenterRiskLevel: '',
+        AverageRating : '',
+        Country: ev.MyFields.Section1details.Country,
+        CountryID: null,
+        Editor: {Email: '', LookupValue: ''},
+        FeedbackSummary: '',
+        FormId: ev.MyFields.GapAdminGroupDetails.FormID,
+        Modified: null,
+        MyFields: {
+          CommonFields: {
+            AssignedTo: kickOffAssignedDict[item],
+            Country: ev.MyFields.Section1details.Country,
+            CountryID: null,
+            GeoHostingOwner: ev.Owner.LookupValue,
+            Priority: ev.MyFields.Section1details.Priority,
+            Scope: ev.MyFields.Section1details.Scope,
+          },
+          Energy: {
+            EnergyDetails: {
+              Co2Emission: '',
+              EnergyRate: '',
+              MarketStructure: '',
+              Reliability: '',
+            }
+          },
+          InformationSecurityComplaince: {
+            InformationSecurityComplainceDetails: {
+              ComplainceIssues:  '',
+              NationalInformationSecurity:  '',
+            }
+          },
+          LCA: {
+            lcaDetails: {
+              CPIRating: '',
+              dataSecurity: {
+                DataSecurityRisk: '',
+                DataSecuritySummary: '',
+              },
+              gni: {
+                GNIRating: '',
+                GNISummary: '',
+              },
+              lawEnforcementCompliance: {
+                LECRisk: '',
+                LECSummary: '',
+              },
+              mediaContentLiability: {
+                MediaContentLiabilityRisk: '',
+                MediaContentLiabilitySummary:  '',
+              },
+              other: {
+                DataResiReguSummary:  '',
+                DataResidencyRegulation:  '',
+                PendingLawRegulations: '',
+                PendingRisk:  '',
+              },
+              privacy: {
+                PrivacyRisk: '',
+                PrivacySummary:  '',
+              },
+              telecommunications: {
+                TelecommunicationsRisk:  '',
+                TelecommunicationsSummary:  '',
+              },
+              LicenseRequirements: {
+                TerrestrialRisk: '',
+                TerrestrialSummary: '',
+                SubmarineRisk:  '',
+                SubmarineSummary:  '',
+              }
+            }
+          },
+          LogicalSecurity: {
+            logicalSecuritydetails: {
+              SecurityIssues: ''
+            }
+          },
+          PhysicalSecurity: {
+            PhysicalSecurityDetails: {
+              BaselineSecurityRequirements: '',
+              DepartTravelWarning: '',
+              MicrosoftHeadCount:  '',
+              PhysicalSecurityPointofContact: {
+                AccountId: '',
+                AccountType: '',
+                DisplayName: '',
+              },
+              optionPhysical:  '',
+            },
+            SecurityIssues: '',
+            TravelWarningSection: ''
+          },
+          RiskManagement: {
+            RiskManagementDetails: {
+              GeneralRsikConsiderations: '',
+              Insurability: {
+                CyberRisk:  '',
+                GeneralLiability: '',
+                PoliticalRisk:  '',
+                Property: '',
+              },
+              Risks: {
+                ExchangeTransferRisk:  '',
+                LegalandRegulartoryRisk: '',
+                PoliticalViolenceRisk:  '',
+                LegalandRegulatoryRisk:  '',
+                PoliticalInteferenceRisk:  '',
+                SovereignNonPaymentRisk:  '',
+                SupplyChainRisk:  '',
+              },
+            },
+            SecurityIssues: '',
+            TravelWarningSection: '',
+          },
+          Summary: {
+            ActionItems: [],
+            FeedbackSummary: '',
+            RiskMgmtRiskLevel: '',
+          },
+          Tax: {
+            DatacenterConsideration: {
+              CorporateTaxRate: '',
+              CreditableOptions: '',
+              IncentivesandExemptions: '',
+              PersonalPropertyTax: '',
+              RealPropertyTax: '',
+              RestrictionOnDatacenter: '',
+              SalesTax: '',
+              SalesTaxonServers: '',
+              TaxRatesOptions: '',
+              VATRates: '',
+            },
+            LegalEntity: '',
+            LocalTaxContact: {
+              AccountId: '',
+              AccountType: '',
+              DisplayName: '',
+            },
+            RestrictionsOnLocations: '',
+            RestrictionOrTaxConsideration: '',
+          },
+          Treasury: {
+            TreasuryDetails: {
+              CountryCurrency: '',
+              CurrencyRestrictionForiegnMarket: '',
+              delayCountryPermission: '',
+            }
+          },
+        },
+        NetworkRiskLevel: '',
+        NewCompleteAssessmentID: '',
+        NewCountryAssessmentID: '',
+        NewFormName: '',
+        RiskLevel: '',
+        SubmitStatus: '',
+        Submitted: null,
+        TaskStatus: '',
+        TaskName: '',
+        TeamName: item,
+        WorkflowVersion: 0
+      };
+
+      this.gapFeedbackService.postintakeForm(gapFeedBackItem).subscribe((callbackfromgetAPI: GapFeedBack) => {
+       if (callbackfromgetAPI) {
+          console.log('Sucess!');
+       }
+      });
+    });
+  }
 
   public rightChildrenSelected(target): void {
     this.currentRightItem = this.allIntakeData.filter((items: CountryIntake) => items.Owner.
@@ -42,6 +237,7 @@ export class IntakeComponent implements OnInit {
     );
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.kickShow = false;
     this.dataSource.sort = this.sort;
   }
 
@@ -49,6 +245,7 @@ export class IntakeComponent implements OnInit {
     this.currentRightItem = this.currentRightItem.filter((items: CountryIntake) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.kickShow = false;
     this.dataSource.sort = this.sort;
   }
 
@@ -57,12 +254,14 @@ export class IntakeComponent implements OnInit {
                                 this.allIntakeData.filter((items: CountryIntake) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.kickShow = false;
     this.dataSource.sort = this.sort;
   }
 
   public applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.kickShow = false;
     this.dataSource.sort = this.sort;
   }
 
@@ -70,6 +269,7 @@ export class IntakeComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.allIntakeData);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
+    this.kickShow = false;
   }
 
   public getdata(data): void {

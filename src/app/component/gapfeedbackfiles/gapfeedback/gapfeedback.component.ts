@@ -120,7 +120,7 @@ export class GapFeedbackComponent implements OnInit {
       AssignedTo: '',
       Author: {
         Email: '',
-        LookupId: '',
+        LookupId: 0,
         LookupValue: '',
         TypeId: '',
       },
@@ -132,14 +132,14 @@ export class GapFeedbackComponent implements OnInit {
       CountryID: '',
       Editor: {Email: '', LookupValue: ''},
       FeedbackSummary: '',
-      FormId: '',
+      FormId: null,
       Modified: null,
       MyFields: {
         CommonFields: {
           AssignedTo: '',
           Country: '',
           CountryID: '',
-          GeoHostingOwner: 0,
+          GeoHostingOwner: null,
           Priority: '',
           Scope: '',
         },
