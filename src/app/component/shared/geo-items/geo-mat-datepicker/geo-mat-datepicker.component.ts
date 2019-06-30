@@ -21,7 +21,7 @@ export class GeoMatDatepickerComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        console.log("ToolTip: ", this.ToolTip)
+        console.log("dateValue: ", this.dateValue)
         this.dateValue = this.Value ? new FormControl(this.Value) : new FormControl(new Date());
     }
 

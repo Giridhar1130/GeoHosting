@@ -1,70 +1,72 @@
 <div class="cela-dialog">
-    <div class="cela-header">
-        <div>
-            {{dialogConfig.title}}
+        <div class="header text-center  flex-xs-middle ">
+          <span>{{ title }}</span>
+          <button class="material-icons close-icon " (click)="onCloseDialog($event)">
+            close
+          </button>
+          <div>{{ titleCountry }}</div>
         </div>
-        <button class="material-icons close-icon " (click)="close($event)">close</button>
-        <div>
-            {{dialogConfig.country}}
-        </div>
-    </div>
-
-    <div class="cela-content">
-        <form>
+      
+        <div class="cela-content">
+          <form>
             <div class="container-data">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>
-                            <span>GeoHosting Owner: </span>
-                            <span>{{dialogConfig.user.owner}}</span>
-                        </p>
-                        <p><span>Scope: </span>
-                            <span>{{dialogConfig.user.scope}}</span>
-                        </p>
-                        <p>
-                            <span>Assigned To: </span>
-                            <span>{{dialogConfig.user.scope}}</span>
-                        </p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>
-                            <span>Due Date: </span>
-                            <span>{{dialogConfig.user.dueDate}}</span>
-                        </p>
-                        <p>
-                            <span>Priority: </span>
-                            <span>{{dialogConfig.user.priority}}</span>
-                        </p>
-                        <p>
-                            <span>Completed Date: </span>
-                            <span>{{dialogConfig.user.completedDate}}</span>
-                        </p>
-                    </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>
+                    <span>GeoHosting Owner: </span>
+                    <span>{{ Owner }}</span>
+                  </p>
+                  <p>
+                    <span>Scope: </span>
+                    <span>{{ Scope }}</span>
+                  </p>
+                  <p>
+                    <span>Assigned To: </span>
+                    <span>{{ Assigned }}</span>
+                  </p>
                 </div>
+                <div class="col-sm-6">
+                  <p>
+                    <span>Due Date: </span>
+                    <span>3/25/2016</span>
+                  </p>
+                  <p>
+                    <span>Priority: </span>
+                    <span>{{ Priority }}</span>
+                  </p>
+                  <p>
+                    <span>Completed Date: </span>
+                    <span>5/31/2016</span>
+                  </p>
+                </div>
+              </div>
             </div>
-            
             <mat-card>
-                <mat-card-header>
-                    <h6>Summary</h6>
-                </mat-card-header>
-
-                <mat-card-content>
+            <mat-card-content>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <geo-mat-dropdown   [Title]="summaryCountryRiskLevel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
-                                                id="summaryRiskLevelDropdown">
-                            </geo-mat-dropdown>
-                        </div>
-                        <div class="col-sm-6"></div>
+                      <div class="col-sm-6">
+                        <geo-mat-dropdown
+                          [Title]="summaryCountryRiskLevel"
+                          [InputTextArray]="RiskLevels"
+                          [SelectedValue]="RiskLevel"
+                          (OutputHandler)="onRiskLevel($event)"
+                          id="summaryRiskLevelDropdown"
+                        >
+                        </geo-mat-dropdown>
+                      </div>
+                      <div class="col-sm-6"></div>
                     </div>
-
-                    <mat-label>Feedback Summary - <i>Summarize feedback in 300 characters or less.</i></mat-label>
-                    <geo-mat-textarea   [labelTextAreaSummary]="feedbackSummaryLabel"
-                                        [input]=""
-                                        (summary)="onSummary($event)"
-                                        name="detailsSummaryTextarea">
+          
+                    <mat-label
+                      >Feedback Summary -
+                      <i>Summarize feedback in 300 characters or less.</i></mat-label
+                    >
+                    <geo-mat-textarea
+                      [labelTextAreaSummary]="feedbackSummaryLabel"
+                      [input]="FeedbackSummary"
+                      (summary)="onFeedbackSummary($event)"
+                      name="detailsSummaryTextarea"
+                    >
                     </geo-mat-textarea>
 
                     <mat-label>Are there any country-specific Action Items or Next Steps?</mat-label>
@@ -123,7 +125,7 @@
                 <mat-card-content>
                     <div class="col-sm-6">
                         <geo-mat-textarea   [labelTextAreaSummary]="generalRiskConsiderationsLabel"
-                                            [input]=""
+                                            [input]="Details"
                                             (summary)="onSummary($event)"
                                             name="detailsSummaryTextarea">
                         </geo-mat-textarea>
@@ -141,31 +143,36 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="exchangeTransferRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
-                                                id="summaryRiskLevelDropdown">
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onExchangeTransferRisk($event)"
+                                                id="summaryRiskLevelDropdown"
+                                                [SelectedValue]="ExchangeTransferRisk">
                             </geo-mat-dropdown>
                         </div>
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="supplyChainRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
-                                                id="summaryRiskLevelDropdown">
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onsupplyChainRis($event)"
+                                                id="summaryRiskLevelDropdown"
+                                                [SelectedValue]="SupplyChainRisk"
+                                                >
                             </geo-mat-dropdown>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="sovereignNonPaymentRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onsovereignNonPaymentRisk($event)"
+                                                [SelectedValue]="sovereignNonPaymentRisk"
                                                 id="summaryRiskLevelDropdown">
                             </geo-mat-dropdown>
                         </div>
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="legalAndRegulatoryRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onLegalandRegulartoryRisk($event)"
+                                                [SelectedValue]="LegalandRegulartoryRisk"
                                                 id="summaryRiskLevelDropdown">
                             </geo-mat-dropdown>
                         </div>
@@ -173,15 +180,17 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="politicalInterferenceRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onPoliticalRisk($event)"
+                                                [SelectedValue]="PoliticalRisk"
                                                 id="summaryRiskLevelDropdown">
                             </geo-mat-dropdown>
                         </div>
                         <div class="col-sm-6">
                             <geo-mat-dropdown   [Title]="politicalViolenceRiskLabel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onPhysicalSecurityRiskLevelHandler($event)"
+                                                [InputTextArray]="RiskLevels"
+                                                (OutputHandler)="onPoliticalViolenceRisk($event)"
+                                                [SelectedValue]="PoliticalViolenceRisk"
                                                 id="summaryRiskLevelDropdown">
                             </geo-mat-dropdown>
                         </div>
@@ -191,11 +200,18 @@
     
             <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
 
-            <div class="cela-actions">
-                <geo-action [IsCloseButton]="true"
-                            (CloseAction)="onSaveandCloseDialog()">
-                </geo-action>
-            </div>
-        </form>
+    <div class="cela-actions">
+      <geo-action
+        [IsCloseButton]="true"
+        (CloseAction)="onCloseDialog()"
+        ActionButtonText="Save"
+        CloseButtonText="Cancel"
+        [IsActionButton]="showSave"
+        (GeoAction)="onSave()"
+      >
+      </geo-action>
     </div>
+  </form>
 </div>
+</div>
+

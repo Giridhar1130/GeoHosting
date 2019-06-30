@@ -17,11 +17,30 @@ const targetFirst: ITargetTable[] = [{ position: 1, Current: '', Planned: '', Pr
 const targetSecond = [{ ActionItem: '', Details: '', Contact: '' }];
 let currentInprogresssites: InProgressSitesGroup[] = [];
 
-export interface ICommonsourceType {
-  SourceId: string;
+export interface ICountryListType {
+  AssessmentSchedule: string;
+    AssessmentScope: string;
+    AverageRating: string;
+    CountryID: string;
+    Created: string;
+    DatacenterGeoClearance: string;
+    EdgeGeoClearance: string;
+    ISOLong: string;
+    ISOShort: string;
+    IsActive: string;
+    LastGAPDate: string;
+    ModerationComments: string;
+    Modified: string;
+    Region: string;
+    Restrictions: string;
+    Territory: string;
+    Title: string;
+    id: string;
+}
+interface ICommonsourceType {
+  SourceId: number;
   Value: string;
 }
-
 export interface IOperationalTaxonomy {
   ID: number;
   viewValue: string;
@@ -40,43 +59,43 @@ export class IntakeFormComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public countryIntake: CountryIntake) {
 
     // Country
-    this.countryGeoClearanceService.getCommonSourceList(0)
-      .subscribe((data) => {
-        this.countryList = data[0].sourceItems;
+    this.countryGeoClearanceService.getCountryList()
+      .subscribe((data: ICountryListType[]) => {
+        this.countryList = data;
       });
 
     // Priority
-    this.countryGeoClearanceService.getCommonSourceList(2)
+    this.countryGeoClearanceService.getCommonSourceList(1)
       .subscribe((data) => {
         this.prorityList = data[0].sourceItems;
         this.prorityList.forEach((items: ICommonsourceType) => {
           items.Value = items.SourceId + '-' + items.Value;
-          console.log(this.prorityList)
         });
       });
 
     // FacilityType
-    this.countryGeoClearanceService.getCommonSourceList(3)
+    this.countryGeoClearanceService.getCommonSourceList(2)
       .subscribe((data) => {
         this.FacilityType = data[0].sourceItems;
       });
-    
+
     // OperationalTaxonomy
-    this.countryGeoClearanceService.getCommonSourceList(4)
+    this.countryGeoClearanceService.getCommonSourceList(3)
       .subscribe((data) => {
         this.OperationalTaxonomy = data[0].sourceItems;
       });
-     
+
     // Scope
-    this.countryGeoClearanceService.getCommonSourceList(5)
+    this.countryGeoClearanceService.getCommonSourceList(4)
       .subscribe((data) => {
+        console.log(data[0].sourceItems);
         this.ScopeList = data[0].sourceItems;
       });
   }
 
   public FacilityType: ICommonsourceType[] = [];
   public OperationalTaxonomy: IOperationalTaxonomy[] = [];
-  public countryList: ICommonsourceType[] = [];
+  public countryList: ICountryListType[] = [];
   public prorityList: ICommonsourceType[] = [];
   public ScopeList: ICommonsourceType[] = [];
   public CurrentportfoliodisplayedColumns: string[] =
@@ -113,6 +132,9 @@ export class IntakeFormComponent implements OnInit {
   public Submitted: boolean;
   public SaveSuccessful: boolean;
   public tabletest: any;
+  getKeys(item) {
+    return Object.keys(item);
+  }
 
   public close(event: MouseEvent): void {
     setTimeout(() => this.countryIntakeDialog.close(), 100);
@@ -123,7 +145,8 @@ export class IntakeFormComponent implements OnInit {
       CurrentPortfolioDCcode: null
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
     };
-  //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
+    //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
+    console.log('add site', currentPortfolio);
     currentPortfolio.push(tmp);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
   }
@@ -171,7 +194,7 @@ export class IntakeFormComponent implements OnInit {
     });
   }
 
-  public onSubmit(e) :void {
+  public onSubmit(e): void {
     const data = this.saveAllData();
     data.Modified = new Date();
     this.Submitted = true;
@@ -192,5 +215,6 @@ export class IntakeFormComponent implements OnInit {
                                   .concat(this.countryIntake.MyFields.Section3details.group9.InProgressSitesGroup);
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
+    console.log(currentPortfolio);
   }
 }

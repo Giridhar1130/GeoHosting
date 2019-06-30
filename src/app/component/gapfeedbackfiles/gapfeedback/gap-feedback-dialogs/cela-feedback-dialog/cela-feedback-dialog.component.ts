@@ -10,7 +10,7 @@ import { ITextArray, ICelaFeedbackModel } from 'src/app/component/types/cela-fee
 })
 export class CelaFeedbackDialogComponent implements OnInit {
 
-    public inputTitle = 'CELA DataCenter GeoClearance Risk Level:';
+    public inputTitle = 'CELA DataCenter GeoClearance Risk Level';
     public labelTextAreaSummary = 'Feedback Summary - Summarize feedback in 300 characters or less.';
     public actionItemLabel = 'Action Item';
     public CELAFeedBack: ICelaFeedbackModel = {};
@@ -18,8 +18,8 @@ export class CelaFeedbackDialogComponent implements OnInit {
     public contactsSummary = 'Contact(s)';
     public CPIRaitingTitle = 'CPI Rating:';
     public risk = 'Risk';
-    public summary = 'summary';
-    public FreedomRaitingTitle = 'Freedom Rating:';
+    public summary = 'Summary';
+    public FreedomRaitingTitle = 'Freedom Rating';
     public checkBox = false;
 
     public dialogConfig: {
@@ -28,28 +28,28 @@ export class CelaFeedbackDialogComponent implements OnInit {
     };
 
     public riskLevels: ITextArray[] = [
-        {key: 'noFly', text: 'No Fly'},
-        {key: 'highRisk', text: 'High Risk'},
-        {key: 'mediumRisk', text: 'Medium Risk'},
-        {key: 'lowRisk', text: 'Low Risk'}
-    ];
+    //     {key: 'noFly', text: 'No Fly'},
+    //     {key: 'highRisk', text: 'High Risk'},
+    //     {key: 'mediumRisk', text: 'Medium Risk'},
+    //     {key: 'lowRisk', text: 'Low Risk'}
+   ];
 
     public cpiRaiting: ITextArray[] = [
-        {key: 'highCorrRisk', text: 'High Corruption Risk - Tier 1'},
-        {key: 'medCorrRisk', text: 'Medium Corruption Risk - Tier 2'},
-        {key: 'lowCorrRisk', text: 'Low Corruption Risk - Tier 3'}
-    ];
+    //     {key: 'highCorrRisk', text: 'High Corruption Risk - Tier 1'},
+    //     {key: 'medCorrRisk', text: 'Medium Corruption Risk - Tier 2'},
+    //     {key: 'lowCorrRisk', text: 'Low Corruption Risk - Tier 3'}
+     ];
 
     public freedomRaiting: ITextArray[] = [
-        {key: 'free', text: 'Free'},
-        {key: 'partlyFree', text: 'Partly Free'},
-        {key: 'notFree', text: 'Not Free'},
-    ];
+    //     {key: 'free', text: 'Free'},
+    //     {key: 'partlyFree', text: 'Partly Free'},
+    //     {key: 'notFree', text: 'Not Free'},
+   ];
 
     public specificActionSites: {actionItem: string, details: string, contacts: string}[] = [
-        {actionItem: '1111', details: 'details', contacts: 'contact'},
-        {actionItem: '2222', details: 'details', contacts: 'contact'},
-        {actionItem: '3333', details: 'details', contacts: 'contact'}
+        // {actionItem: '1111', details: 'details', contacts: 'contact'},
+        // {actionItem: '2222', details: 'details', contacts: 'contact'},
+        // {actionItem: '3333', details: 'details', contacts: 'contact'}
     ];
 
     constructor(
@@ -57,8 +57,6 @@ export class CelaFeedbackDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
-        this.dialogConfig = this.data;
-        this.CELAFeedBack.RiskLevel = this.riskLevels[0];
         if (this.specificActionSites === [] || this.specificActionSites === null || this.specificActionSites === undefined) {
             this.specificActionSites.push({actionItem: '', details: '', contacts: ''});
         }
