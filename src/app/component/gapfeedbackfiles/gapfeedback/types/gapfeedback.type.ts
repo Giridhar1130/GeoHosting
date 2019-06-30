@@ -11,7 +11,7 @@ export interface GapFeedBack {
     CompletedDate: Date;
     CountryName: string;
     DataCenterRiskLevel: string;
-    AverageRating : string;
+    AverageRating: string;
     Country: string;
     CountryID: string;
     Editor: {Email: string, LookupValue: string};
@@ -45,7 +45,7 @@ export interface MyFields {
   Treasury: ITreasury;
 }
 
-interface Author{
+interface Author {
   Email: string;
   LookupId: string;
   LookupValue: string;
@@ -69,7 +69,7 @@ export interface IEnergyDetails {
   Co2Emission: string;
   EnergyRate: string;
   MarketStructure: string;
-  Reliability: string; 
+  Reliability: string;
 }
 
 export interface IInformationSecurityComplaince {
@@ -133,7 +133,7 @@ export interface ITelecommunications { // Telecommunications
   TelecommunicationsRisk: string;
   TelecommunicationsSummary: string;
 }
-export interface LicenseRequirements{
+export interface LicenseRequirements {
   TerrestrialRisk: string;
   TerrestrialSummary: string;
   SubmarineRisk: string;
@@ -144,7 +144,7 @@ export interface ILogicalSecurity {
   logicalSecuritydetails: IlogicalSecuritydetails;
 }
 
-export interface IlogicalSecuritydetails{
+export interface IlogicalSecuritydetails {
   SecurityIssues: string;
 }
 
@@ -175,23 +175,26 @@ export interface IRiskManagement {
 }
 
 export interface IRiskManagementDetails {
-  GeneralRsikConsiderations: string;
+  GeneralRsikConsiderations: string; // General Risk Considerations
   Insurability: IInsurability;
-  Risk: IRisk;
+  Risks: IRisks;
 }
 
 export interface IInsurability {
   CyberRisk: string;
   GeneralLiability: string;
-  PoliticalRisk: string;
+  PoliticalRisk: string; 
   Property: string;
 }
 
-export interface IRisk {
-  ExchangeTransferRisk: string;
-  LegalandRegulartoryRisk: string;
-  PoliticalViolenceRisk: string;
-  LegalandRegulatoryRisk: string;
+export interface IRisks {
+  ExchangeTransferRisk: string; // Exchange Transfer Risk:
+  LegalandRegulartoryRisk: string; // Legal & Regulatory Risk:
+  PoliticalViolenceRisk: string; // Political Violence Risk:
+  LegalandRegulatoryRisk: string; // Legal & Regulatory Risk:
+  PoliticalInteferenceRisk: string; // Political Interference Risk:
+  SovereignNonPaymentRisk: string; //  Sovereign Non-Payment Risk:
+  SupplyChainRisk: string; // Supply Chain Risk:
 }
 
 export interface ISummary {
@@ -200,7 +203,7 @@ export interface ISummary {
   RiskMgmtRiskLevel: string;
 }
 
-export interface ActionItems{
+export interface ActionItems {
   ActionName: string;
   Details: string;
   Contact: string;
@@ -217,10 +220,10 @@ export interface ITreasuryDetails {
 
 export interface ITax {
   DatacenterConsideration: IDatacenterConsideration;
-  LegalEntity: string;
-  LocalTaxContact: ILocalTaxContact;
-  RestrictionsOnLocations: string;
-  RestrictionOrTaxConsideration: string;
+  LegalEntity: string; // What Legal Entity should be used for a Network Site, an Off-network Site or other Backbone infrastructure?
+  LocalTaxContact: ILocalTaxContact; // Regional Tax contact
+  RestrictionsOnLocations: string; // Restrictions on locations these sites can serve, services that may be hosted, other?
+  RestrictionOrTaxConsideration: string; // Are there any other restrictions or tax considerations in this country/region?
 }
 
 export interface IDatacenterConsideration {
@@ -252,5 +255,5 @@ export interface IDialogConfig {
       dueDate: Date,
       priority: string,
       completedDate: Date,
-  }
+  };
 }

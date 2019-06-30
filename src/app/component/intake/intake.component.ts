@@ -182,8 +182,16 @@ export class IntakeComponent implements OnInit {
       disableClose: true
     };
 
+    const dialogRef = this.countryIntakeDialog.open(IntakeFormComponent, passdata);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.currentRightItem.push(result);
+        this.allIntakeData.push(result);
+        console.log(result);
+      }
+    });
     this.countryIntakeDialog.open(IntakeFormComponent, passdata);
-  }  
+  }
 
   sortingDataAccessor(item, property) {
     if (property.includes('.')) {
