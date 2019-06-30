@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IntakeFormComponent } from '../intake-form/intake-form.component';
 import { IntakeService } from '../../app.intake.service';
 import {CountryIntake} from '../types/countryintake.type';
-import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { MatDialog, throwMatDialogContentAlreadyAttachedError, MatPaginator } from '@angular/material';
 import { GapFeedBack } from '../gapfeedbackfiles/gapfeedback/types/gapfeedback.type';
 import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
@@ -15,11 +15,18 @@ import { stringify } from '@angular/compiler/src/util';
   styleUrls: ['./intake.component.css']
 })
 
-export class IntakeComponent implements OnInit {
-  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog,
-               private gapFeedbackService: GapFeedbackService) { }
-
+export class IntakeComponent implements AfterViewInit, OnInit {
+  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog, 
+    private gapFeedbackService: GapFeedbackService) { }
+  
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   public allIntakeData: any[];
   public displayedColumns: string[] = ['Radio', 'ID', 'MyFields.FormName', 'AssessmentStatus',
                                      'MyFields.Section1details.Priority',
@@ -238,12 +245,14 @@ export class IntakeComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   public afterLeftRootCollapse(ev: any): void {
     this.currentRightItem = this.currentRightItem.filter((items: CountryIntake) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
     this.dataSource.sort = this.sort;
@@ -253,6 +262,7 @@ export class IntakeComponent implements OnInit {
     this.currentRightItem = this.currentRightItem.concat(
                                 this.allIntakeData.filter((items: CountryIntake) => items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
     this.dataSource.sort = this.sort;
@@ -267,6 +277,7 @@ export class IntakeComponent implements OnInit {
 
   public showALl(): void {
     this.dataSource = new MatTableDataSource(this.allIntakeData);
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
     this.kickShow = false;
@@ -416,6 +427,7 @@ export class IntakeComponent implements OnInit {
       });
 
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 }

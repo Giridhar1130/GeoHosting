@@ -8,7 +8,7 @@ export interface CountryList {
     AssessmentScope: string;
     AssessmentSchedule: string;
     Restrictions: string;
-    CountryID: string;
+    CountryID: number;
     Latitude: number;
     Longitude: number;
     Region: string;

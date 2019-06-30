@@ -22,7 +22,7 @@ export class CountryGeoClearanceService {
     }
 
     getCountryList() {
-        return this.http.get<any[]>('https://localhost:44376/api/country/AllItems')
+        return this.http.get<CountryList[]>('https://localhost:44376/api/country/AllItems')
 			.pipe(catchError(this.handleError)
         );
     }
