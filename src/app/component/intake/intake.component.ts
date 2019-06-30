@@ -269,7 +269,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
   }
 
   public applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue ? filterValue.trim().toLowerCase() : '';
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
     this.dataSource.sort = this.sort;

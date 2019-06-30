@@ -14,13 +14,13 @@ const httpOptions = {
 })
 
 export class GapFeedbackService {
-  intakesUrl = 'https://localhost:44376/api/gapFeedback/Forms';
+  intakesUrl = 'https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms';
   constructor(
     private http: HttpClient,
     private messageService: MessagesService) { }
 
   getgapfeedback() {
-    return this.http.get<GapFeedBack[]>('https://localhost:44376/api/gapFeedback/Forms')
+    return this.http.get<GapFeedBack[]>('https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms')
       .pipe(catchError(this.handleError)
       );
   }

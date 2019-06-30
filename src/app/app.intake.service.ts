@@ -7,18 +7,18 @@ import { CountryIntake } from './component/types/countryintake.type';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}; // https://localhost:44376/api/countryIntake/Forms
+};
 @Injectable({
   providedIn: 'root'
 })
 export class IntakeService {
-  intakesUrl = 'https://localhost:44376/api/countryIntake/Forms';
+  intakesUrl = 'https://geohostingapi.azurewebsites.net/api/countryIntake/Forms';
   constructor(
     private http: HttpClient,
     private messageService: MessagesService) { }
 
   getintake() {
-    return this.http.get<CountryIntake[]>('https://localhost:44376/api/countryIntake/Forms')
+    return this.http.get<CountryIntake[]>('https://geohostingapi.azurewebsites.net/api/countryIntake/Forms')
       .pipe(catchError(this.handleError)
       );
   }

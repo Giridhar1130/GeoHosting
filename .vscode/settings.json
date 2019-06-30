@@ -1,0 +1,5 @@
+{
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/6e28d542-7fb4-4f9b-9704-59de22542d6a/resourceGroups/GeoHostingData/providers/Microsoft.Web/sites/GeoHostingUI",
+    "appService.deploySubpath": ""
+}
