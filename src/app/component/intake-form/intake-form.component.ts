@@ -37,7 +37,7 @@ export interface ICountryListType {
     Title: string;
     id: string;
 }
-interface ICommonsourceType{
+interface ICommonsourceType {
   SourceId: number;
   Value: string;
 }
@@ -78,24 +78,20 @@ export class IntakeFormComponent implements OnInit {
       .subscribe((data) => {
         this.FacilityType = data[0].sourceItems;
       });
-    
+
     // OperationalTaxonomy
     this.countryGeoClearanceService.getCommonSourceList(3)
       .subscribe((data) => {
         this.OperationalTaxonomy = data[0].sourceItems;
       });
-     
+
     // Scope
     this.countryGeoClearanceService.getCommonSourceList(4)
       .subscribe((data) => {
-        console.log(data[0].sourceItems)
+        console.log(data[0].sourceItems);
         this.ScopeList = data[0].sourceItems;
       });
   }
-  getKeys(item) {
-    return Object.keys(item);
-  }
-  dataList=currentPortfolio;
 
   public FacilityType: ICommonsourceType[] = [];
   public OperationalTaxonomy: IOperationalTaxonomy[] = [];
@@ -136,6 +132,9 @@ export class IntakeFormComponent implements OnInit {
   public Submitted: boolean;
   public SaveSuccessful: boolean;
   public tabletest: any;
+  getKeys(item) {
+    return Object.keys(item);
+  }
 
   public close(event: MouseEvent): void {
     setTimeout(() => this.countryIntakeDialog.close(), 100);
@@ -146,8 +145,8 @@ export class IntakeFormComponent implements OnInit {
       CurrentPortfolioDCcode: null
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
     };
-  //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
-      console.log('add site', currentPortfolio)
+    //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
+    console.log('add site', currentPortfolio);
     currentPortfolio.push(tmp);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
   }

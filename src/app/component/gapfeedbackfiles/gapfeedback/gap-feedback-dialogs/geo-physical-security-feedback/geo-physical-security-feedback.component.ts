@@ -55,8 +55,8 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
     public MicrosoftHeadCount: string = this.gapFeedbackDataItem.MyFields.
                                         PhysicalSecurity.PhysicalSecurityDetails.MicrosoftHeadCount;
     public PhysicalSecurityPointofContactName: string = this.gapFeedbackDataItem.MyFields.PhysicalSecurity.PhysicalSecurityDetails.
-                                                        PhysicalSecurityPointofContact === undefined ? '' : this.gapFeedbackDataItem.MyFields.
-                                                        PhysicalSecurity.PhysicalSecurityDetails.PhysicalSecurityPointofContact.DisplayName;
+                                            PhysicalSecurityPointofContact === undefined ? '' : this.gapFeedbackDataItem.MyFields.
+                                            PhysicalSecurity.PhysicalSecurityDetails.PhysicalSecurityPointofContact.DisplayName;
     ngOnInit() {
             // Risk
     this.countryGeoClearanceService.getCommonSourceList(0)
@@ -64,7 +64,7 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
       this.riskLevels = data[0].sourceItems;
     });
     if (this.specificActionSites.length < 1) {
-        this.specificActionSites.push({ ActionName: '', Details: '', Contact: '' })
+        this.specificActionSites.push({ ActionName: '', Details: '', Contact: '' });
     }
     }
 

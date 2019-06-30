@@ -5,7 +5,7 @@ import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 import { ITextArray } from 'src/app/component/types/cela-feedbackType';
 import { CountryGeoClearanceService } from '../../../../country-geo-clearance/country-geo-clearance.service';
 @Component({
-    selector: 'geo-tax-feedback-dialog',
+    selector: 'app-geo-tax-feedback-dialog',
     templateUrl: './tax-feedback-dialog.component.html',
     styleUrls: ['./tax-feedback-dialog.component.css']
   })
@@ -58,7 +58,7 @@ export class TaxFeedbackDialogComponent implements OnInit {
     public tempRiskModel: any = {
         prop1: true,
         tempString: 'tempstr'
-    }
+    };
 
     constructor(private dialogRef: MatDialogRef<TaxFeedbackDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public element: GapFeedBack,
@@ -93,7 +93,6 @@ export class TaxFeedbackDialogComponent implements OnInit {
     public onotherRestriction(otherRestriction: string) {
         this.restrictionOrTaxConsideration = otherRestriction;
     }
- 
 
     public onAddSite() {
 
@@ -123,15 +122,3 @@ export class TaxFeedbackDialogComponent implements OnInit {
         this.dialogRef.close();
     }
 }
-// 
-// .
-
-// public RiskLevel: string = this.element.RiskLevel;
-// public FeedbackSummary: string = this.element.FeedbackSummary;
-// public ActionItems: ActionItems[] = [];
-// public Details: string = this.element.MyFields.RiskManagement.RiskManagementDetails.GeneralRsikConsiderations;
-// public legalEntity: string = this.element.MyFields.Tax.LegalEntity;
-// public restrictionsOnLocations: string = this.element.MyFields.Tax.RestrictionsOnLocations;
-// public localTaxContactName: string = this.element.MyFields.Tax.LocalTaxContact === undefined ? '' :
-// this.element.MyFields.Tax.LocalTaxContact.DisplayName;
-// public restrictionOrTaxConsideration = this.element.MyFields.Tax.RestrictionOrTaxConsideration;

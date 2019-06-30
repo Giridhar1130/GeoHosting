@@ -7,7 +7,7 @@ import {GapFeedbackService} from '../../../../../app.gapfeedback.service';
 import { CountryGeoClearanceService } from 'src/app/component/country-geo-clearance/country-geo-clearance.service';
 
 @Component({
-    selector: 'geo-feedback-form-dialog',
+    selector: 'app-geo-feedback-form-dialog',
     templateUrl: './feedback-form-dialog.component.html',
     styleUrls: ['./feedback-form-dialog.component.css']
 })
@@ -73,7 +73,7 @@ export class FeedbackFormDialogComponent implements OnInit {
         this.CompletedDateSelected = data;
 
     }
-    public onTeamHandler(teamname: string): void{
+    public onTeamHandler(teamname: string): void {
         this.TeamName = teamname;
     }
     public onDueDate(data: Data) {

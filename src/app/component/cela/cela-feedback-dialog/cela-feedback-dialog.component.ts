@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
 import { ITextArray, ICelaFeedbackModel } from 'src/app/component/types/cela-feedbackType';
-import { GapFeedBack, ActionItems} from '../../gapfeedbackfiles/gapfeedback/types/gapfeedback.type'
+import { GapFeedBack, ActionItems} from '../../gapfeedbackfiles/gapfeedback/types/gapfeedback.type';
 import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 import { CountryGeoClearanceService } from '../../country-geo-clearance/country-geo-clearance.service';
 
@@ -24,7 +24,6 @@ export class CelaFeedbackComponent implements OnInit {
     public FreedomRaitingTitle = 'Freedom Rating:';
     public checkBox = false;
     public summaryTableDisplayedColumns: string[] = ['ActionName', 'Details', 'Contact'];
- 
     public dialogConfig: GapFeedBack;
 
     public riskLevels: ITextArray[];
@@ -46,13 +45,13 @@ export class CelaFeedbackComponent implements OnInit {
         public FeedbackSummary: string = this.gapFeedbackDataItem.FeedbackSummary;
         public CPIRating: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.CPIRating;
         public TerrestrialRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
-        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialRisk;
+        '' : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialRisk;
         public TerrestrialSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
-        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialSummary;
+        '' : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.TerrestrialSummary;
         public SubmarineRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
-        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineRisk;
+        '' : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineRisk;
         public SubmarineSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements === undefined ?
-        "" : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineSummary;
+        '' : this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.LicenseRequirements.SubmarineSummary;
         public GNIRating: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.gni.GNIRating;
         public GNISummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.gni.GNISummary;
         public LECRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.lawEnforcementCompliance.LECRisk;
@@ -61,16 +60,19 @@ export class CelaFeedbackComponent implements OnInit {
         public PrivacySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.privacy.PrivacySummary;
         public DataSecurityRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.dataSecurity.DataSecurityRisk;
         public DataSecuritySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.dataSecurity.DataSecuritySummary;
-        public MediaContentLiabilityRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk;
-        public MediaContentLiabilitySummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary;
+        public MediaContentLiabilityRisk: string =
+        this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilityRisk;
+        public MediaContentLiabilitySummary: string =
+         this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.mediaContentLiability.MediaContentLiabilitySummary;
         public TelecommunicationsRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsRisk;
-        public TelecommunicationsSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary;
+        public TelecommunicationsSummary: string =
+         this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.telecommunications.TelecommunicationsSummary;
         public PendingRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.PendingRisk;
         public PendingSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.PendingLawRegulations;
         public DataResiReguSummary: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResiReguSummary;
         public DataResiReguRisk: string = this.gapFeedbackDataItem.MyFields.LCA.lcaDetails.other.DataResidencyRegulation;
         public ActionItems: ActionItems[] = [];
-        public specificActionSites: ActionItems[] = []; 
+        public specificActionSites: ActionItems[] = [];
         public summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
     ngOnInit() {
