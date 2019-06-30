@@ -9,6 +9,7 @@ import { GapFeedBack } from '../gapfeedbackfiles/gapfeedback/types/gapfeedback.t
 import { GapFeedbackService } from 'src/app/app.gapfeedback.service';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { stringify } from '@angular/compiler/src/util';
+import {SelectionModel} from '@angular/cdk/collections';
 @Component({
   selector: 'app-intake',
   templateUrl: './intake.component.html',
@@ -16,9 +17,9 @@ import { stringify } from '@angular/compiler/src/util';
 })
 
 export class IntakeComponent implements AfterViewInit, OnInit {
-  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog, 
-    private gapFeedbackService: GapFeedbackService) { }
-  
+  constructor( private intakeService: IntakeService, private countryIntakeDialog: MatDialog,
+               private gapFeedbackService: GapFeedbackService) { }
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -39,6 +40,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
   public currentRightItem: CountryIntake[];
   public sortedData: CountryIntake[];
   public kickShow = false;
+  public selection = new SelectionModel(true, []);
   public getintakeInfo(): void {
     this.intakeService.getintake()
       .subscribe(async (callbackfromgetAPI: any[]) => {
@@ -48,7 +50,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
       });
   }
   public allRowSelected(ev: CountryIntake): void {
-    console.log(ev);
+    this.selection.select(ev);
     this.kickShow = true;
     const kickOffAssignedDict = {
       CELA: 'areyes@microsoft.com',
@@ -245,6 +247,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
+    this.selection.clear();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -255,6 +258,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
+    this.selection.clear();
     this.dataSource.sort = this.sort;
   }
 
@@ -265,6 +269,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
+    this.selection.clear();
     this.dataSource.sort = this.sort;
   }
 
@@ -272,6 +277,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue ? filterValue.trim().toLowerCase() : '';
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.kickShow = false;
+    this.selection.clear();
     this.dataSource.sort = this.sort;
   }
 
@@ -281,6 +287,8 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
     this.kickShow = false;
+    this.selection.clear();
+
   }
 
   public getdata(data): void {
@@ -400,10 +408,8 @@ export class IntakeComponent implements AfterViewInit, OnInit {
       if (result) {
         this.currentRightItem.push(result);
         this.allIntakeData.push(result);
-        console.log(result);
       }
     });
-    this.countryIntakeDialog.open(IntakeFormComponent, passdata);
   }
 
   sortingDataAccessor(item, property) {

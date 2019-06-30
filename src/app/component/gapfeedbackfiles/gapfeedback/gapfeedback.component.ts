@@ -30,14 +30,12 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
                                       'DataCenterRiskLevel', 'NetworkRiskLevel', 'Modified',
                                       'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
                                       'MyFields.CommonFields.CountryID', 'AssessmentStatus'];
-  // public dataSource: MatTableDataSource<any[]>;
   public dataSource = new MatTableDataSource(this.allGapFeedbackData);
   public objectkeys = Object.keys;
   public objectvalues = Object.values;
   public tmpAssessmentStatus: string[] = [];
   public leftItemOrginal: object[] = [];
   public currentRightItem: GapFeedBack[];
-   
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -61,7 +59,7 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
     this.currentRightItem = this.allGapFeedbackData.filter((items: GapFeedBack) =>
       items.GeoHostingOwner === target.GeoHostingOwner && items.AssessmentStatus === target.AssessmentStatus
     );
-    this.dataSource = new MatTableDataSource(this.currentRightItem);    
+    this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -355,14 +353,14 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
     }
     return item[property];
   }
-  
-  ngOnInit() {    
+
+  ngOnInit() {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {
         this.allGapFeedbackData = callbackfromgetAPI;
         this.getdata(this.allGapFeedbackData);
         this.currentRightItem = this.allGapFeedbackData;
-        this.dataSource.paginator = this.paginator;       
+        this.dataSource.paginator = this.paginator;
         this.leftItemOrginal.sort((val1, val2) => {
           return Object.keys(val1)[0] > Object.keys(val2)[0] ? 1 : Object.keys(val1)[0] < Object.keys(val2)[0] ? -1 : 0;
         });
@@ -370,8 +368,8 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
 
       });
 
-      this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

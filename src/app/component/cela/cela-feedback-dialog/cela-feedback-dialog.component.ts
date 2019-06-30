@@ -36,6 +36,7 @@ export class CelaFeedbackComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public gapFeedbackDataItem: GapFeedBack,
         private gapfeedbackService: GapFeedbackService,
         private countryGeoClearanceService: CountryGeoClearanceService) { }
+        public titleCountry = this.gapFeedbackDataItem.MyFields.CommonFields.Country;
         public Owner: string = this.gapFeedbackDataItem.MyFields.CommonFields.GeoHostingOwner;
         public Scope: string = this.gapFeedbackDataItem.MyFields.CommonFields.Scope;
         public Assigned: string = this.gapFeedbackDataItem.MyFields.CommonFields.AssignedTo;

@@ -102,17 +102,11 @@
 
                     
                     <div class="row">
-                        <div class="col-sm-6">
-                                <button class="coll-sm-6" 
-                                        mat-button 
-                                        (click)="onAddSite()" 
-                                        class="add-site-button"
-                                        matTooltip="Please include only country-specific action items. Standard process should be documented and implemented separately."
-                                        matTooltipPosition="after"><i class="material-icons">keyboard_arrow_down</i>Add another site
-                                </button>
+                            <div (click)="onAddSite($event)">
+                                <i class="material-icons">arrow_drop_down</i>Add another site
+                              </div>
+                            <div class="col-sm-6"></div>
                         </div>
-                        <div class="col-sm-6"></div>
-                    </div>
 
                 </mat-card-content>
             </mat-card>
