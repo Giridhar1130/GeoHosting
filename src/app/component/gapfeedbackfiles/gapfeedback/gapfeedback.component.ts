@@ -6,8 +6,12 @@ import { GapFeedbackService } from '../../../app.gapfeedback.service';
 import { GapFeedBack } from '../gapfeedback/types/gapfeedback.type';
 import { CelaFeedbackComponent } from '../../cela/cela-feedback-dialog/cela-feedback-dialog.component';
 import { MatDialog, MatPaginator } from '@angular/material';
-import { GeoPhysicalSecurityFeedbackComponent } from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
+import { GeoPhysicalSecurityFeedbackComponent
+} from './gap-feedback-dialogs/geo-physical-security-feedback/geo-physical-security-feedback.component';
 import { FeedbackFormDialogComponent } from './gap-feedback-dialogs/feedback-form-dialog/feedback-form-dialog.component';
+import { TaxFeedbackDialogComponent } from './gap-feedback-dialogs/tax-feedback-dialog/tax-feedback-dialog.component';
+import { RiskManagementFeedbackDialogComponent
+} from './gap-feedback-dialogs/risk-management-feedback-dialog/risk-management-feedback-dialog.component';
 
 
 @Component({
@@ -20,9 +24,11 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
 
 
   public allGapFeedbackData: GapFeedBack[];
-  public displayedColumns: string[] = ['AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
-                                      'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope', 'TeamName', 'NewCountryAssessmentID', 'RiskLevel', 
-                                      'DataCenterRiskLevel', 'NetworkRiskLevel','Modified', 'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
+  public displayedColumns: string[] = ['TaskName', 'AssignedTo', 'Submitted', 'TaskStatus', 'Country', 'GAPFeedbackForm', 'GeoHostingOwner',
+                                      'CountryIntakeForm', 'MyFields.CommonFields.Priority', 'Scope',
+                                      'TeamName', 'NewCountryAssessmentID', 'RiskLevel',
+                                      'DataCenterRiskLevel', 'NetworkRiskLevel', 'Modified',
+                                      'AssessmentID', 'WorkflowVersion', 'Editor.LookupValue',
                                       'MyFields.CommonFields.CountryID', 'AssessmentStatus'];
   // public dataSource: MatTableDataSource<any[]>;
   public dataSource = new MatTableDataSource(this.allGapFeedbackData);
@@ -46,7 +52,7 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (data: GapFeedBack[]) => {
         if (data) {
-          this.allGapFeedbackData = data;          
+          this.allGapFeedbackData = data;
         }
       });
   }
@@ -116,9 +122,185 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
     });
   }
 
-  public openFeedbackTask(value): void {
+  openFeedbackTask(value): void {
+    const emptyGapFeedBack: GapFeedBack = {
+      Id: '',
+      IsActive: true,
+      GeoHostingOwner: '',
+      AssessmentID: '',
+      AssessmentStatus: '',
+      AssignedTo: '',
+      Author: {
+        Email: '',
+        LookupId: '',
+        LookupValue: '',
+        TypeId: '',
+      },
+      CompletedDate: null,
+      CountryName: '',
+      DataCenterRiskLevel: '',
+      AverageRating : '',
+      Country: '',
+      CountryID: '',
+      Editor: {Email: '', LookupValue: ''},
+      FeedbackSummary: '',
+      FormId: '',
+      Modified: null,
+      MyFields: {
+        CommonFields: {
+          AssignedTo: '',
+          Country: '',
+          CountryID: '',
+          GeoHostingOwner: 0,
+          Priority: '',
+          Scope: '',
+        },
+        Energy: {
+          EnergyDetails: {
+            Co2Emission: '',
+            EnergyRate: '',
+            MarketStructure: '',
+            Reliability: '',
+          }
+        },
+        InformationSecurityComplaince: {
+          InformationSecurityComplainceDetails: {
+            ComplainceIssues:  '',
+            NationalInformationSecurity:  '',
+          }
+        },
+        LCA: {
+          lcaDetails: {
+            CPIRating: '',
+            dataSecurity: {
+              DataSecurityRisk: '',
+              DataSecuritySummary: '',
+            },
+            gni: {
+              GNIRating: '',
+              GNISummary: '',
+            },
+            lawEnforcementCompliance: {
+              LECRisk: '',
+              LECSummary: '',
+            },
+            mediaContentLiability: {
+              MediaContentLiabilityRisk: '',
+              MediaContentLiabilitySummary:  '',
+            },
+            other: {
+              DataResiReguSummary:  '',
+              DataResidencyRegulation:  '',
+              PendingLawRegulations: '',
+              PendingRisk:  '',
+            },
+            privacy: {
+              PrivacyRisk: '',
+              PrivacySummary:  '',
+            },
+            telecommunications: {
+              TelecommunicationsRisk:  '',
+              TelecommunicationsSummary:  '',
+            },
+            LicenseRequirements: {
+              TerrestrialRisk: '',
+              TerrestrialSummary: '',
+              SubmarineRisk:  '',
+              SubmarineSummary:  '',
+            }
+          }
+        },
+        LogicalSecurity: {
+          logicalSecuritydetails: {
+            SecurityIssues: ''
+          }
+        },
+        PhysicalSecurity: {
+          PhysicalSecurityDetails: {
+            BaselineSecurityRequirements: '',
+            DepartTravelWarning: '',
+            MicrosoftHeadCount:  '',
+            PhysicalSecurityPointofContact: {
+              AccountId: '',
+              AccountType: '',
+              DisplayName: '',
+            },
+            optionPhysical:  '',
+          },
+          SecurityIssues: '',
+          TravelWarningSection: ''
+        },
+        RiskManagement: {
+          RiskManagementDetails: {
+            GeneralRsikConsiderations: '',
+            Insurability: {
+              CyberRisk:  '',
+              GeneralLiability: '',
+              PoliticalRisk:  '',
+              Property: '',
+            },
+            Risks: {
+              ExchangeTransferRisk:  '',
+              LegalandRegulartoryRisk: '',
+              PoliticalViolenceRisk:  '',
+              LegalandRegulatoryRisk:  '',
+              PoliticalInteferenceRisk:  '',
+              SovereignNonPaymentRisk:  '',
+              SupplyChainRisk:  '',
+            },
+          },
+          SecurityIssues: '',
+          TravelWarningSection: '',
+        },
+        Summary: {
+          ActionItems: [],
+          FeedbackSummary: '',
+          RiskMgmtRiskLevel: '',
+        },
+        Tax: {
+          DatacenterConsideration: {
+            CorporateTaxRate: '',
+            CreditableOptions: '',
+            IncentivesandExemptions: '',
+            PersonalPropertyTax: '',
+            RealPropertyTax: '',
+            RestrictionOnDatacenter: '',
+            SalesTax: '',
+            SalesTaxonServers: '',
+            TaxRatesOptions: '',
+            VATRates: '',
+          },
+          LegalEntity: '',
+          LocalTaxContact: {
+            AccountId: '',
+            AccountType: '',
+            DisplayName: '',
+          },
+          RestrictionsOnLocations: '',
+          RestrictionOrTaxConsideration: '',
+        },
+        Treasury: {
+          TreasuryDetails: {
+            CountryCurrency: '',
+            CurrencyRestrictionForiegnMarket: '',
+            delayCountryPermission: '',
+          }
+        },
+      },
+      NetworkRiskLevel: '',
+      NewCompleteAssessmentID: '',
+      NewCountryAssessmentID: '',
+      NewFormName: '',
+      RiskLevel: '',
+      SubmitStatus: '',
+      Submitted: null,
+      TaskStatus: '',
+      TaskName: '',
+      TeamName: '',
+      WorkflowVersion: 0
+    };
     const matDialogConfig = {
-      data: value,
+      data: emptyGapFeedBack,
       width: '80%',
       height: '75%',
       panelClass: 'geo-dialog'
@@ -128,6 +310,8 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.currentRightItem.push(result);
+        this.allGapFeedbackData.push(result);
         console.log(result);
       }
     });
@@ -141,14 +325,18 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
       panelClass: 'geo-dialog',
       disableClose: true
     };
-    
     let dialogRef;
     if (value.TeamName === 'CELA') {
       dialogRef = this.dialog.open(CelaFeedbackComponent, matDialogConfig);
     }
-
+    if (value.TeamName === 'Tax') {
+      dialogRef = this.dialog.open(TaxFeedbackDialogComponent, matDialogConfig);
+    }
     if (value.TeamName === 'Physical Security') {
       dialogRef = this.dialog.open(GeoPhysicalSecurityFeedbackComponent, matDialogConfig);
+    }
+    if (value.TeamName === 'Risk Management') {
+      dialogRef = this.dialog.open(RiskManagementFeedbackDialogComponent, matDialogConfig);
     }
 
     if (dialogRef) {
@@ -170,9 +358,9 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
   
   ngOnInit() {    
     this.gapfeedbackService.getgapfeedback()
-      .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {        
-        this.allGapFeedbackData = callbackfromgetAPI;        
-        this.getdata(this.allGapFeedbackData);                
+      .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {
+        this.allGapFeedbackData = callbackfromgetAPI;
+        this.getdata(this.allGapFeedbackData);
         this.currentRightItem = this.allGapFeedbackData;
         this.dataSource.paginator = this.paginator;       
         this.leftItemOrginal.sort((val1, val2) => {

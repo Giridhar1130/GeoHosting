@@ -163,17 +163,27 @@
     width:100%;
   }
   
-  #geohosting-tab-tabpane-geoclearance .nofly{
+  #geohosting-tab-tabpane-geoclearance td.nofly {
     color:white;
     background-color: #cc0000;
   }
   
-  #geohosting-tab-tabpane-geoclearance .cleared{
+  #geohosting-tab-tabpane-geoclearance td.cleared {
     color:white;
     background-color: #548235;
   }
+
+  #geohosting-tab-tabpane-geoclearance td.limited {
+    color:white;
+    background-color: #cc9900;
+  }
   
-  .geohosting-indicators{
+  #geohosting-tab-tabpane-geoclearance td.restricted {
+    color:white;
+    background-color: #ff6600;
+  }
+  
+  .geohosting-indicators {
     margin-top: 15px;
     margin-bottom: 15px;
   }

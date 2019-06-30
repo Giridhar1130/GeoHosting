@@ -41,33 +41,21 @@
                     <th>ROC Region</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let item of CountriesList">
                   <tr>
                     <td>
-                      <a href="#">Afghanistan</a>
+                      <a [routerLink]="['/geoclearance', item.Title]">{{item.Title}}</a>
                     </td>
-                    <td class="nofly">No Fly</td>
-                    <td class="nofly">No Fly</td>
-                    <td>Asia</td>
-                    <td>APAC</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Aland Islands</a>
-                    </td>
-                    <td>Not Assessed</td>
-                    <td>Not Assessed</td>
-                    <td>Europe</td>
-                    <td>EMEA</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Albania</a>
-                    </td>
-                    <td>Not Assessed</td>
-                    <td class="cleared">Cleared</td>
-                    <td>Europe</td>
-                    <td>EMEA</td>
+                    <td [ngClass] = "{'nofly': item.DatacenterGeoClearance == 'No Fly', 
+                                      'cleared': item.DatacenterGeoClearance == 'Cleared',
+                                      'restricted': item.DatacenterGeoClearance == 'Restricted',
+                                      'limited': item.DatacenterGeoClearance == 'Limited'}">{{item.DatacenterGeoClearance}}</td>
+                    <td [ngClass] = "{'nofly': item.EdgeGeoClearance == 'No Fly', 
+                                      'cleared': item.EdgeGeoClearance == 'Cleared',
+                                      'restricted': item.EdgeGeoClearance == 'Restricted',
+                                      'limited': item.EdgeGeoClearance == 'Limited'}">{{item.EdgeGeoClearance}}</td>
+                    <td>{{item.Territory}}</td>
+                    <td>{{item.Region}}</td>
                   </tr>
                 </tbody>
               </table>

@@ -1,7 +1,9 @@
 <div>
   <div class="header text-center  flex-xs-middle ">
     <span>GeoHosting Country Assessment</span>
-    <button class="material-icons close-icon " (click)="close($event)">close</button>
+    <button class="material-icons close-icon " (click)="close($event)">
+      close
+    </button>
     <div>Intake Form</div>
   </div>
   <form
@@ -11,16 +13,17 @@
   >
     <div class="container-fluid">
       <h4>Summary</h4>
+
       <div class="row">
         <div class="col-6">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>Country</mat-label>
             <mat-select [(ngModel)]="selectedCountry" name="country">
               <mat-option
                 *ngFor="let country of countryList"
-                [value]="country.Value"
+                [value]="country.Title"
               >
-                {{ country.Value }}
+                {{ country.Title }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -46,10 +49,10 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>Scope</mat-label>
             <mat-select [(ngModel)]="selectedScope" name="scope">
-              <mat-option *ngFor="let scope of scopeList" [value]="scope.Value">
+              <mat-option *ngFor="let scope of ScopeList" [value]="scope.Value">
                 {{ scope.Value }}
               </mat-option>
             </mat-select>
@@ -58,7 +61,7 @@
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label
               data-toggle="tooltip"
               title="Why are we assessing this market(e.g. consideration for a APAC Hub site, Refresh, GoLocal initiative)"
@@ -80,7 +83,7 @@
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label> Admin Comments</mat-label>
             <textarea
               matInput
@@ -109,12 +112,12 @@
             <ng-container matColumnDef="DcCode">
               <th mat-header-cell *matHeaderCellDef>DcCode</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    
-                    value="element.CurrentPortfolioDCcode"
+                    [(ngModel)]="element.CurrentPortfolioDCcode"
                     name="element.CurrentPortfolioDCcode"
+                   
                   />
                 </mat-form-field>
               </td>
@@ -124,7 +127,7 @@
             <ng-container matColumnDef="FacilityType">
               <th mat-header-cell *matHeaderCellDef>Facility Type</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle"appearance="outline">
+                <mat-form-field class="matfieldstyle" appearance="outline">
                   <mat-label>Select an option</mat-label>
                   <mat-select
                     [(value)]="element.CurrentPortFacilitytype"
@@ -145,10 +148,10 @@
             <ng-container matColumnDef="OperationalTaxonomy">
               <th mat-header-cell *matHeaderCellDef>Operational Taxonomy</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
-                    [(value)]="element.CurrentPortOperationalTax"                      
+                    [(value)]="element.CurrentPortOperationalTax"
                     name="element.CurrentPortOperationalTax"
                   >
                     <mat-option
@@ -166,7 +169,7 @@
             <ng-container matColumnDef="CurrentITCapacity">
               <th mat-header-cell *matHeaderCellDef>Current IT Capacity</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(value)]="element.CurrentPortEstimatedSize"
@@ -181,13 +184,14 @@
                 Estimated IT Capacity in 5 years
               </th>
               <td mat-cell *matCellDef="let element">
-                  <mat-form-field class="matfieldstyle" appearance="outline">
-                    <input
-                      matInput
-                      [(value)]="element.CurrentITCapacity"
-                      name="element.CurrentITCapacity"
-                    />
-                  </mat-form-field></td>
+                <mat-form-field class="matfieldstyle">
+                  <input
+                    matInput
+                    [(value)]="element.CurrentITCapacity"
+                  name="element.CurrentITCapacity"
+                  />
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <tr
@@ -225,7 +229,7 @@
             <ng-container matColumnDef="DcCode">
               <th mat-header-cell *matHeaderCellDef>DcCode</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="element.InProgSitesDCcode"
@@ -239,7 +243,7 @@
             <ng-container matColumnDef="FacilityType">
               <th mat-header-cell *matHeaderCellDef>Facility Type</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
                     [(value)]="element.InProgFacilityType"
@@ -260,7 +264,7 @@
             <ng-container matColumnDef="OperationalTaxonomy">
               <th mat-header-cell *matHeaderCellDef>Operational Taxonomy</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
                     [(value)]="element.InProgOperationalTax"
@@ -281,14 +285,15 @@
             <ng-container matColumnDef="CurrentITCapacity">
               <th mat-header-cell *matHeaderCellDef>Current IT Capacity</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(value)]="element.InProgInitialSize"
                     name="element.InProgInitialSize"
                   />
-                </mat-form-field></td >
-              </ng-container>
+                </mat-form-field>
+              </td>
+            </ng-container>
 
             <!-- Estimated IT Capacity in 5 years Column -->
             <ng-container matColumnDef="EstimatedITCapacityin5years">
@@ -296,39 +301,42 @@
                 Estimated IT Capacity in 5 years
               </th>
               <td mat-cell *matCellDef="let element">
-                  <mat-form-field class="matfieldstyle" appearance="outline">
-                    <input
-                      matInput
-                      [(value)]="element.InProgEstimatedSize"
-                      name="element.InProgEstimatedSize"
-                    />
-                  </mat-form-field></td >
+                <mat-form-field class="matfieldstyle">
+                  <input
+                    matInput
+                    [(value)]="element.InProgEstimatedSize"
+                    name="element.InProgEstimatedSize"
+                  />
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <!-- Estimated Investment Column -->
             <ng-container matColumnDef="EstimatedInvestment">
               <th mat-header-cell *matHeaderCellDef>Estimated Investment</th>
               <td mat-cell *matCellDef="let element">
-                  <mat-form-field class="matfieldstyle" appearance="outline">
-                    <input
-                      matInput
-                      [(value)]="element.InProgEstimatedInvestment"
-                      name="element.InProgEstimatedInvestment"
-                    />
-                  </mat-form-field></td >
+                <mat-form-field class="matfieldstyle">
+                  <input
+                    matInput
+                    [(value)]="element.InProgEstimatedInvestment"
+                    name="element.InProgEstimatedInvestment"
+                  />
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <!-- Estimatedgo-live date Column -->
             <ng-container matColumnDef="Estimatedgolivedate">
               <th mat-header-cell *matHeaderCellDef>Estimatedgo-live date</th>
               <td mat-cell *matCellDef="let element">
-                  <mat-form-field class="matfieldstyle" appearance="outline">
-                    <input
-                      matInput
-                      [(value)]="element.InProgEstimatedGoLive"
-                      name="element.InProgEstimatedGoLive"
-                    />
-                  </mat-form-field></td >
+                <mat-form-field class="matfieldstyle">
+                  <input
+                    matInput
+                    [(value)]="element.InProgEstimatedGoLive"
+                    name="element.InProgEstimatedGoLive"
+                  />
+                </mat-form-field>
+              </td>
             </ng-container>
             <tr
               mat-header-row
@@ -348,7 +356,7 @@
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label
               data-toggle="tooltip"
               title="Proposed sites - Sites that are currently still tentative or under investigation. Include all regions or cities of interest."
@@ -370,10 +378,14 @@
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label> Other portfolio comments</mat-label>
-            <textarea matInput cdkAutosizeMinRows="4"       [(ngModel)]="PortfolioComments"
-            name="PortfolioComments"></textarea>
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="PortfolioComments"
+              name="PortfolioComments"
+            ></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -396,7 +408,7 @@
             <ng-container matColumnDef="Current">
               <th mat-header-cell *matHeaderCellDef>Current</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="CurrentOnlineSvr"
@@ -410,7 +422,7 @@
             <ng-container matColumnDef="Planned">
               <th mat-header-cell *matHeaderCellDef>Planned</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="PlannedOnlineSvr"
@@ -424,7 +436,7 @@
             <ng-container matColumnDef="Proposed">
               <th mat-header-cell *matHeaderCellDef>Proposed</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="ProposedOnlineSvr"
@@ -465,7 +477,7 @@
             <ng-container matColumnDef="Current">
               <th mat-header-cell *matHeaderCellDef>Current</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="CurrentOtherSvr"
@@ -476,10 +488,10 @@
             </ng-container>
 
             <!-- Planned Column -->
-            <ng-container  matColumnDef="Planned" >
-              <th mat-header-cell *matHeaderCellDef> Planned </th>
+            <ng-container matColumnDef="Planned">
+              <th mat-header-cell *matHeaderCellDef>Planned</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="PlannedOtherSvr"
@@ -493,7 +505,7 @@
             <ng-container matColumnDef="Proposed">
               <th mat-header-cell *matHeaderCellDef>Proposed</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle">
                   <input
                     matInput
                     [(ngModel)]="ProposedOtherSvr"
@@ -516,63 +528,87 @@
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label
               >Are there any known data sovereignty or data residency
               requirements?
             </mat-label>
-            <textarea matInput cdkAutosizeMinRows="4" [(ngModel)]="DataRequirements"
-            name="DataRequirements"></textarea>
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="DataRequirements"
+              name="DataRequirements"
+            ></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>
               Are there any maximum latency requirements (in round trip time to
               customers)?</mat-label
             >
-            <textarea matInput cdkAutosizeMinRows="4"  [(ngModel)]="Latency"
-            name="Latency"></textarea>
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="Latency"
+              name="Latency"
+            ></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>
               Where are the customers or end users for these
               datacenters?</mat-label
             >
-            <textarea matInput cdkAutosizeMinRows="4"  [(ngModel)]="ServiceTargets"
-            name="ServiceTargets"></textarea>
-          </mat-form-field >
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="ServiceTargets"
+              name="ServiceTargets"
+            ></textarea>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label
               >Do we expect the data to cross state or country borders at any
               point in its delivery to customers?</mat-label
             >
-            <textarea matInput cdkAutosizeMinRows="4"  [(ngModel)]="CrossBorderDataFlows"
-            name="CrossBorderDataFlows"></textarea>
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="CrossBorderDataFlows"
+              name="CrossBorderDataFlows"
+            ></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-6 textareastyle">
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label> Additional customer/service comments</mat-label>
-            <textarea matInput cdkAutosizeMinRows="4" [(ngModel)]="CustomerComments"
-            name="CustomerComments"></textarea>
+            <textarea
+              matInput
+              cdkAutosizeMinRows="4"
+              [(ngModel)]="CustomerComments"
+              name="CustomerComments"
+            ></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="footer  ">
-        <button type="submit" class="float-right btn btn-light footbutton"(click)="makeCopy()">
+        <button
+          type="submit"
+          class="float-right btn btn-light footbutton"
+          (click)="makeCopy()"
+        >
           Make a Copy
         </button>
         <button
@@ -582,7 +618,9 @@
         >
           Save and Close
         </button>
-        <button type="submit" class="float-right btn btn-light footbutton">Save</button>
+        <button type="submit" class="float-right btn btn-light footbutton">
+          Save
+        </button>
       </div>
     </div>
   </form>

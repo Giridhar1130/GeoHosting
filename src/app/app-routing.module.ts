@@ -12,10 +12,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'intake', component: IntakeComponent },
-  {path: 'intakeform', component: IntakeFormComponent},
-  {path: 'geoclearance', component: CountryGeoClearanceComponent},
-  {path: 'gapfeedback', component: GapFeedbackComponent},
-  {path: 'celafeedback', component: CelaFeedbackComponent}
+  { path: 'intakeform', component: IntakeFormComponent},
+  { path: 'geoclearance/:selectedCountry', component: CountryGeoClearanceComponent},
+  { path: 'gapfeedback', component: GapFeedbackComponent},
+  { path: 'celafeedback', component: CelaFeedbackComponent}
 ];
 
 @NgModule({

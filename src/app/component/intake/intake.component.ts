@@ -23,7 +23,9 @@ export class IntakeComponent implements AfterViewInit, OnInit {
   }
 
   public allIntakeData: any[];
-  public displayedColumns: string[] = ['ID', 'MyFields.FormName', 'AssessmentStatus', 'MyFields.Section1details.Priority', 'MyFields.Section1details.Scope', 'Country', 'MyFields.Territory'];
+  public displayedColumns: string[] = ['ID', 'MyFields.FormName', 'AssessmentStatus',
+                                     'MyFields.Section1details.Priority',
+                                     'MyFields.Section1details.Scope', 'Country', 'MyFields.Territory'];
   public dataSource = new MatTableDataSource(this.allIntakeData);
   public objectkeys = Object.keys;
   public objectvalues = Object.values;
@@ -79,7 +81,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.sort = this.sort;
-  }  
+  }
 
   public getdata(data): void {
     data.map((items: CountryIntake) => {
@@ -193,8 +195,16 @@ export class IntakeComponent implements AfterViewInit, OnInit {
       disableClose: true
     };
 
+    const dialogRef = this.countryIntakeDialog.open(IntakeFormComponent, passdata);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.currentRightItem.push(result);
+        this.allIntakeData.push(result);
+        console.log(result);
+      }
+    });
     this.countryIntakeDialog.open(IntakeFormComponent, passdata);
-  }  
+  }
 
   sortingDataAccessor(item, property) {
     if (property.includes('.')) {

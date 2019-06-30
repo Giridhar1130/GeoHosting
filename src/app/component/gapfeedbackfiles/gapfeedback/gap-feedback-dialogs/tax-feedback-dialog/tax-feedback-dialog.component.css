@@ -2,9 +2,20 @@ h6 {
 	font-weight: bold;
 	color: #554d4d;
 }
-
-
-
+.header {
+	background-color: #002050;
+	color: #fff;
+	font-size: 28px;
+	height: 90px;
+	line-height: 45px;
+  }
+.close-icon {
+	float: right;
+	margin: 1rem;
+	background-color: transparent;
+	color: #fff;
+	border: none;
+  }
 .cela-header {
     background: #002050;
 	color: #fff;

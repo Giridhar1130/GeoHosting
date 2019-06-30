@@ -1,15 +1,13 @@
 <div class="cela-dialog">
-    <div class="cela-header">
-      <div>
-        Physical Security
+    <div class="header text-center  flex-xs-middle ">
+        <span>Physical Security</span>
+        <button class="material-icons close-icon " (click)="onCloseDialog($event)">
+          close
+        </button>
+        <div>{{ titleCountry }}</div>
       </div>
-      <button class="material-icons close-icon " (click)="onCloseDialog()">close</button>
-      <div>
-        {{ country }}
-      </div>
-    </div>
   
-    <div class="cela-content">
+    <div class="cela-content"> 
       <form>
         <div class="container-data">
           <div class="row">
@@ -52,28 +50,31 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="col-sm-4">
-                            <geo-mat-dropdown   [Title]="summaryRiskLevel"
-                                                [InputTextArray]="riskLevels"
-                                                (OutputHandler)="onRiskLevel($event)"
-                                                id="summaryRiskLevelDropdown">
-                                                [SelectedValue]="RiskLevel"
+                            <geo-mat-dropdown 
+                              [Title]="summaryRiskLevel"
+                                [InputTextArray]="riskLevels"
+                                (OutputHandler)="onRiskLevel($event)"
+                                [SelectedValue]="RiskLevel">
+
                             </geo-mat-dropdown>
                         </div>
                         <div class="col-sm-8"></div>
                     </div>
                     <geo-mat-textarea   [labelTextAreaSummary]="feedbackSummaryLabel"
-                                        (summary)="onFeedbackSummary($event)">
-                                        [input]="FeedbackSummary"
+                                        (summary)="onFeedbackSummary($event)"
+                                        [input]="FeedbackSummary">
                     </geo-mat-textarea>
 
                     <geo-mat-textarea   [labelTextAreaSummary]="securityDetailsAndInquiriesLabel"
-                                        (summary)="onSecurityIssues($event)">
-                                        [input]="SecurityIssues"
+                                        (summary)="onSecurityIssues($event)"
+                                        [input]="SecurityIssues">
+                                        
                     </geo-mat-textarea>
 
                     <geo-mat-textarea   [labelTextAreaSummary]="physicalSecurityRiskLevelDefinitionLabel"
-                                        (summary)="onTravelWarningSection($event)">
-                                        [input]="TravelWarningSection"
+                                        (summary)="onTravelWarningSection($event)"
+                                        [input]="TravelWarningSection">
+                                       
                     </geo-mat-textarea>
 
 
@@ -123,13 +124,13 @@
                 <mat-card-content>
                     <geo-mat-textarea   
                         [labelTextAreaSummary]="physicalSecurityRiskLevelLabel"
-                        (summary)="onDepartTravelWarning($event)">
-                        [input]="DepartTravelWarning"
+                        (summary)="onDepartTravelWarning($event)"
+                        [input]="DepartTravelWarning">                       
                     </geo-mat-textarea>
                     <div>
                         <section class="checkbox-details-section">
                             <label class="checkbox-margin">U.S. State Department Travel Advisory Level (2-4)</label>
-                            <mat-radio-group [(ngModel)]="MicrosoftHeadCount">
+                            <mat-radio-group [(ngModel)]="MicrosoftHeadCount" name="MicrosoftHeadCount">
                                 <mat-radio-button color="primary" class="checkbox-margin" value="Yes">Yes</mat-radio-button>
                                 <mat-radio-button color="primary" class="checkbox-margin" value="No">No</mat-radio-button>
                             </mat-radio-group>
@@ -137,14 +138,16 @@
                     </div>
                     <geo-mat-textarea   
                         [labelTextAreaSummary]="applicableBaselineSecurityRequirementsLabel"
-                        (summary)="onBaselineSecurityRequirements($event)">
-                        [input]="BaselineSecurityRequirements"
+                        (summary)="onBaselineSecurityRequirements($event)"
+                        [input]="BaselineSecurityRequirements">
+                       
                     </geo-mat-textarea> 
                     
                         <geo-mat-textarea   
                         [labelTextAreaSummary]="physicalSecurityPointofContactLabel"
-                        (summary)="onphysicalSecurityPointofContactLabel($event)">
-                        [input]="PhysicalSecurityPointofContactName"
+                        (summary)="onphysicalSecurityPointofContactLabel($event)"
+                        [input]="PhysicalSecurityPointofContactName">
+                        
                     </geo-mat-textarea> 
                  
                     <div>
@@ -163,9 +166,15 @@
             <mat-checkbox color="primary" [(ngModel)]="checkBox" name="chackedRisk">No changes in the risk level and Action Item</mat-checkbox>
 
             <div class="cela-actions">
-                <geo-action [IsCloseButton]="true"
-                            (CloseAction)="onSaveandCloseDialog()">
-                </geo-action>
+                <geo-action
+                [IsCloseButton]="true"
+                (CloseAction)="onCloseDialog()"
+                ActionButtonText="Save"
+                CloseButtonText="Cancel"
+                [IsActionButton]="showSave"
+                (GeoAction)="onSave()"
+              >
+              </geo-action>
             </div>
         </form>
     </div>
