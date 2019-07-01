@@ -91,7 +91,7 @@ export class CelaFeedbackComponent implements OnInit {
         });
         this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
 
-        if (this.specificActionSites.length < 1) {
+        if (this.specificActionSites && this.specificActionSites.length < 1) {
             this.specificActionSites.push({ActionName: '', Details: '', Contact: ''});
             this.summaryTableDataSource = new MatTableDataSource(this.specificActionSites);
         }
