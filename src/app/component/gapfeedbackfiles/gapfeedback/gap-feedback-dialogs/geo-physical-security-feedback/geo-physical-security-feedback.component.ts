@@ -63,7 +63,7 @@ export class GeoPhysicalSecurityFeedbackComponent implements OnInit {
     .subscribe((data) => {
       this.riskLevels = data[0].sourceItems;
     });
-    if (this.specificActionSites.length < 1) {
+    if (this.specificActionSites && this.specificActionSites.length < 1) {
         this.specificActionSites.push({ ActionName: '', Details: '', Contact: '' });
     }
     }

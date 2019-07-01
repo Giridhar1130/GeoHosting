@@ -19,8 +19,8 @@ export class GapFeedbackService {
     private http: HttpClient,
     private messageService: MessagesService) { }
 
-  getgapfeedback() {
-    return this.http.get<GapFeedBack[]>('https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms')
+  getgapfeedback(countryName:string = null) {
+    return this.http.get<GapFeedBack[]>('https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms?countryName=' + countryName)
       .pipe(catchError(this.handleError)
       );
   }

@@ -1,8 +1,8 @@
 <mat-form-field>
   <mat-label>{{Title}}</mat-label>
   <mat-select (selectionChange)="onChangeHandler($event)" [required]="IsRequired" [(value)]="SelectedValue" name="ValueData" [disabled]="toDisable">
-    <mat-option *ngFor="let item of InputTextArray" [value]="item.Value">
-      {{item.Value}}
+    <mat-option *ngFor="let item of InputCountryList" [value]="item.Title">
+      {{item.Title}}
     </mat-option>
   </mat-select>
 </mat-form-field>

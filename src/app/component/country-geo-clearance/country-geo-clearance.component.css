@@ -16,6 +16,31 @@
     color: #fff;
     font-size: 3rem;
 }
+  .nofly {
+    color:white;
+    background-color: #cc0000;
+  }
+  
+  .cleared {
+    color:white;
+    background-color: #548235;
+  }
+
+  .limited {
+    color:white;
+    background-color: #cc9900;
+  }
+  
+  .restricted {
+    color:white;
+    background-color: #ff6600;
+  }
+
+  .notassessed {
+      color: #000;
+      background-color: #FFF;
+      border: 1px solid #000;
+  }
 
 .margin-top-20 {
     margin-top: 20px;
@@ -37,9 +62,14 @@
     padding-top: 5px;
     font-weight: 400;
     text-align: justify;
+    height: 100px;
 }
 
-.card-body .text-white a {
+.card-body .notassessed a {
+    color: black;
+}
+
+.card-body a {
     color: white;
     float:right;
     text-decoration: underline;
@@ -52,30 +82,5 @@
 
 .card {
     border-radius: 0px;
+    height: 100%
 }
-
-.nofly {
-    color:white;
-    background-color: #cc0000;
-    }
-    
-    .cleared {
-    color:white;
-    background-color: #548235;
-    }
-    
-    .limited {
-    color:white;
-    background-color: #cc9900;
-    }
-    
-    .restricted {
-    color:white;
-    background-color: #ff6600;
-    }
-    
-    .notassessed {
-    color: #000;
-    background-color: #FFF;
-    border: 1px solid #000;
-    }
