@@ -20,7 +20,14 @@ export class GapFeedbackService {
     private messageService: MessagesService) { }
 
   getgapfeedback(countryName:string = null) {
-    return this.http.get<GapFeedBack[]>('https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms?countryName=' + countryName)
+    let url: string;
+    if (countryName) {
+      url = 'https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms?countryName=' + countryName;
+    }
+    else {
+      url = 'https://geohostingapi.azurewebsites.net/api/gapFeedback/Forms';
+    }
+    return this.http.get<GapFeedBack[]>(url)
       .pipe(catchError(this.handleError)
       );
   }
