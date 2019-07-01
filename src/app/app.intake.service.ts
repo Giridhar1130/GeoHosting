@@ -24,13 +24,11 @@ export class IntakeService {
   }
 
   pacthintakeForm(intakeForm) {
-    console.log('patchintakeForm work', intakeForm.FormId);
     return this.http.patch<CountryIntake>(this.intakesUrl + '/update', intakeForm)
     .pipe(catchError(this.handleError)
     );
   }
   patchintakeFormtocopy(intakeForm) {
-    console.log('patchintakeFormtocopy work');
     const jsonfile = JSON.stringify(intakeForm);
     return this.http.patch(this.intakesUrl + '/update', jsonfile)
     .pipe(catchError(this.handleError)

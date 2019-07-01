@@ -58,6 +58,7 @@ export class RiskManagementFeedbackDialogComponent implements OnInit {
     public legalAndRegulatoryRiskLabel = 'Legal and Regulatory Risk';
     public politicalInterferenceRiskLabel = 'Political Interference Risk';
     public politicalViolenceRiskLabel = 'Political Violence Risk';
+    public contactsLabel = 'Contact(s)';
 
     public RiskLevels: ITextArray[];
 

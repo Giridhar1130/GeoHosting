@@ -66,7 +66,6 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
   }
 
   public afterLeftRootCollapse(ev: any): void {
-    console.log(ev[0], this.currentRightItem);
     this.currentRightItem = this.currentRightItem.filter((items: GapFeedBack) => !(items.AssessmentStatus === ev[0]));
     this.dataSource = new MatTableDataSource(this.currentRightItem);
     this.dataSource.paginator = this.paginator;
@@ -310,7 +309,6 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
       if (result) {
         this.currentRightItem.push(result);
         this.allGapFeedbackData.push(result);
-        console.log(result);
       }
     });
   }
