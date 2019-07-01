@@ -202,9 +202,7 @@ export class CelaFeedbackComponent implements OnInit {
     public onFormHandler(data: string, fieldName: string) {
         const item = `{"${fieldName}": "${data}"}`.toString();
         const parsed: ICelaFeedbackModel = JSON.parse(item);
-        console.log(parsed);
         this.CELAFeedBack = parsed;
-        console.log(this.CELAFeedBack);
     }
 
     public onSave() {

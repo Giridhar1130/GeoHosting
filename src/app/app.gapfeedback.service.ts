@@ -33,8 +33,6 @@ export class GapFeedbackService {
   }
 
   postintakeForm(intakeForm) {
-    console.log('postintakeForm work', intakeForm.FormId);
-
     return this.http.patch<GapFeedBack>(this.intakesUrl + '/update', intakeForm)
     .pipe(catchError(this.handleError)
     );

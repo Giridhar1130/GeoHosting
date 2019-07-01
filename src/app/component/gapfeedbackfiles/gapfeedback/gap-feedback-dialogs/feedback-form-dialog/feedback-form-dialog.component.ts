@@ -57,7 +57,6 @@ export class FeedbackFormDialogComponent implements OnInit {
         this.element.DataCenterRiskLevel =  ev.path[0][10].value;
         this.element.NetworkRiskLevel =  ev.path[0][11].value;
 
-        console.log(this.element);
         this.gapFeedbackService.postintakeForm(this.element).subscribe((callbackfromgetAPI: GapFeedBack) => {
             if (callbackfromgetAPI) {
                 this.element = callbackfromgetAPI;
