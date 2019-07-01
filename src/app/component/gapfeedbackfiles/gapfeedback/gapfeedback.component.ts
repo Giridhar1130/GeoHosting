@@ -358,7 +358,7 @@ export class GapFeedbackComponent implements AfterViewInit, OnInit {
     this.gapfeedbackService.getgapfeedback()
       .subscribe(async (callbackfromgetAPI: GapFeedBack[]) => {
         this.allGapFeedbackData = callbackfromgetAPI;
-        this.getdata(this.allGapFeedbackData);
+        this.getdata(this.allGapFeedbackData);        
         this.currentRightItem = this.allGapFeedbackData;
         this.dataSource.paginator = this.paginator;
         this.leftItemOrginal.sort((val1, val2) => {

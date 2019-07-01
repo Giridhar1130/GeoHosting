@@ -200,11 +200,11 @@
         <!-- Data -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true" ></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>     
+      </table>
     </div>
     
     <!-- Pagination -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
     </div>
   </div>
 </div>
