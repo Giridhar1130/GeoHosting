@@ -27,9 +27,9 @@
           class="btn-toolbar"
           role="toolbar"
           aria-label="Toolbar with button groups">
-        <div class="btn-group mr-3" role="group" aria-label="First group" (click)="openFeedbackTask(element)">
+        <!-- <div class="btn-group mr-3" role="group" aria-label="First group" (click)="openFeedbackTask(element)">
           <button class="inkatebutton material-icons">note_add</button>
-        </div>
+        </div> -->
           <div class="btn-group mr-3" role="group" aria-label="First group" (click)="showALl()">
             <button class="inkatebutton">All Documents  </button> 
           </div>
@@ -41,7 +41,7 @@
           <div class="input-group">
               <input
               type="text"
-              class="form-control align-middle"
+              class="form-control align-middle search-input"
               placeholder="Search"
               matInput
                (keyup)="applyFilter($event.target.value)"
@@ -200,10 +200,11 @@
         <!-- Data -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true" ></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>     
-          
-      <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
+      </table>
     </div>
+    
+    <!-- Pagination -->
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
     </div>
   </div>
 </div>

@@ -16,7 +16,7 @@ export interface GapFeedBack {
     CountryID: string;
     Editor: {Email: string, LookupValue: string};
     FeedbackSummary: string;
-    FormId: string;
+    FormId: number;
     Modified: Date;
     MyFields: MyFields;
     NetworkRiskLevel: string;
@@ -47,7 +47,7 @@ export interface MyFields {
 
 interface Author {
   Email: string;
-  LookupId: string;
+  LookupId: number;
   LookupValue: string;
   TypeId: string;
 }
@@ -56,7 +56,7 @@ export interface ICommonFields {
   AssignedTo: string;
   Country: string;
   CountryID: string;
-  GeoHostingOwner: number;
+  GeoHostingOwner: string;
   Priority: string;
   Scope: string;
 }

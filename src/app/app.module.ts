@@ -51,7 +51,7 @@ import { GeoMatDatepickerComponent } from './component/shared/geo-items/geo-mat-
     GeoMatInputComponent,
     GeoMatDropdownComponent,
     GeoActionComponent,
-    GeoMatDatepickerComponent, 
+    GeoMatDatepickerComponent,
   ],
   imports: [
     BrowserModule,
