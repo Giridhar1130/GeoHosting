@@ -15,7 +15,7 @@
       <h4>Summary</h4>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-3">
           <mat-form-field>
             <mat-label>Country</mat-label>
             <mat-select [(ngModel)]="selectedCountry" name="country">
@@ -24,6 +24,16 @@
                 [value]="country.Title"
               >
                 {{ country.Title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>Scope</mat-label>
+            <mat-select [(ngModel)]="selectedScope" name="scope">
+              <mat-option *ngFor="let scope of ScopeList" [value]="scope.Value">
+                {{ scope.Value }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -47,18 +57,8 @@
           </mat-radio-group>
         </div>
       </div>
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field>
-            <mat-label>Scope</mat-label>
-            <mat-select [(ngModel)]="selectedScope" name="scope">
-              <mat-option *ngFor="let scope of ScopeList" [value]="scope.Value">
-                {{ scope.Value }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
+           
+      <div class="blankrow"></div>
       <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
@@ -74,26 +74,24 @@
             >
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="Justification"
               name="Justification"
             ></textarea>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label> Admin Comments</mat-label>
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="adminComments"
               name="adminComments"
             ></textarea>
           </mat-form-field>
         </div>
-      </div>
+      </div>  
       <h4>Portfolio</h4>
       <small className="text-sm">
         Current portfolio -
@@ -109,15 +107,14 @@
             class="mat-elevation-z0 table-width "
           >
             <!-- DcCode Column -->
-            <ng-container matColumnDef="DcCode">
-              <th mat-header-cell *matHeaderCellDef>DcCode</th>
+            <ng-container matColumnDef="CurrentPortfolioDCcode">
+              <th mat-header-cell *matHeaderCellDef>DC Code</th>
               <td mat-cell *matCellDef="let element">
                 <mat-form-field class="matfieldstyle">
                   <input
-                    matInput
-                    [(ngModel)]="element.CurrentPortfolioDCcode"
-                    name="element.CurrentPortfolioDCcode"
-                   
+                  matInput                                                                           
+                    [(ngModel)]="element.CurrentPortfolioDCcode"     
+                    [ngModelOptions]="{standalone: true}"          
                   />
                 </mat-form-field>
               </td>
@@ -127,11 +124,11 @@
             <ng-container matColumnDef="FacilityType">
               <th mat-header-cell *matHeaderCellDef>Facility Type</th>
               <td mat-cell *matCellDef="let element">
-                <mat-form-field class="matfieldstyle" appearance="outline">
+                <mat-form-field class="matfieldstyle" >
                   <mat-label>Select an option</mat-label>
                   <mat-select
-                    [(value)]="element.CurrentPortFacilitytype"
-                    name="element.CurrentPortFacilitytype"
+                    [(ngModel)]="element.CurrentPortFacilitytype"
+                    [ngModelOptions]="{standalone: true}"  
                   >
                     <mat-option
                       *ngFor="let Facility of FacilityType"
@@ -151,8 +148,8 @@
                 <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
-                    [(value)]="element.CurrentPortOperationalTax"
-                    name="element.CurrentPortOperationalTax"
+                    [(ngModel)]="element.CurrentPortOperationalTax"
+                    [ngModelOptions]="{standalone: true}"  
                   >
                     <mat-option
                       *ngFor="let Operational of OperationalTaxonomy"
@@ -172,8 +169,8 @@
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.CurrentPortEstimatedSize"
-                    name="element.CurrentPortEstimatedSize"
+                    [(ngModel)]="element.CurrentPortEstimatedSize"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field></td
             ></ng-container>
@@ -187,8 +184,8 @@
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.CurrentITCapacity"
-                  name="element.CurrentITCapacity"
+                    [(ngModel)]="element.CurrentITCapacity"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -205,11 +202,10 @@
           </table>
         </div>
       </div>
-      <div (click)="addonCurrentportfoliosite()">
-        <i class="material-icons">arrow_drop_down</i>Add another site
-      </div>
+      <button mat-button (click)="addonCurrentportfoliosite()">
+        Add another site
+      </button>
       <div class="blankrow"></div>
-
       <small className="text-sm">
         In progress sites -
         <small class="text-muted">
@@ -233,7 +229,7 @@
                   <input
                     matInput
                     [(ngModel)]="element.InProgSitesDCcode"
-                    name="a"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -246,8 +242,8 @@
                 <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
-                    [(value)]="element.InProgFacilityType"
-                    name="element.InProgSitesDCcode"
+                    [(ngModel)]="element.InProgFacilityType"
+                    [ngModelOptions]="{standalone: true}"  
                   >
                     <mat-option
                       *ngFor="let Facilit of FacilityType"
@@ -267,8 +263,8 @@
                 <mat-form-field class="matfieldstyle">
                   <mat-label>Select an option</mat-label>
                   <mat-select
-                    [(value)]="element.InProgOperationalTax"
-                    name="element.DcCode"
+                    [(ngModel)]="element.InProgOperationalTax"
+                    [ngModelOptions]="{standalone: true}"  
                   >
                     <mat-option
                       *ngFor="let Operational of OperationalTaxonomy"
@@ -288,8 +284,8 @@
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.InProgInitialSize"
-                    name="element.InProgInitialSize"
+                    [(ngModel)]="element.InProgInitialSize"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -304,8 +300,8 @@
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.InProgEstimatedSize"
-                    name="element.InProgEstimatedSize"
+                    [(ngModel)]="element.InProgEstimatedSize"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -318,8 +314,8 @@
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.InProgEstimatedInvestment"
-                    name="element.InProgEstimatedInvestment"
+                    [(ngModel)]="element.InProgEstimatedInvestment"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -327,13 +323,13 @@
 
             <!-- Estimatedgo-live date Column -->
             <ng-container matColumnDef="Estimatedgolivedate">
-              <th mat-header-cell *matHeaderCellDef>Estimatedgo-live date</th>
+              <th mat-header-cell *matHeaderCellDef>Estimated go-live date</th>
               <td mat-cell *matCellDef="let element">
                 <mat-form-field class="matfieldstyle">
                   <input
                     matInput
-                    [(value)]="element.InProgEstimatedGoLive"
-                    name="element.InProgEstimatedGoLive"
+                    [(ngModel)]="element.InProgEstimatedGoLive"
+                    [ngModelOptions]="{standalone: true}"  
                   />
                 </mat-form-field>
               </td>
@@ -350,10 +346,11 @@
         </div>
       </div>
       <div>
-        <div (click)="addonInprogresssitessite()">
-          <i class="material-icons">arrow_drop_down</i>Add another site
-        </div>
+        <button mat-button (click)="addonInprogresssitessite()">
+          Add another site
+        </button>
       </div>
+      <div class="blankrow"></div>      
       <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
@@ -369,26 +366,25 @@
             >
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="ProposedSites"
               name="ProposedSites"
             ></textarea>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label> Other portfolio comments</mat-label>
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="PortfolioComments"
               name="PortfolioComments"
             ></textarea>
           </mat-form-field>
         </div>
       </div>
+      
       <h4>Target Customers</h4>
       <small className="text-sm">
         What Online Services are hosted in this market ?
@@ -457,9 +453,7 @@
           </table>
         </div>
       </div>
-      <div class="blankrow"></div>
-      <div class="blankrow"></div>
-      <div class="blankrow"></div>
+      <div class="blankrow"></div>     
       <small className="text-sm">
         What other services are hosted in this market ?
         <small class="text-muted">
@@ -526,6 +520,7 @@
           </table>
         </div>
       </div>
+      <div class="blankrow"></div>
       <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
@@ -535,14 +530,14 @@
             </mat-label>
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="DataRequirements"
               name="DataRequirements"
+              
             ></textarea>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label>
@@ -551,14 +546,14 @@
             >
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="Latency"
               name="Latency"
             ></textarea>
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row">        
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label>
@@ -567,14 +562,13 @@
             >
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="ServiceTargets"
               name="ServiceTargets"
             ></textarea>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label
@@ -583,20 +577,21 @@
             >
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="CrossBorderDataFlows"
               name="CrossBorderDataFlows"
             ></textarea>
           </mat-form-field>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-6 textareastyle">
           <mat-form-field>
             <mat-label> Additional customer/service comments</mat-label>
             <textarea
               matInput
-              cdkAutosizeMinRows="4"
+              [matTextareaAutosize]
               [(ngModel)]="CustomerComments"
               name="CustomerComments"
             ></textarea>
@@ -622,6 +617,7 @@
           Save
         </button>
       </div>
+      <div class="blankrow"></div>
     </div>
   </form>
 </div>

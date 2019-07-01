@@ -99,7 +99,7 @@ export class IntakeFormComponent implements OnInit {
   public prorityList: ICommonsourceType[] = [];
   public ScopeList: ICommonsourceType[] = [];
   public CurrentportfoliodisplayedColumns: string[] =
-    ['DcCode', 'FacilityType', 'OperationalTaxonomy', 'CurrentITCapacity', 'EstimatedITCapacityin5years'];
+    ['CurrentPortfolioDCcode', 'FacilityType', 'OperationalTaxonomy', 'CurrentITCapacity', 'EstimatedITCapacityin5years'];
   public InprogresssitesdisplayedColumns: string[] =
     ['DcCode', 'FacilityType', 'OperationalTaxonomy', 'CurrentITCapacity', 'EstimatedITCapacityin5years',
       'EstimatedInvestment', 'Estimatedgolivedate'];
@@ -140,9 +140,9 @@ export class IntakeFormComponent implements OnInit {
     setTimeout(() => this.countryIntakeDialog.close(), 100);
   }
 
-  public addonCurrentportfoliosite() {
+  public addonCurrentportfoliosite() {    
     const tmp: CurrentPortfolio = {
-      CurrentPortfolioDCcode: null
+      CurrentPortfolioDCcode: ""
       , CurrentPortFacilitytype: '', CurrentPortOperationalTax: '', CurrentITCapacity: null, CurrentPortEstimatedSize: null
     };
     //  currentPortfolio=this.currentPortfoliodataSource.filteredData;
@@ -156,7 +156,7 @@ export class IntakeFormComponent implements OnInit {
       InProgSitesDCcode: ''
       , InProgFacilityType: '', InProgOperationalTax: '', InProgInitialSize: null,
       InProgEstimatedSize: null, InProgEstimatedInvestment: null, InProgEstimatedGoLive: null
-    };
+    };    
     currentInprogresssites.push(tmp);
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
   }
@@ -210,9 +210,8 @@ export class IntakeFormComponent implements OnInit {
   ngOnInit() {
     this.Submitted = false;
     this.SaveSuccessful = false;
-    currentPortfolio = currentPortfolio.concat(this.countryIntake.MyFields.Section2details.group16.CurrentPortfolio);
-    currentInprogresssites = currentInprogresssites
-                                  .concat(this.countryIntake.MyFields.Section3details.group9.InProgressSitesGroup);
+    currentPortfolio = this.countryIntake.MyFields.Section2details.group16.CurrentPortfolio;
+    currentInprogresssites = this.countryIntake.MyFields.Section3details.group9.InProgressSitesGroup;
     this.currentInprogresssitesdataSource = new MatTableDataSource(currentInprogresssites);
     this.currentPortfoliodataSource = new MatTableDataSource(currentPortfolio);
     console.log(currentPortfolio);

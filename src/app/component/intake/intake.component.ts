@@ -199,8 +199,7 @@ export class IntakeComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.currentRightItem.push(result);
-        this.allIntakeData.push(result);
-        console.log(result);
+        this.allIntakeData.push(result);        
       }
     });
     this.countryIntakeDialog.open(IntakeFormComponent, passdata);
