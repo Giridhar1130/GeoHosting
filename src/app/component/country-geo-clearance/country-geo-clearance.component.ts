@@ -123,15 +123,15 @@ export class CountryGeoClearanceComponent implements OnInit {
 
     setBingMap() {
         setTimeout(() => {
-            //this.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-            //    credentials: 'Ak8KGgKAX_ALSTAwdrYGBytmgJ796jiEiyfyfoWq024KwkfzJ2Tb0W-fUKEcfiwj',
-            //    center: new Microsoft.Maps.Location(this.selectedCountry.Latitude, this.selectedCountry.Longitude),
-            //    zoom: 4,
-            //});
-            //this.pushpin = new Microsoft.Maps.Pushpin(this.map.getCenter(), null);
-            //this.layer = new Microsoft.Maps.Layer();
-            //this.layer.add(this.pushpin);
-            //this.map.layers.insert(this.layer);
+            this.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+               credentials: 'Ak8KGgKAX_ALSTAwdrYGBytmgJ796jiEiyfyfoWq024KwkfzJ2Tb0W-fUKEcfiwj',
+               center: new Microsoft.Maps.Location(this.selectedCountry.Latitude, this.selectedCountry.Longitude),
+               zoom: 4,
+            });
+            this.pushpin = new Microsoft.Maps.Pushpin(this.map.getCenter(), null);
+            this.layer = new Microsoft.Maps.Layer();
+            this.layer.add(this.pushpin);
+            this.map.layers.insert(this.layer);
         }, 1000);
     }
 
@@ -167,16 +167,17 @@ export class CountryGeoClearanceComponent implements OnInit {
       }
 
     public searchLocationBingMap(country: string) {
+        this.formsFeedbackData = [];
         this.selectedCountry = this.countriesList.find((item: CountryList) => item.Title === country);
-        //this.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        //    credentials: 'Ak8KGgKAX_ALSTAwdrYGBytmgJ796jiEiyfyfoWq024KwkfzJ2Tb0W-fUKEcfiwj',
-        //    center: new Microsoft.Maps.Location(this.selectedCountry.Latitude, this.selectedCountry.Longitude),
-        //    zoom: 4,
-        //});
-        //this.pushpin = new Microsoft.Maps.Pushpin(this.map.getCenter(), null);
-        //this.layer = new Microsoft.Maps.Layer();
-        //this.layer.add(this.pushpin);
-        //this.map.layers.insert(this.layer);
+        this.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+           credentials: 'Ak8KGgKAX_ALSTAwdrYGBytmgJ796jiEiyfyfoWq024KwkfzJ2Tb0W-fUKEcfiwj',
+           center: new Microsoft.Maps.Location(this.selectedCountry.Latitude, this.selectedCountry.Longitude),
+           zoom: 4,
+        });
+        this.pushpin = new Microsoft.Maps.Pushpin(this.map.getCenter(), null);
+        this.layer = new Microsoft.Maps.Layer();
+        this.layer.add(this.pushpin);
+        this.map.layers.insert(this.layer);
 
         this.gapFeedbackService.getgapfeedback(this.selectedCountry.Title)
             .subscribe((data) => {
